@@ -1,0 +1,458 @@
+
+
+<!-- completion status block -->
+<div class="col-md-10 pad-0" ng-controller="bankController">
+	<div class="overlay" ng-if="dataLoading">
+		<img width="100"
+			src="../assets/images/loaders/interwind-preloader.svg" />
+	</div>
+	<div class="col-md-12 pad-lft-8 pad-rgt-0">
+		<div class="col-md-12 pad-20 pad-top-10 pad-rgt-0">
+			<div class="col-md-2 col-xs-12 report-history-heading">
+				<h1>Reports</h1>
+
+			</div>
+			<div class="col-md-10 col-xs-12 txt-right">
+				<ul class="list-inline">
+				<li>
+						<select class="reports-filter form-control width_140 ng-pristine ng-valid ng-empty ng-touched" ng-change="sortNotification(sortData)" ng-model="sortData" aria-invalid="false" style="">
+										<option value="" selected="selected">Sort By</option>
+										<option value="asc">Oldest</option>
+										<option value="desc">Newest</option>
+								</select>
+				</li>
+					<li>
+						<button class="btn out-circle-btn" data-toggle="modal"
+							ng-click="openSettingModal()">Settings</button>
+					</li>
+					<li>
+						<button class="btn out-circle-btn disabled_div" id="enable_mail"
+							data-toggle="modal" data-target="#Email">Email</button>
+					</li>
+					<!-- <li>
+						<button class="btn out-circle-btn disabled_div"
+						 ng-click="modal()">Email</button>
+					</li> -->
+
+					<li>
+						<button class="btn out-circle-btn disabled_div"
+							ng-click="applyArchive()" id="enabled_archive">Archive</button>
+					</li>
+
+					<!-- <li>
+						<button class="btn out-circle-btn">Merge File</button>
+					</li> -->
+					<li><select ng-model="items" ng-change="changeItems(items)"
+						class="reports-filter form-control">
+							<option value="5">5</option>
+							<option value="10" selected>10</option>
+							<option value="15">15</option>
+					</select></li>
+					<!-- <li><input type="text" class="search-entry form-control"
+						placeholder="Search"></li> -->
+				</ul>
+			</div>
+
+
+			<form role="form">
+				<div class="col-md-12 pad-top-30">
+
+					<table class="table table-striped report-block"
+						st-table="bankStatementReportDataBase" st-set-filter="myBankReportFilter"
+						st-safe-src="bankStatementReportData">
+					  <thead>
+						<tr>
+						  <th colspan="7"><input st-search="" placeholder="search"
+						  class="input-sm form-control tbl-search" type="search" /></th>
+						</tr>
+							<tr>
+								<th style="width: 5%;"></th>
+								<th style="width: 6%;">Sl. No.</th>
+								<th style="width: 20%;">Requested Date Time</th>
+								<th>Bank Name</th>
+								<th style="width: 20%;">Account Number</th>
+								<th style="width: 30%;">Report File</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr
+								ng-repeat="bsr in bankStatementReportDataBase track by bsr.refId"
+								ng-if="bankStatementReportDataBase.length > 0">
+								<td>
+									<div class="checkbox chk-pos">
+										<label> <input type="checkbox"
+											ng-model="bankCheckbox[bsr.refId]" value="{{bsr.refId}}"
+											class="checkingCheckbox"> <i class="input-helper"></i>
+										</label>
+									</div>
+								</td>
+								<td>{{bsr.serialno}}</td>
+								<td>{{bsr.reqDateTime}}</td>
+								<td>{{bsr.bankName}}</td>
+								<td>{{bsr.accNumber}}</td>
+								<td id="{{'finalTd_'+bsr.refId}}" ng-show="bsr.statuscode == 3">
+									<ul class="pad-0">
+										<li id="{{'reportName_'+bsr.refId}}"
+											class="checkingReportFile pad-bot-10">{{bsr.reportFile}}</li>
+
+										<!--  <li>
+                                                        <button class="btn action-outline-btn" >pdf</button>
+                                                    </li> -->
+										<li><a href="{{bsr.reportFileUrl}}"
+											id="{{'reportUrl_'+bsr.refId}}"><button type="button"
+													class="xlxs_button">Full report</button></a> <!-- <div class="line_ver"></div> -->
+											<a href="javascript:void(0)"
+											ng-click="getSetttingUrl(bsr.refId)"
+											ng-click="getSetttingUrl(bsr.refId)">
+												<button type="button" class="xlxs_button_icon"
+													data-toggle="modal" data-target="#table_button">
+													Customize report</button>
+										</a></li>
+									</ul>
+
+								</td>
+
+
+								<td id="{{'convertTd_'+bsr.refId}}"
+									ng-show="bsr.statuscode == 0||bsr.statuscode == 1 || bsr.statuscode == 2">
+
+									<ul class="pad-0">
+										<li><label class="Converting"
+											id="{{'statusMsg_'+bsr.refId}}">{{::bsr.statusMsg}}</label></li>
+
+										<ul class="list-inline">
+											<li>
+												<div class="progress progress_bar_div">
+													<div id="{{'firstDiv_'+bsr.refId}}"
+														ng-class="{'progress-bar':bsr.statuscode == 1 ||bsr.statuscode == 2 || bsr.statuscode == 3}"
+														role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</li>
+											<li>
+												<div class="progress progress_bar_div">
+													<div id="{{'secondDiv_'+bsr.refId}}" role="progressbar"
+														aria-valuemin="0" aria-valuemax="100"
+														ng-class="{'progress-bar':bsr.statuscode == 2 || bsr.statuscode == 3}"></div>
+												</div>
+											</li>
+											<li>
+												<div class="progress progress_bar_div">
+													<div id="{{'thirdDiv_'+bsr.refId}}" role="progressbar"
+														aria-valuemin="0" aria-valuemax="100"
+														ng-class="{'progress-bar':bsr.statuscode == 3}"></div>
+												</div>
+											</li>
+										</ul>
+										<ul class="list-inline">
+											<li><label class="You-are-in-Step-1-of"
+												id="{{'steps_'+bsr.refId}}">You are in Step
+													{{::bsr.step}} of 3</label></li>
+										</ul>
+										<!-- <ul class="list-inline">
+											<li><label class="Approx-5-minutes ">(Approx 5
+												minutes...)</label></li>
+										</ul> -->
+									</ul>
+								</td>
+								<!--Error Validating Html  -->
+
+								<td id="{{'validateTd_'+bsr.refId}}"
+									ng-show="bsr.statuscode == 4">
+									<ul class="pad-0">
+										<li><label class="Validating">Validating...</label></li>
+										<ul class="list-inline">
+											<li><label class="Validating">Error...</label></li>
+											<ul class="list-inline">
+												<li>
+													<div class="progress progress_bar_div">
+														<div class="progress-bar" role="progressbar"
+															aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</li>
+												<li>
+													<div class="progress progress_bar_div">
+														<div class="progress-bar red_progress" role="progressbar"
+															aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</li>
+												<li>
+													<div class="progress progress_bar_div">
+														<div class="progress-bar empty_progress"
+															role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</li>
+											</ul>
+											<!-- <ul class="list-inline">
+											<li><lable class="You-are-in-Step-2-of" id="">You are
+												in Step 2 of 3</lable></li>
+										</ul> -->
+											<!-- 	<ul class="list-inline">
+											<li><lable class="Approx-4-minutes">(Approx 4
+												minutes...)</lable></li>
+										</ul> -->
+											<ul class="list-inline pad-top-10">
+												<li><label class="Error-Found">5 Error Found !!</label>
+												</li>
+												<li>
+													<button type="button" class="Rectify">Rectify</button>
+												</li>
+											</ul>
+										</ul>
+								</td>
+								<!-- Ends Validating  -->
+							</tr>
+							<tr>
+								<td colspan="6" ng-if="bankStatementReportDataBase.length == 0">No
+									Data Available</td>
+							</tr>
+							<tr>
+								<!-- <td colspan="6" class="text-center">
+									<div st-pagination="" st-items-by-page="itemsPerPage"
+										st-displayed-pages="5"></div>
+								</td> -->
+				  <td colspan="7" class="text-center">
+			<div st-items-by-page="itemsPerPage" st-pagination="" st-template="../score-htmls/pagination/pagination.custom.html"></div>
+		          </td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+	<!-- ************************ setting modal starts ********************* -->
+	<modal visible="settingModalShow"> <!-- Sart Modal --> <!-- <div class="modal fade" id="Setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" ng-show="settingModalShow">
+        <div class="modal-dialog">
+            <div class="modal-content modal_content_div">
+                <div class="closer">
+                    <span class="closeEmailModal" data-dismiss="modal" aria-hidden="true">
+                        <img src="../assets/images/close-lite.svg" width="15" draggable="false">
+                    </span>
+                </div>
+                <div class="modal-header modal_header_div">
+                    <div class="col-md-12 tc-box0">
+                        <h1>Settings</h1>
+                    </div>
+                </div>
+                <div class="modal-body modal_body_div pad-0"> -->
+	<div class="col-md-12 pad-0">
+		<div class="col-md-6 pad-0" ng-repeat="sd in settingData">
+			<ul>
+				<li>
+					<div class="checkbox">
+						<label> <input type="checkbox"
+							ng-true-value="{{sd.trueValue}}" ng-false-value=''
+							ng-model="settingCheckboxObject[sd.settingLabel]"
+							ng-checked="sd.selected"> <i class="input-helper"></i>
+						</label>
+					</div>
+				</li>
+				<li>
+					<h5>{{sd.settingLabel}}</h5>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-md-12 pad-0">
+			<div class="col-md-12 pad-lft-0 pad-rgt-0 pad-top-30">
+				<!-- <div class="col-md-6 pad-0 list_style">
+					<ul>
+						<li>
+							<div class="checkbox">
+
+								<label> <input type="checkbox"
+									ng-model="oneTimeCheckbox"
+									ng-change="oneTimeCheckboxFunc(oneTimeCheckbox)"> <i
+									class="input-helper"></i>
+								</label>
+							</div>
+						</li>
+						<li>
+							<h5>Only for this one</h5>
+						</li>
+					</ul>
+				</div> -->
+				<div class="col-md-10 pad-0 list_style">
+					<ul class="txt-center">
+						<li>
+							<div class="checkbox">
+								<label> <input type="checkbox" ng-model="isAllSelected"
+									ng-change="selectAll($event , isAllSelected)"> <i
+									class="input-helper"></i>
+								</label>
+							</div>
+						</li>
+						<li>
+							<h5>Select All</h5>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- modal footer -->
+	<div class="modal-footer">
+		<div class="col-md-12 pad-top-40 pad-0">
+			<div class="col-md-4">
+				<button type="button" class="setting_btn" data-dismiss="modal">Cancel</button>
+			</div>
+			<div class="col-md-4">
+				<button type="button" class="setting_btn flt-rgt"
+					ng-click="applySetting('applyNow')">Apply Now</button>
+			</div>
+			<div class="col-md-4">
+				<button type="button" class="setting_btn flt-rgt"
+					ng-click="applySetting('applyAll')">Apply All</button>
+			</div>
+		</div>
+	</div>
+	</modal>
+
+	<!--  *********************End Modal********************* -->
+
+
+	<!-- ******************************** Email Modal Start*****************************  -->
+	<!-- Modal -->
+	<div class="modal fade" id="Email" role="dialog" data-backdrop="static">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content m-top-120">
+				<form id="bankMailForm" role="form" novalidate>
+
+					<div class="closer">
+						<span data-dismiss="modal" aria-hidden="true"> <img
+							src="../assets/images/close-lite.svg" width="15"
+							draggable="false">
+						</span>
+					</div>
+					<div class="modal-header modal_header_color">
+						<i class="fa fa-envelope-open-o" aria-hidden="true"></i>
+					</div>
+
+					<!-- modalbody start -->
+
+					<div class="modal-body pad-0">
+						<div class="text-box-div">
+							<ul class="list-inline">
+								<li><label class="mail_to">To</label></li>
+								<li><input type="email"
+									class="text_box_to pad-0 input-setting input__style2 form-control "
+									ng-keyup="mailValidationOnKeyUp('mailTo')" ng-model="mailTo"
+									id="mailTo" name="mailTo" required> <span
+									class="custom_ng-error error_msg_email" id="mailTo_span"></span>
+								</li>
+							</ul>
+						</div>
+						<div class="text_box">
+							<input type="text"
+								class="text_box_subject pad-0 input-setting input__style2 form-control "
+								placeholder="Subject" autocomplete="off" ng-model="mailSubject"
+								id="mailSubject" ng-keyup="mailValidationOnKeyUp('mailSubject')"
+								name="mailSubject" required> <span
+								class="custom_ng-error error_msg_email" id="mailSubject_span"></span>
+						</div>
+						<div class="textarea">
+							<textarea placeholder="Say something" class="text_area" cols="30"
+								rows="5" ng-model="mailBody" id="mailBody" name="mailBody"
+								ng-keyup="mailValidationOnKeyUp('mailBody')" required></textarea>
+							<span class="custom_ng-error" id="mailBody_span"></span>
+						</div>
+					</div>
+					<!-- ends -->
+
+					<!-- modal footer start -->
+
+					 <div class="modal-footer modal-footer-div">
+						<div class="col-md-3 col-xs-4 pad-0">
+							<div class="col-md-8 col-xs-8 pad-0">
+								<button type="button" class="modal-button"
+									ng-click="validateMail()">SEND</button>
+
+							</div>
+							<!-- <div class="col-md-4 col-xs-4 pad_top_10">
+								<label for="file-input"> <i class="fa fa-paperclip"
+									aria-hidden="true"></i>
+								</label> <input type="file" class="file-input hide" name="file-input"
+									id="file-input">
+
+							</div> -->
+						</div>
+<!-- 						<div class="col-md-8 col-xs-7 pad-0">
+							<div class="col-md-1 col-xs-1 pad_top_10 pad_left">
+								<i class="fa fa-bold fa_icon" aria-hidden="true"></i>
+							</div>
+							<div class="col-md-1 col-xs-1 pad_top_10 pad_left">
+								<i class="fa fa-italic fa_icon" aria-hidden="true"></i>
+							</div>
+							<div class="col-md-1 col-xs-1 pad_top_10 pad_left">
+								<i class="fa fa-underline fa_icon" aria-hidden="true"></i>
+							</div>
+							<div class="col-md-1 col-xs-1 pad_top_7 pad_left">
+								<select class="formatting_icon">
+									<option>A</option>
+								</select>
+							</div>
+							<div class="col-md-1 col-xs-2 pad_top_7 pad_left">
+								<select class="formatting_icon">
+									<option>T</option>
+								</select>
+							</div>
+							<div class="col-md-3 col-xs-3 pad_top_10">
+								<select class="formatting_icons">
+									<option>Sans-serif</option>
+								</select>
+							</div>
+						</div> -->
+						<!-- <div class="col-md-1 col-xs-1 pad-0">
+							<div class="col-md-12 col-xs-12 pad_top_10">
+								<i class="fa fa-trash" aria-hidden="true"></i>
+								<img src="../assets/images/trash.png" class="trash_img" />
+							</div>
+						</div> -->
+					</div>
+ 				
+               </form>
+				<!-- ends -->
+			</div>
+		</div>
+	</div>
+
+
+	<!-- *******************************modal ends******************************** -->
+
+
+	<!-- Report Modal -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="table_button" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content modal_content_height">
+				<div class="closer">
+					<span data-dismiss="modal" aria-hidden="true"> <img
+						src="../assets/images/close-lite.svg" width="15" draggable="false">
+					</span>
+				</div>
+				<div class="modal-body  pad-0">
+					<div class="col-md-12 tc-box pad-0 pad-top-30">
+						<p>Download File According To Setting Page</p>
+					</div>
+					<div class="col-md-3 col-md-offset-4 m-top-15 txt-left pad-0">
+						<a href="{{newSettingUrl}}"><button class="next-step">DOWNLOAD</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- modal ends -->
+
+</div>
+
+
+

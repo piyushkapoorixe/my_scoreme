@@ -1,0 +1,157 @@
+
+
+<div class="container-fluid pad-lr-30 m-top-143 m-bot-50"
+	ng-controller="companyController">
+	<div class="overlay" style="width:96%;" ng-if="dataLoading">
+		<img width="100" src="../assets/images/loaders/interwind-preloader.svg"/>
+	</div>
+
+	<!-- completion status block -->
+	<div class="col-md-12 pad-0">
+
+		<!-- _____Alert Box_______ -->
+		<!--   <div class="col-md-12 pad-0">
+            <div class="alert alert-success fade" style="display:none;">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Success!</strong> Company has been removed successfully.
+            </div>
+        </div>
+ -->
+
+		<div class="col-md-12 pad-20 pad-top-0 pad-rgt-0">
+		<div class="col-md-10 pad-0 manage-block_content manageentitytablehr">
+		<h1>Manage Entity</h1>
+		</div>
+		<div class="col-md-2 ">
+			  <div class="text-right">
+				<select ng-model="items" ng-change="changeItems(items)" class="filter-dropdown">
+						<option value="5">5</option>
+						<option value="10" selected>10</option>
+						<option value="15">15</option>
+				</select>
+			  </div>
+		</div>
+			<table class="table table-striped score-datalist"
+				st-table="primaryCompanyDataBase" st-safe-src="primaryCompanyData">
+				<thead>
+					<tr>
+						<th colspan="7"><input st-search placeholder="search"
+							class="input-sm form-control tbl-search" type="search" /></th>
+					
+					</tr>
+					<tr>
+					    <th style="width:6%;">Sl. No.</th>
+						<th>Group Name</th>
+						<th>Entity Name</th>
+						<th>Pan Number</th>
+						<th>Business Type</th>
+						<th>Industry Type</th>
+						<th class="text-center">Action</th>
+						
+					</tr>
+				
+				</thead>
+				<tbody>
+					<tr ng-repeat="(key , pcdVal) in primaryCompanyDataBase track by pcdVal.serialno"  ng-if="primaryCompanyDataBase.length > 0"
+						id="{{'companyTr'+$index}}">
+						<td>{{pcdVal.serialno}}</td>
+						<td><input id="{{'companyGroupName' + $index}}"
+							class="input-setting input__style2 disab__transparent manage_input_style"
+							ng-model="pcdVal.companyGroupName" capitalize ng-disabled="!editButton[key]"></td>
+						<td><input id="{{'entityName' + $index}}"
+							class="input-setting input__style2 disab__transparent manage_input_style"
+							ng-model="pcdVal.companyName" capitalize ng-disabled="!editButton[key]"></td>
+						<td><input id="{{'panCard' + $index}}"
+							class="input-setting input__style2 disab__transparent manage_input_style panNumber uppercase"
+							ng-model="pcdVal.companyId"  ng-disabled="!editButton[key]"
+							maxlength="10"> <span id="{{'panCardSpan' + $index}}"></span>
+						</td>
+
+<!-- ***********when company has no rating************* -->
+						<td ng-hide="editButton[key]" ng-if="pcdVal.companyRatingDTOs.length == 0">
+						<input
+							id="{{'businessTypeInput' + $index}}"
+							class="input-setting input__style2 disab__transparent manage_input_style"
+							ng-model="pcdVal.groupName" disabled></td>
+						<td ng-hide="editButton[key]" ng-if="pcdVal.companyRatingDTOs.length == 0">
+						<input
+							id="{{'entityTypeInput' + $index}}"
+							class="input-setting input__style2 disab__transparent manage_input_style"
+							ng-model="pcdVal.industryName" disabled></td>
+
+						<td ng-show="editButton[key]" ng-if="pcdVal.companyRatingDTOs.length == 0">
+						<select
+							class="input-setting input_style_select form-control border-bot"
+							id="{{'businessType' + $index}}" data-required="true"
+							title="Please select the Business" ng-model="business"
+							ng-change="getIndustryType(business , $index)">
+								<option ng-repeat="b in businessTypeData"
+									value="{{b.id}}_{{b.groupName}}">{{b.groupName}}</option>
+						</select></td>
+						<td ng-show="editButton[key]" ng-if="pcdVal.companyRatingDTOs.length == 0">
+						<select
+							class="input-setting input_style_select form-control border-bot"
+							name="{{'entityType' + $index}}" id="{{'entityType' + $index}}"
+							data-required="true" title="Please select the Industry Type"
+							ng-model="industry"
+							ng-options="i.industryId+'_'+i.industryName as i.industryName for i in industryTypeData{{$index}} track by i.industryId+'_'+i.industryName ">
+								<!--<option ng-repeat="i in industryTypeData" value="{{i.industryId}}_{{i.industryName}}">{{i.industryName}}</option> -->
+						</select></td>
+<!-- ************when company has no rating***************** -->
+
+<!-- ************when company has rating***************** -->
+                      <td ng-if="pcdVal.companyRatingDTOs.length > 0">
+						<input
+							id="{{'businessTypeInput' + $index}}"
+							class="input-setting input__style2 disab__transparent manage_input_style"
+							ng-model="pcdVal.groupName" disabled></td>
+						<td  ng-if="pcdVal.companyRatingDTOs.length > 0">
+						<input
+							id="{{'entityTypeInput' + $index}}"
+							class="input-setting input__style2 disab__transparent manage_input_style"
+							ng-model="pcdVal.industryName" disabled></td>
+<!-- ************when company has rating***************** -->						
+													
+						<td>
+							<div class="action-bar">
+								<div class="edit" ng-hide="editButton[key]">
+									<button class="btn edit-button" id="{{'edit' + $index}}"
+										ng-model="editButton[key]"  ng-show="pcdVal.companyRatingDTOs.length == 0"
+										ng-click="editButton[key] = !editButton[key] ; getIndustryType(pcdVal.industrygroupId , $index , pcdVal)">Edit</button>
+								</div>
+								<div class="delete" ng-hide="editButton[key]">
+									<button class="btn delete-button" id="{{'delete' + $index}}"
+										ng-model="deleteButton[key]"
+										ng-click="deleteCompany(pcdVal.id , $index)">Delete</button>
+								</div>
+								<div class="edit" ng-show="editButton[key]"> 
+									<button class="btn edit-button" id="{{'save' + $index}}"
+										ng-model="saveButton[key]"
+										ng-click="checkName(pcdVal.companyId, $index , pcdVal , pcdVal.id)">Save</button>
+								</div>
+								<div class="delete" ng-show="editButton[key]">
+									<button class="btn delete-button" id="{{'cancel' + $index}}"
+										ng-model="cancelButton[key]"
+										ng-click="editButton[key] = !editButton[key] ; removeExtra($index , pcdVal.companyId)">Cancel</button>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr ng-if="primaryCompanyDataBase.length == 0">
+					      <td colspan="7">No Data Available</td>
+					</tr>
+					<tr>
+						<!-- <td colspan="7" class="text-center">
+							<div st-pagination="" st-items-by-page="itemsPerPage"
+								st-displayed-pages="7"></div>
+						</td> -->
+				 <td colspan="7" class="text-center">
+	<div st-items-by-page="itemsPerPage" st-pagination="" st-template="../score-htmls/pagination/pagination.custom.html"></div>
+		          </td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

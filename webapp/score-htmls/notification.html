@@ -1,0 +1,180 @@
+
+<div class="col-md-10" ng-controller="notificationController">
+	<div class="col-md-12">
+
+
+		<div class="col-md-12 notification_box">
+			<table class="table" st-table="notifysBase" st-safe-src="notifys">
+				<thead>
+					<tr>
+						<td><h1 class="pad-lft-15">Notifications</h1></td>
+						<td>
+							<ul class="list-inline txt-right m-top-40">
+								<li><select ng-model="items" ng-change="changeItems(items)"
+									class="reports-filter  form-control">
+										<option value="5">5</option>
+										<option value="10" selected>10</option>
+										<option value="15">15</option>
+								</select></li>
+								<li><select class="reports-filter form-control width_140"
+									ng-change="sortNotification(sortData)" ng-model="sortData">
+										<option value="">Sort By</option>
+										<option value="asc">Ascending</option>
+										<option value="desc">Descending</option>
+								</select></li>
+
+								<li><select class="reports-filter form-control width_140"
+									ng-change="filterNotification(filterData)"
+									ng-model="filterData">
+										<option value="">Filter By</option>
+										<option value="isRead">Read Notification</option>
+										<option value="isFlag">Flag Notification</option>
+								</select></li>
+								<li><input type="search" st-search
+									class="search-entry form-control width_220"
+									placeholder="Search" style="box-sizing: border-box;"></li>
+							</ul>
+						</td>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="notify in notifysBase track by $index" ng-if="notifysBase.length > 0">
+					
+						<td colspan="7" class="pad-0" ng-if="notify.isRead == 1">
+							<div class="col-md-12 rectangle_noti">
+								<div class="col-md-1 m-top-35">
+									<ul class="pad-0 ellipsis">
+										<li><i class="fa fa-ellipsis-h"></i></li>
+									</ul>
+								</div>
+								<div class="col-md-8 pad-0">
+									<ul class="noti_content pad-0">
+										<li><p>{{notify.creationDate}}</p></li>
+										<li><p>{{notify.heading}}</p></li>
+										<li><p>{{notify.notifymsg}}</p></li>
+									</ul>
+								</div>
+								<div class="col-md-3 m-top-35 pad-0">
+									<ul class="list-inline right_content_noti txt-right">
+										<li ng-if="notify.isFlag == 0"><a
+											href="javascript:void(0)"
+											ng-click="saveNotifyStatus(notify.refId , 1 , 1 , 1)"><img
+												src="../assets/images/flag-grey.svg"
+												style="height: 30px; width: 25px;"></a></li>
+										<li ng-if="notify.isFlag == 1"><a
+											href="javascript:void(0)"
+											ng-click="saveNotifyStatus(notify.refId , 0 , 1 , 1)"><img
+												src="../assets/images/flag-red.svg"
+												style="height: 30px; width: 25px;"></a></li>
+										<li><img src="../assets/images/bookblue.png" 
+											style="height: 25px; width: 25px;"></li>
+										<li><a href="javascript:void(0)"
+											ng-click="saveNotifyStatus(notify.refId , 0 , 1 , 0)"><img
+												src="../assets/images/close.png"
+												style="height: 15px; width: 15px;"></a></li>
+									</ul>
+									<ul class="list-inline noti_content_hr txt-right">
+										<li><p>{{notify.timeStatus}}</p></li>
+									</ul>
+								</div>
+							</div>
+						</td>
+
+						<td colspan="7" class="pad-0" ng-if="notify.isRead == 0">
+							<div class="white_background col-md-12">
+								<div class="col-md-1 m-top-35">
+									<ul class="pad-0 ellipsis">
+										<li><i class="fa fa-ellipsis-h"></i></li>
+									</ul>
+								</div>
+								<div class="col-md-8 pad-0">
+									<ul class="noti_content pad-0">
+										<li><p>{{notify.creationDate}}</p></li>
+										<li><p style="color: #0057ff !important">{{notify.heading}}</p></li>
+										<li><p>{{notify.notifymsg}}</p></li>
+									</ul>
+								</div>
+								<div class="col-md-3 m-top-35 pad-0">
+									<ul class="list-inline right_content_noti txt-right">
+										<li ng-if="notify.isFlag == 0"><a
+											href="javascript:void(0)"
+											ng-click="saveNotifyStatus(notify.refId , 1 , 1 , 1)"><img
+												src="../assets/images/flag-grey.svg"
+												style="height: 30px; width: 25px;"></a></li>
+										<li ng-if="notify.isFlag == 1"><a
+											href="javascript:void(0)"
+											ng-click="saveNotifyStatus(notify.refId , 0 , 1 , 1)"><img
+												src="../assets/images/flag.svg"
+												style="height: 30px; width: 20px;"></a></li>
+										<li><img src="../assets/images/bookgrey.png"
+											style="height: 25px; width: 25px;" ng-click="saveNotifyStatus(notify.refId , 0 , 1 , 1)"></li>
+										<li><a href="javascript:void(0)"
+											ng-click="saveNotifyStatus(notify.refId , 0 , 1 , 0)"><img
+												src="../assets/images/close.png"
+												style="height: 15px; width: 15px;"></a></li>
+									</ul>
+									<ul class="list-inline noti_content_hr txt-right">
+										<li><p>{{notify.timeStatus}}</p></li>
+									</ul>
+								</div>
+							</div></td></tr>
+						    <tr  ng-if="notifysBase.length == 0" class="pad-top-bot">
+					          <td colspan="7" class="style-avail">No Data Available</td>
+					       </tr>
+					<tr>
+						<!-- <td colspan="7" class="text-center">
+							<div st-pagination="" st-items-by-page="itemsPerPage"
+								st-displayed-pages="7"></div>
+						</td> -->						
+		<td colspan="7" class="text-center">
+			<div st-items-by-page="itemsPerPage" st-pagination="" st-template="../score-htmls/pagination/pagination.custom.html"></div>
+		</td>										
+					</tr>
+
+					<!-- <tr>
+					<td colspan="7" class="pad-0">
+						<div class="white_background col-md-12" >
+							<div class="col-md-1 m-top-35">
+								<ul class="pad-0 ellipsis">
+									<li><i class="fa fa-ellipsis-h"></i></li>
+								</ul>
+							</div>
+							<div class="col-md-8 pad-0">
+								<ul class="noti_content pad-0">
+									<li><p>22th July 2018</p></li>
+									<li><p style="color: #0057ff !important">{{notify.heading}}</p></li>
+									<li><p>{{notify.notifymsg}}</p></li>
+								</ul>
+							</div>
+							<div class="col-md-3 m-top-35 pad-0">
+								<ul class="list-inline right_content_noti txt-right">
+									<li ng-if="notify.isFlag == 0"><a
+										href="javascript:void(0)"
+										ng-click="saveNotifyStatus(notify.refId , 1 , 0 , 1)"><img
+											src="../assets/images/flag-grey.svg"
+											style="height: 30px; width: 25px;"></a></li>
+									<li ng-if="notify.isFlag == 1"><a
+										href="javascript:void(0)"
+										ng-click="saveNotifyStatus(notify.refId , 0 , 0 , 1)"><img
+											src="../assets/images/flag.svg"
+											style="height: 30px; width: 20px;"></a></li>
+									<li><img src="../assets/images/bookgrey.png"
+										style="height: 25px; width: 25px;"></li>
+									<li><a href="javascript:void(0)"
+										ng-click="saveNotifyStatus(notify.refId , 0 , 0 , 0)"><img
+											src="../assets/images/close.png"
+											style="height: 15px; width: 15px;"></a></li>
+								</ul>
+								<ul class="list-inline noti_content_hr  txt-right">
+									<li><p>{{notify.timeStatus}}</p></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr> -->
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

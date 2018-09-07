@@ -1,0 +1,527 @@
+<!-- completion status block -->
+<div class="col-md-10 col-xs-12 pad-0-xs pad-rgt-0"
+	ng-controller="dashboardController">
+	<div class="overlay" ng-if="dataLoading">
+		<img width="100"
+			src="../assets/images/loaders/interwind-preloader.svg" />
+	</div>
+	<div class="col-md-12 pad-0-xs dashboard pad-rgt-0">
+		<h1>Dashboard</h1>
+		<div class="col-md-4 col-xs-12 m-top-10">
+			<div class="score-grid" ng-if="ratingFlag == 1">
+				<div class="col-md-12 m-top-10">
+					<ul class="list-inline download-section">
+						<li><a ng-href="{{report}}" target="_blank">Download
+								Report</a></li>
+						<li>
+							<button class=""
+								ng-click="$state.go('recalculateScoreDashboardState')">Dashboard</button>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12 m-top-20">
+					<ul class="list-inline download-section rating-header">
+						<li>
+							<p>Last Rating</p>
+						</li>
+						<li>
+							<p class="pad-top-5">Last Score</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12">
+					<ul class="list-inline download-section rating-header">
+						<li>
+							<h3>{{grade}}</h3>
+						</li>
+						<li>
+							<div class="circle-container">
+								<!-- <h2 class="circle-value" ng-init="initializeProgressCircle()">{{score}}/100</h2> -->
+								<h2>{{score}}/100</h2>
+							</div>
+						</li>
+					</ul>
+					<ul class="list-inline key_para">
+						<li>
+							<p>{{ratingMsg}}</p>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-md-12 m-top-40 txt-center">
+
+	
+					<button class="score-calculate"
+						ng-click="$state.go('scoreDashboardState',({status:'empty'}))">New
+						Score</button>
+				</div>
+			</div>
+
+			<div class="score-grid" ng-if="ratingFlag == 0">
+				<div class="col-md-12 m-top-50">
+					<ul class="list-inline txt-center rating-header-lock">
+					
+					<li><svg class="img-top" width="60px" height="60px" viewBox="0 0 18 20"
+														version="1.1" xmlns="http://www.w3.org/2000/svg"
+														xmlns:xlink="http://www.w3.org/1999/xlink">
+												    <g id="Score-(Analysing)" stroke="none" stroke-width="1"
+															fill="none" fill-rule="evenodd"
+															transform="translate(-73.000000, -403.000000)">
+												        <g id="Group-2"
+															transform="translate(73.000000, 403.000000)"
+															fill="#7F92A6" fill-rule="nonzero">
+												            <path
+															d="M10.5553398,16.0526316 L7.06019417,16.0526316 C6.85048544,16.0526316 6.65825243,15.9298246 6.57087379,15.7192982 C6.48349515,15.5263158 6.53592233,15.2982456 6.69320388,15.1403509 C7.49708738,14.3333333 7.58446602,13.0350877 6.86796117,12.1403509 L6.6407767,11.877193 C6.50097087,11.7017544 6.48349515,11.4561404 6.60582524,11.2631579 C6.72815534,11.0701754 6.95533981,10.9824561 7.16504854,11.0350877 L8.86019417,11.4561404 L10.4504854,11.2105263 C10.6601942,11.1754386 10.8873786,11.2807018 10.992233,11.4736842 C11.0970874,11.6666667 11.0796117,11.9122807 10.9223301,12.0701754 L10.7825243,12.2280702 C10.0485437,13.0701754 10.1009709,14.3508772 10.8873786,15.1403509 C11.0446602,15.2982456 11.0796117,15.5087719 11.0097087,15.7192982 C10.9572816,15.9298246 10.7650485,16.0526316 10.5553398,16.0526316 Z M8.05631068,15 L9.54174757,15 C9.17475728,14.1929825 9.13980583,13.2631579 9.47184466,12.4385965 L8.93009709,12.5263158 C8.86019417,12.5438596 8.79029126,12.5263158 8.72038835,12.5087719 L8.16116505,12.3684211 C8.51067961,13.2280702 8.45825243,14.1929825 8.05631068,15 Z"
+															id="Shape"></path>
+												            <path
+															d="M9.01747573,12.5438596 C6.32621359,12.5438596 4.12427184,10.3333333 4.12427184,7.63157895 L4.12427184,0.614035088 C4.12427184,0.315789474 4.35145631,0.0877192982 4.64854369,0.0877192982 L13.3864078,0.0877192982 C13.6834951,0.0877192982 13.9106796,0.315789474 13.9106796,0.614035088 L13.9106796,7.63157895 C13.9106796,10.3508772 11.7262136,12.5438596 9.01747573,12.5438596 Z M5.17281553,1.14035088 L5.17281553,7.63157895 C5.17281553,9.75438596 6.90291262,11.4912281 9.01747573,11.4912281 C11.1320388,11.4912281 12.8621359,9.75438596 12.8621359,7.63157895 L12.8621359,1.14035088 L5.17281553,1.14035088 Z"
+															id="Shape"></path>
+												            <path
+															d="M12.3029126,19.9122807 L5.31262136,19.9122807 C5.01553398,19.9122807 4.78834951,19.6842105 4.78834951,19.3859649 L4.78834951,15.5263158 C4.78834951,15.2280702 5.01553398,15 5.31262136,15 L12.3029126,15 C12.6,15 12.8271845,15.2280702 12.8271845,15.5263158 L12.8271845,19.3684211 C12.8271845,19.6666667 12.5825243,19.9122807 12.3029126,19.9122807 Z M5.8368932,18.8596491 L11.7786408,18.8596491 L11.7786408,16.0526316 L5.8368932,16.0526316 L5.8368932,18.8596491 Z"
+															id="Shape"></path>
+												            <path
+															d="M13.3864078,8.61403509 C13.2291262,8.61403509 13.0718447,8.54385965 12.9669903,8.40350877 C12.792233,8.1754386 12.8446602,7.84210526 13.0718447,7.66666667 L14.6621359,6.47368421 C15.8854369,5.56140351 16.6543689,4.15789474 16.8116505,2.64912281 L13.3864078,2.64912281 C13.0893204,2.64912281 12.8621359,2.42105263 12.8621359,2.12280702 C12.8621359,1.8245614 13.0893204,1.59649123 13.3864078,1.59649123 L17.3533981,1.59649123 C17.6504854,1.59649123 17.8776699,1.8245614 17.8776699,2.12280702 C17.8776699,4.15789474 16.9165049,6.10526316 15.2912621,7.31578947 L13.7009709,8.50877193 C13.6135922,8.57894737 13.5087379,8.61403509 13.3864078,8.61403509 Z"
+															id="Shape"></path>
+												            <path
+															d="M4.64854369,8.61403509 C4.52621359,8.61403509 4.4038835,8.57894737 4.29902913,8.49122807 L2.20194175,6.64912281 C0.908737864,5.49122807 0.157281553,3.84210526 0.157281553,2.10526316 C0.157281553,1.80701754 0.384466019,1.57894737 0.681553398,1.57894737 L4.64854369,1.57894737 C4.94563107,1.57894737 5.17281553,1.80701754 5.17281553,2.10526316 C5.17281553,2.40350877 4.94563107,2.63157895 4.64854369,2.63157895 L1.2407767,2.63157895 C1.38058252,3.85964912 1.95728155,5.01754386 2.90097087,5.8245614 L4.99805825,7.66666667 C5.20776699,7.85964912 5.24271845,8.19298246 5.05048544,8.40350877 C4.94563107,8.54385965 4.80582524,8.61403509 4.64854369,8.61403509 Z"
+															id="Shape"></path>
+												            <polygon id="Shape"
+															points="9 4 9.525 5.35729173 11 5.43020827 9.85 6.34375013 10.25 7.75 9 6.9604168 7.75 7.75 8.15 6.34375013 7 5.43020827 8.475 5.35729173"></polygon>
+												        </g>
+												    </g>
+												</svg></li>
+					
+						<li class="mar-top-53">
+							<h3>New Score</h3>
+							<p>Your current company has no rating. Please click on New
+								Score to calculate the rating of your company.</p>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-md-12 txt-center m-top-20">
+					<button class="score-calculate"
+						ng-click="$state.go('scoreDashboardState',({status:'empty'}))">New
+						Score</button>
+				</div>
+			</div>
+
+		</div>
+
+		<!--___________________________________Bankstatement Card____________________________________ -->
+
+		<div class="col-md-4 col-xs-12 m-top-10">
+			<div class="score-grid" ng-if="uploadedFlag == 0">
+
+				<div class="col-md-12 m-top-40">
+					<ul class="list-inline txt-center">
+
+
+						<li><svg class="img-pos" width="60px" height="60px"
+								viewBox="0 0 20 20" version="1.1"
+								xmlns="http://www.w3.org/2000/svg"
+								xmlns:xlink="http://www.w3.org/1999/xlink" style="">
+											    <g id="bank-statement" stroke="none" stroke-width="1"
+									fill="none" fill-rule="evenodd"
+									transform="translate(-72.000000, -447.000000)">
+											        <g id="Group-3"
+									transform="translate(72.000000, 447.000000)" fill="#7F92A6"
+									fill-rule="nonzero">
+											            <path
+									d="M19.375,20 L0.625,20 C0.321428571,20 0.0892857143,19.7657658 0.0892857143,19.4594595 C0.0892857143,19.1531532 0.321428571,18.9189189 0.625,18.9189189 L19.375,18.9189189 C19.6785714,18.9189189 19.9107143,19.1531532 19.9107143,19.4594595 C19.9107143,19.7657658 19.6785714,20 19.375,20 Z"
+									id="Shape"></path>
+											            <path
+									d="M18.4821429,18.1981982 L1.51785714,18.1981982 C1.21428571,18.1981982 0.982142857,17.963964 0.982142857,17.6576577 C0.982142857,17.3513514 1.21428571,17.1171171 1.51785714,17.1171171 L18.4821429,17.1171171 C18.7857143,17.1171171 19.0178571,17.3513514 19.0178571,17.6576577 C19.0178571,17.963964 18.7857143,18.1981982 18.4821429,18.1981982 Z"
+									id="Shape"></path>
+											            <path
+									d="M6.875,18.1981982 C5.58928571,18.1981982 4.55357143,17.1531532 4.55357143,15.8558559 L4.55357143,6.84684685 C4.55357143,5.54954955 5.58928571,4.5045045 6.875,4.5045045 C7.17857143,4.5045045 7.41071429,4.73873874 7.41071429,5.04504505 C7.41071429,5.35135135 7.17857143,5.58558559 6.875,5.58558559 C6.17857143,5.58558559 5.625,6.14414414 5.625,6.84684685 L5.625,15.8558559 C5.625,16.5585586 6.17857143,17.1171171 6.875,17.1171171 C7.17857143,17.1171171 7.41071429,17.3513514 7.41071429,17.6576577 C7.41071429,17.963964 7.17857143,18.1981982 6.875,18.1981982 Z"
+									id="Shape"></path>
+											            <path
+									d="M3.30357143,16.3963964 C3,16.3963964 2.76785714,16.1621622 2.76785714,15.8558559 L2.76785714,6.84684685 C2.76785714,6.14414414 2.21428571,5.58558559 1.51785714,5.58558559 C1.21428571,5.58558559 0.982142857,5.35135135 0.982142857,5.04504505 C0.982142857,4.73873874 1.21428571,4.5045045 1.51785714,4.5045045 C2.80357143,4.5045045 3.83928571,5.54954955 3.83928571,6.84684685 L3.83928571,15.8558559 C3.83928571,16.1621622 3.60714286,16.3963964 3.30357143,16.3963964 Z"
+									id="Shape"></path>
+											            <path
+									d="M13.125,18.1981982 C12.9821429,18.1981982 12.8392857,18.1441441 12.75,18.036036 C12.6428571,17.9279279 12.5892857,17.8018018 12.5892857,17.6576577 C12.5892857,17.5135135 12.6428571,17.3693694 12.75,17.2792793 C12.9464286,17.0810811 13.3035714,17.0810811 13.5,17.2792793 C13.6071429,17.3873874 13.6607143,17.5135135 13.6607143,17.6576577 C13.6607143,17.8018018 13.6071429,17.9459459 13.5,18.036036 C13.4107143,18.1441441 13.2678571,18.1981982 13.125,18.1981982 Z"
+									id="Shape"></path>
+											            <path
+									d="M13.125,18.1981982 C11.8392857,18.1981982 10.8035714,17.1531532 10.8035714,15.8558559 L10.8035714,6.84684685 C10.8035714,5.54954955 11.8392857,4.5045045 13.125,4.5045045 C13.4285714,4.5045045 13.6607143,4.73873874 13.6607143,5.04504505 C13.6607143,5.35135135 13.4285714,5.58558559 13.125,5.58558559 C12.4285714,5.58558559 11.875,6.14414414 11.875,6.84684685 L11.875,15.8558559 C11.875,16.5585586 12.4285714,17.1171171 13.125,17.1171171 C13.4285714,17.1171171 13.6607143,17.3513514 13.6607143,17.6576577 C13.6607143,17.963964 13.4285714,18.1981982 13.125,18.1981982 Z"
+									id="Shape"></path>
+											            <path
+									d="M18.4821429,18.1981982 C18.3392857,18.1981982 18.1964286,18.1441441 18.1071429,18.036036 C18,17.9279279 17.9464286,17.8018018 17.9464286,17.6576577 C17.9464286,17.5135135 18,17.3693694 18.1071429,17.2792793 C18.3035714,17.0810811 18.6607143,17.0810811 18.8571429,17.2792793 C18.9642857,17.3873874 19.0178571,17.5135135 19.0178571,17.6576577 C19.0178571,17.8018018 18.9642857,17.9459459 18.8571429,18.036036 C18.7678571,18.1441441 18.625,18.1981982 18.4821429,18.1981982 Z"
+									id="Shape"></path>
+											            <path
+									d="M18.4821429,18.1981982 C17.1964286,18.1981982 16.1607143,17.1531532 16.1607143,15.8558559 L16.1607143,6.84684685 C16.1607143,5.54954955 17.1964286,4.5045045 18.4821429,4.5045045 C18.7857143,4.5045045 19.0178571,4.73873874 19.0178571,5.04504505 C19.0178571,5.35135135 18.7857143,5.58558559 18.4821429,5.58558559 C17.7857143,5.58558559 17.2321429,6.14414414 17.2321429,6.84684685 L17.2321429,15.8558559 C17.2321429,16.5585586 17.7857143,17.1171171 18.4821429,17.1171171 C18.7857143,17.1171171 19.0178571,17.3513514 19.0178571,17.6576577 C19.0178571,17.963964 18.7857143,18.1981982 18.4821429,18.1981982 Z"
+									id="Shape"></path>
+											            <path
+									d="M14.9107143,16.3963964 C14.6071429,16.3963964 14.375,16.1621622 14.375,15.8558559 L14.375,6.84684685 C14.375,6.14414414 13.8214286,5.58558559 13.125,5.58558559 C12.8214286,5.58558559 12.5892857,5.35135135 12.5892857,5.04504505 C12.5892857,4.73873874 12.8214286,4.5045045 13.125,4.5045045 C14.4107143,4.5045045 15.4464286,5.54954955 15.4464286,6.84684685 L15.4464286,15.8558559 C15.4464286,16.1621622 15.2142857,16.3963964 14.9107143,16.3963964 Z"
+									id="Shape"></path>
+											            <path
+									d="M1.51785714,5.58558559 C1.21428571,5.58558559 0.982142857,5.35135135 0.982142857,5.04504505 L0.982142857,3.24324324 C0.982142857,2.93693694 1.21428571,2.7027027 1.51785714,2.7027027 C1.82142857,2.7027027 2.05357143,2.93693694 2.05357143,3.24324324 L2.05357143,5.04504505 C2.05357143,5.35135135 1.82142857,5.58558559 1.51785714,5.58558559 Z"
+									id="Shape"></path>
+											            <path
+									d="M7.76785714,5.58558559 L4.375,5.58558559 C4.07142857,5.58558559 3.83928571,5.35135135 3.83928571,5.04504505 C3.83928571,4.73873874 4.07142857,4.5045045 4.375,4.5045045 L7.76785714,4.5045045 C8.07142857,4.5045045 8.30357143,4.73873874 8.30357143,5.04504505 C8.30357143,5.35135135 8.07142857,5.58558559 7.76785714,5.58558559 Z"
+									id="Shape"></path>
+											            <path
+									d="M13.125,5.58558559 L10.625,5.58558559 C10.3214286,5.58558559 10.0892857,5.35135135 10.0892857,5.04504505 C10.0892857,4.73873874 10.3214286,4.5045045 10.625,4.5045045 L13.125,4.5045045 C13.4285714,4.5045045 13.6607143,4.73873874 13.6607143,5.04504505 C13.6607143,5.35135135 13.4285714,5.58558559 13.125,5.58558559 Z"
+									id="Shape"></path>
+											            <path
+									d="M18.4821429,5.58558559 L15.9821429,5.58558559 C15.6785714,5.58558559 15.4464286,5.35135135 15.4464286,5.04504505 C15.4464286,4.73873874 15.6785714,4.5045045 15.9821429,4.5045045 L17.9464286,4.5045045 L17.9464286,3.63963964 L10.4464286,1.27927928 L1.66071429,3.76576577 C1.375,3.83783784 1.08928571,3.67567568 1,3.38738739 C0.928571429,3.0990991 1.08928571,2.79279279 1.375,2.72072072 L10.3035714,0.198198198 C10.4107143,0.162162162 10.5,0.18018018 10.6071429,0.198198198 L18.6428571,2.72072072 C18.875,2.79279279 19.0178571,3.00900901 19.0178571,3.24324324 L19.0178571,5.04504505 C19.0178571,5.35135135 18.7857143,5.58558559 18.4821429,5.58558559 Z"
+									id="Shape"></path>
+											            <path
+									d="M18.3928571,3.78378378 L1.51785714,3.78378378 C1.21428571,3.78378378 0.982142857,3.54954955 0.982142857,3.24324324 C0.982142857,2.93693694 1.21428571,2.7027027 1.51785714,2.7027027 L18.3928571,2.7027027 C18.6964286,2.7027027 18.9285714,2.93693694 18.9285714,3.24324324 C18.9285714,3.54954955 18.6964286,3.78378378 18.3928571,3.78378378 Z"
+									id="Shape"></path>
+											            <path
+									d="M9.55357143,16.3963964 C9.25,16.3963964 9.01785714,16.1621622 9.01785714,15.8558559 L9.01785714,6.84684685 C9.01785714,6.14414414 8.46428571,5.58558559 7.76785714,5.58558559 C7.46428571,5.58558559 7.23214286,5.35135135 7.23214286,5.04504505 C7.23214286,4.73873874 7.46428571,4.5045045 7.76785714,4.5045045 C9.05357143,4.5045045 10.0892857,5.54954955 10.0892857,6.84684685 L10.0892857,15.8558559 C10.0892857,16.1621622 9.85714286,16.3963964 9.55357143,16.3963964 Z"
+									id="Shape"></path>
+											        </g>
+											    </g>
+											</svg> <!-- <img src="../assets/images/university.png" class="img-pos"
+							alt="lock" draggable="false">  -->
+							<!-- <div id="circle2" class="circle-container">
+                                    <h2 class="circle-value" ng-init="initializeProgressCircle()">LOCK</h2>
+                                </div> --></li>
+					</ul>
+				</div>
+				<div class="col-md-12 m-top-80">
+					<ul class="list-inline txt-center rating-header-lock">
+						<li>
+							<h3>Bank Statement</h3>
+							<p>Please Upload Your First Bank Statement.</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12 txt-center m-top-35">
+					<a ui-sref="bankStatementState"><button
+					class="score-calculate">Upload Bank Statement</button></a>
+				</div>
+			</div>
+			
+						
+			<div class="score-grid" ng-if="uploadedFlag == 1">
+				<div class="col-md-12 m-top-10">
+					<ul class="list-inline download-section">
+						<li ><a ng-href="{{bankUrl}}" target="_blank">Download Report</a></li>
+						<li>
+							<button class=""
+								ng-click="$state.go('bankStatementDashboardState')">Dashboard
+								</button>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12 m-top-20">
+					<ul class="list-inline download-section rating-header">
+						<li>
+							<p>Total Requests</p>
+						</li>
+						<li>
+							<p class="pad-top-5">Total Requests Completed</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12">
+					<ul class="list-inline download-section rating-header0">
+						<li>
+							<h3>{{totalFilesUploaded}}</h3>
+						</li>
+						<li>
+							<div class="circle-container0 ">
+								<!-- <h2 class="circle-value" ng-init="initializeProgressCircle()">{{score}}/100</h2> -->
+								<h3>{{generatedFiles}}</h3>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12 m-top-20">
+					<ul class="list-inline download-section rating-header">
+						<li>
+							<p>Total Requests in Progress</p>
+						</li>
+						<li>
+							<p class="pad-top-5">Total Requests Failed</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12">
+					<ul class="list-inline download-section rating-header0">
+						<li>
+							<h3>{{inprocessFiles}}</h3>
+						</li>
+						<li>
+							<div class="circle-container0 ">
+								<!-- <h2 class="circle-value" ng-init="initializeProgressCircle()">{{score}}/100</h2> -->
+								<h3>{{failedFiles}}</h3>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12 m-top-25 txt-center">
+					<button class="score-calculate"
+						ng-click="$state.go('bankStatementState',({status:'empty'}))">New Bank Statement</button>
+				</div>
+			</div>		
+	</div>
+
+
+		<!-- <div class="col-md-4 col-xs-12 m-top-10">
+			<div class="score-grid" ng-if="ratingFlag == 1">
+				<div class="col-md-12 m-top-10">
+					<ul class="list-inline download-section">
+						<li><a ng-href="{{report}}" target="_blank">Download
+								Report</a></li>
+						<li>
+							<button class=""
+								ng-click="$state.go('recalculateScoreDashboardState')">Recalculate
+								Score</button>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12 m-top-20">
+					<ul class="list-inline download-section rating-header">
+						<li>
+							<p>Total Files Uploaded</p>
+						</li>
+						<li>
+							<p class="pad-top-5">Total Files Generated</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12">
+					<ul class="list-inline download-section rating-header0">
+						<li>
+							<h3>25</h3>
+						</li>
+						<li>
+							<div class="circle-container0 ">
+								<h2 class="circle-value" ng-init="initializeProgressCircle()">{{score}}/100</h2>
+								<h3>25</h3>
+							</div>
+						</li>
+					</ul>
+
+				</div>
+				<div class="col-md-12 m-top-20">
+					<ul class="list-inline download-section rating-header">
+						<li>
+							<p>Files in Progress</p>
+						</li>
+						<li>
+							<p class="pad-top-5">Files Failed</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12">
+					<ul class="list-inline download-section rating-header0">
+						<li>
+							<h3>25</h3>
+						</li>
+						<li>
+							<div class="circle-container0 ">
+								<h2 class="circle-value" ng-init="initializeProgressCircle()">{{score}}/100</h2>
+								<h3>25</h3>
+							</div>
+						</li>
+					</ul>
+
+				</div>
+				<div class="col-md-12 m-top-35 txt-center">
+
+					<button class="score-calculate"
+						ng-click="$state.go('scoreDashboardState',({status:'empty'}))">New Bank Statement</button>
+				</div>
+			</div>
+
+
+		</div> -->
+
+
+		<!-- End -->
+
+		<!--Financial bank statement-->
+		<!-- <div class="col-md-4 col-xs-12 m-top-10">
+			<div class="score-grid">
+				<div class="col-md-12 m-top-10">
+					<ul class="list-inline download-section">
+						<li>
+							<a href="#">Download Report</a>
+						</li>
+						<li>
+							 <button class=""><i class="fa fa-lock" aria-hidden="true"></i></button>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-md-12 m-top-40">
+					<ul class="list-inline txt-center">
+
+						<li><img src="../assets/images/lock1.png" class="img-pos"
+							alt="lock" draggable="false"> <div id="circle2" class="circle-container">
+                                    <h2 class="circle-value" ng-init="initializeProgressCircle()">LOCK</h2>
+                                </div> </li>
+					</ul>
+				</div>
+				<div class="col-md-12 m-top-80">
+					<ul class="list-inline txt-center rating-header-lock">
+						<li>
+							<h3>Financial Document Reader</h3>
+							<p>Your project got blocked due to unavalability of
+credits. Please Purchase package to unblock</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12 txt-center m-top-25">
+					<a ui-sref="bankStatementDashboardState"><button
+						class="score-calculate">Upload Documents</button></a>
+				</div>
+			</div>
+		</div> -->
+
+		<div class="col-md-4 col-xs-12 m-top-10">
+			<div class="score-grid grid-background-light middle">
+				<h2>Coming Soon</h2>
+			</div>
+		</div>
+
+
+
+
+	</div>
+
+	<!-- ______________grid line 2 starts___________ -->
+	<div class="col-md-12 pad-0-xs m-top-40 dashboard pad-rgt-0">
+
+		<!-- <div class="col-md-4 col-xs-12 m-top-10">
+			<div class="score-grid grid-background-light middle">
+				<h2>Coming Soon</h2>
+			</div>
+		</div> -->
+
+		<!--Trade License  -->
+		<!-- <div class="col-md-4 col-xs-12 m-top-10">
+			<div class="score-grid">
+				<div class="col-md-12 m-top-10">
+					<ul class="list-inline download-section">
+						<li>
+							<a href="#">Download Report</a>
+						</li>
+						<li>
+							 <button class=""><i class="fa fa-lock" aria-hidden="true"></i></button>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-md-12 m-top-40">
+					<ul class="list-inline txt-center">
+
+						<li><img src="../assets/images/lock1.png" class="img-pos"
+							alt="lock" draggable="false"> <div id="circle2" class="circle-container">
+                                    <h2 class="circle-value" ng-init="initializeProgressCircle()">LOCK</h2>
+                                </div> </li>
+					</ul>
+				</div>
+				<div class="col-md-12 m-top-80">
+					<ul class="list-inline txt-center rating-header-lock">
+						<li>
+							<h3>Trade License</h3>
+							<p>Your project got blocked due to unavalability of
+credits. Please Purchase package to unblock</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12 txt-center m-top-25">
+					<a ui-sref="bankStatementDashboardState"><button
+						class="score-calculate">Upload Trade License</button></a>
+				</div>
+			</div>
+		</div> -->
+
+		<!--Etihad Credit Report  -->
+		<!-- <div class="col-md-4 col-xs-12 m-top-10">
+			<div class="score-grid">
+				<div class="col-md-12 m-top-10">
+					<ul class="list-inline download-section">
+						<li>
+							<a href="#">Download Report</a>
+						</li>
+						<li>
+							 <button class=""><i class="fa fa-lock" aria-hidden="true"></i></button>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-md-12 m-top-40">
+					<ul class="list-inline txt-center">
+
+						<li><img src="../assets/images/lock1.png" class="img-pos"
+							alt="lock" draggable="false"> <div id="circle2" class="circle-container">
+                                    <h2 class="circle-value" ng-init="initializeProgressCircle()">LOCK</h2>
+                                </div> </li>
+					</ul>
+				</div>
+				<div class="col-md-12 m-top-80">
+					<ul class="list-inline txt-center rating-header-lock">
+						<li>
+							<h3>Etihad Credit Report</h3>
+							<p>Your project got blocked due to unavalability of
+credits. Please Purchase package to unblock</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12 txt-center m-top-25">
+					<a ui-sref="bankStatementDashboardState"><button
+						class="score-calculate">Upload ECB</button></a>
+				</div>
+			</div>
+		</div> -->
+		<!-- <div class="col-md-4 col-xs-12 m-top-10">
+			<div class="score-grid grid-background-light middle">
+				<h2>Coming Soon</h2>
+			</div>
+		</div> -->
+
+
+		<!--Valuation  -->
+		<!--  <div class="col-md-4 col-xs-12 m-top-10">
+			<div class="score-grid">
+				<div class="col-md-12 m-top-10">
+					<ul class="list-inline download-section">
+						<li>
+							<a href="#">Download Report</a>
+						</li>
+						<li>
+							 <button class=""><i class="fa fa-lock" aria-hidden="true"></i></button>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-md-12 m-top-40">
+					<ul class="list-inline txt-center">
+
+						<li><img src="../assets/images/lock1.png" class="img-pos"
+							alt="lock" draggable="false"> <div id="circle2" class="circle-container">
+                                    <h2 class="circle-value" ng-init="initializeProgressCircle()">LOCK</h2>
+                                </div> </li>
+					</ul>
+				</div>
+				<div class="col-md-12 m-top-80">
+					<ul class="list-inline txt-center rating-header-lock">
+						<li>
+							<h3>Valuation</h3>
+							<p>Your project got blocked due to unavalability of
+credits. Please Purchase package to unblock</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12 txt-center m-top-25">
+					<a ui-sref="bankStatementDashboardState"><button
+						class="score-calculate">Uplaod Valuation</button></a>
+				</div>
+			</div>
+		</div> -->
+		<!-- <div class="col-md-4 col-xs-12 m-top-10">
+			<div class="score-grid grid-background-light middle">
+				<h2>Coming Soon</h2>
+			</div>
+		</div> -->
+	</div>
+
+</div>
+<!-- </div> -->

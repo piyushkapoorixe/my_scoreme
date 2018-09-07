@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>creditscore</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>signin</servlet-name>
+    <jsp-file>/signin.jsp</jsp-file>
+  </servlet>
+   <servlet>
+    <servlet-name>assocham</servlet-name>
+    <jsp-file>/signin.jsp</jsp-file>
+    <init-param>
+        <param-name>data</param-name>  
+        <param-value>hello</param-value>  
+    </init-param>
+  </servlet>
+  <context-param>
+    <param-name>dataglobal</param-name>
+    <param-value>hello</param-value>
+  </context-param>
+  
+  <servlet-mapping>
+    <servlet-name>signin</servlet-name>
+    <url-pattern>/signin</url-pattern>
+  </servlet-mapping>
+  
+    <servlet-mapping>
+    <servlet-name>assocham</servlet-name>
+    <url-pattern>/assocham</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>signup</servlet-name>
+    <jsp-file>/signup.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>signup</servlet-name>
+    <url-pattern>/signup</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>forgotpassword</servlet-name>
+    <jsp-file>/forgotpassword.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>forgotpassword</servlet-name>
+    <url-pattern>/forgotpassword</url-pattern>
+  </servlet-mapping>
+</web-app>

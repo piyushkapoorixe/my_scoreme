@@ -1,0 +1,187 @@
+
+<!-- completion status block -->
+<div class="col-md-10 pad-0" ng-controller="archiveController">
+ <div class="overlay" ng-if="dataLoading">
+		<img width="100"
+			src="../assets/images/loaders/interwind-preloader.svg" />
+	</div>
+	<div class="col-md-12 pad-lft-8 pad-rgt-0">
+		<div class="col-md-12 pad-20 pad-top-10 pad-rgt-0">
+			<div class="col-md-2 col-xs-12 report-history-heading">
+				<h1>Archive Reports</h1>
+
+			</div>
+			<div class="col-md-10 col-xs-12 txt-right">
+				<ul class="list-inline">
+					<!--   <li>
+                                    <button class="btn out-circle-btn" data-toggle="modal" data-target="#Setting">Settings</button>
+                                </li> -->
+
+					<li>
+						<button class="btn out-circle-btn disabled_div" ng-click="applyUnarchive()" id="enabled_unarchive">Unarchive</button>
+					</li>
+
+					 <li><select ng-model="items" ng-change="changeItems(items)"  class="reports-filter form-control">
+							     <option value="5">5</option>
+							     <option value="10" selected>10</option>
+							     <option value="15">15</option>
+					           </select></li> 
+					<!-- <li><input type="text" class="search-entry form-control"
+						placeholder="Search"></li> -->
+				</ul>
+			</div>
+
+
+			<form role="form">
+				<div class="col-md-12 pad-top-30">
+
+					<table class="table table-striped report-block" st-table="archiveReportDataBase"
+						st-safe-src="archiveReportData">
+						<thead>
+						<tr>
+							 <!--  <th><select ng-model="items" ng-change="changeItems(items)"  class="reports-filter form-control">
+							     <option value="5">5 rows</option>
+							     <option value="10" selected>10 rows</option>
+							     <option value="15">15 rows</option>
+					           </select>
+					           </th> -->
+						       <th colspan="7"><input st-search placeholder="search"
+							   class="input-sm form-control tbl-search" type="search" />
+							   </th>
+							</tr>
+							<tr>	
+								<th style="width:5%;"></th>
+								<th style="width:7%;">Sl. No.</th>
+								<th style="width:20%;">Requested Date Time</th>
+								<th>Bank Name</th>
+								<th style="width:20%;">Account number</th>
+								<th style="width:30%;">Report File</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="bsr in archiveReportDataBase track by bsr.refId" ng-if="archiveReportDataBase.length > 0">
+								
+								<td>
+									<div class="checkbox chk-pos">
+										<label> <input type="checkbox"
+											ng-model="bankCheckbox[bsr.refId]" value="{{bsr.refId}}" class="checkingCheckboxUnarchive">
+											<i class="input-helper"></i>
+										</label>
+									</div>
+								</td>
+								
+								
+								<td>{{::$index+1}}</td>
+								<td>{{::bsr.reqDateTime}}</td>
+								<td>{{::bsr.bankName}}</td>
+								<td>{{::bsr.accNumber}}</td>
+								<td id="{{'finalTd_'+bsr.refId}}" ng-show="bsr.statuscode == 3">
+									<ul class="pad-0">
+										 <li id="{{'reportName_'+bsr.refId}}"
+											class="checkingReportFile pad-bot-10">{{::bsr.reportFile}}</li>
+
+									
+										<li>
+												<a href="{{bsr.reportFileUrl}}"
+													id="{{'reportUrl_'+bsr.refId}}"><button type="button"
+														class="xlxs_button">Full report</button></a>
+												<!-- <div class="line_ver"></div> -->
+										
+										</li>
+									</ul>
+								</td>		
+								<!--Error Validating Html  -->
+
+								<td id="{{'validateTd_'+bsr.refId}}"
+									ng-show="bsr.statuscode == 4">
+
+									<ul class="list-inline">
+										<li><lable class="Validating">Validating...</lable></li>
+										<ul class="list-inline">
+											<li>
+												<div class="progress progress_bar_div">
+													<div class="progress-bar" role="progressbar"
+														aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</li>
+											<li>
+												<div class="progress progress_bar_div">
+													<div class="progress-bar red_progress" role="progressbar"
+														aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</li>
+											<li>
+												<div class="progress progress_bar_div">
+													<div class="progress-bar empty_progress" role="progressbar"
+														aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</li>
+										</ul>
+										<ul class="list-inline">
+											<li><lable class="You-are-in-Step-2-of">You are
+												in Step 2 of 3</lable></li>
+										</ul>
+										<!-- <ul class="list-inline">
+											<li><lable class="Approx-4-minutes">(Approx 4
+												minutes...)</lable></li>
+										</ul> -->
+										<ul class="list-inline pad-top-10">
+											<li><lable class="Error-Found">5 Error Found !!</lable>
+											</li>
+											<li>
+												<button type="button" class="Rectify">Rectify</button>
+											</li>
+										</ul>
+									</ul>
+								</td>
+								<!-- Ends Validating  -->
+							</tr>
+							<tr ng-if="archiveReportDataBase.length == 0">
+                               <td colspan="6">No Data Available</td>							
+							</tr>
+							<tr>
+								<!-- <td colspan="6" class="text-center">
+									<div st-pagination="" st-items-by-page="itemsPerPage"
+										st-displayed-pages="5"></div>
+								</td> -->
+					<td colspan="6" class="text-center">
+			<div st-items-by-page="itemsPerPage" st-pagination="" st-template="../score-htmls/pagination/pagination.custom.html"></div>
+		            </td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Report Modal -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="table_button" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="closer">
+					<span data-dismiss="modal" aria-hidden="true"> <img
+						src="../assets/images/close-lite.svg" width="15" draggable="false">
+					</span>
+				</div>
+
+				<div class="modal-body  pad-0">
+					<div class="col-md-12 tc-box pad-0">
+						<p>Download File According To Setting Page</p>
+					</div>
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- modal ends -->
+
+</div>

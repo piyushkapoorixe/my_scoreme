@@ -1,0 +1,22 @@
+ <!-- completion status block -->
+    <div class="col-md-10 pad-rgt-0" ng-controller="ratingController">
+        <div class="col-md-12 pad-0">
+            <div class="left-pane txt-left">
+                <button class="btn print-button" ng-click="printDiv('scoreConfirmDiv' , 'draft')">Print</button>
+            </div>
+            <div class="right-pane txt-right">
+                <ul class="list-inline pad-fix">
+                    <li> <button class="btn back-button" id="backBtn" back>Back</button></li>         
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12 confirmation-board pad-rgt-0 pad-0" id="scoreConfirmDiv">
+            <div class="col-md-12 pad-lr-30 board-heading" ng-repeat="(key, value) in draftData">
+                <h1>{{key}}</h1>
+                 <div class="col-md-4 board-label" ng-repeat="(k, v) in value">
+                 	<h3 class="confirm-size">{{v.label}}</h3>
+                    <p>{{v.name}}</p>
+                </div> 
+            </div>  
+         </div> 
+    </div>

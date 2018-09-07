@@ -1,0 +1,598 @@
+<!-- completion status block -->
+<div class="col-md-10 pad-right-0" ng-controller="ratingController">
+	<div class="overlay" ng-if="dataLoading">
+		<img width="100"
+			src="../assets/images/loaders/interwind-preloader.svg" />
+	</div>
+	<div class="col-md-12 pad-0">
+		<div class="col-md-4">
+			<div class="col-md-12 complete-status">
+				<ul class="list-inline">
+					<li class="txt-center ">
+						<div class="t-box">
+							<h2 class="circle-value circle-pos1 txt-center">{{percentageCircleBar}}%</h2>
+						</div>
+						<div id="circle_scoredash" class="circle-container2 m-top-20"></div>
+					</li>
+					<li>
+						<h2>Complete the form</h2>
+						<p>Note:</p>
+						<p>Please input all the below figures in INR</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-8 pad-right-0">
+
+			<ul class="list-inline txt-right upload-block">
+				<li>
+					<!--  <label>Year</label> --> <select
+					class="form-control year-dropdown" id="finYear" name="finYear">
+						<option value="" selected>FY</option>
+						<option value="2016-2017">2016-2017</option>
+						<option value="2017-2018">2017-2018</option>
+				</select>
+
+				</li>
+				<li>
+					<button class="upload-doc">Upload Documents</button>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+	<!-- _______New score container_______ -->
+	<div class="col-md-12 m-top-30 pad-right-0">
+		<div class="score-box col-md-12">
+
+			<h1>New Score</h1>
+			<div class="col-md-12 m-top-20 pad-0" id="slider">
+				<!-- <form role="form" name="scoreForm" novalidate>  -->
+				<!-- Nav tabs -->
+
+				<a href="#" class="control_next">&gt;</a> <a href="#"
+					class="control_prev">&lt;</a>
+				<ul class="  nav nav-tabs" role="tablist">
+
+					<li role="presentation" class="active"><a
+						ui-sref="companyInformationState" aria-controls="tab1" role="tab"
+						data-toggle="tab">Company Basic Information</a></li>
+					<li role="presentation"><a ui-sref="facilitiesState"
+						aria-controls="tab2" role="tab" data-toggle="tab">Facilities</a></li>
+					<li role="presentation"><a ui-sref="balanceSheetState"
+						aria-controls="tab3" role="tab" data-toggle="tab">Balance
+							Sheet <span class="tab-errors" id="balance"
+							style="visibility: hidden"><i
+								class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+					</a></li>
+					<li role="presentation"><a ui-sref="profitAndLossState"
+						aria-controls="tab4" role="tab" data-toggle="tab">Profit and
+							Loss <span class="tab-errors" id="profit"
+							style="visibility: hidden"><i
+								class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+					</a></li>
+					<li role="presentation"><a ui-sref="nonFinancialState"
+						aria-controls="tab5" role="tab" data-toggle="tab">Non-Financial
+							<span class="tab-errors" id="non-financial"
+							style="visibility: hidden"><i
+								class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+					</a></li>
+					<li role="presentation"><a ui-sref="specialFactorState"
+						aria-controls="tab6" role="tab" data-toggle="tab">Special
+							Factors <span class="tab-errors" id="special"
+							style="visibility: hidden"><i
+								class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+					</a></li>
+
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content" ng-form="scoreForm">
+
+					<!-- ******************************** Company Basic Information ************************************* -->
+					<div role="tabpanel" class="tab-pane active"
+						id="companyInformation">
+
+						<!-- hidden field of facility -->
+						<div class="col-md-12" ng-repeat="ci in companyInfo">
+							<div class="col-md-4" ng-if="ci.type='H'">
+
+								<input type="hidden" name="{{ci.name}}" id="{{ci.name}}"
+									ng-value="ci.label" />
+
+							</div>
+						</div>
+						<div class="col-md-12">
+							<input type="hidden" name="industryId" id="industryId"
+								ng-value="industryId" />
+						</div>
+						<!-- hidden field of facility -->
+						<!-- _____________panel content_____________ -->
+						<div class="col-md-12 m-top-20 pad-0">
+							<div class="col-md-4 pad-0">
+								<div class="field-box box-style-normal field-box-disabled">
+									<!--  <select class="input-setting form-control">
+                                                        <option>Company Name <span class="mandatory">*</span></option>
+                                                    </select> -->
+									<label class="app__label"
+										ng-style="{'visibility': companyName ? 'visible' : 'hidden'}">Company
+										Name</label> <input type="text" name="input-G4" id="input-G4"
+										ng-model="companyName"
+										class="input-setting input__style2 form-control"
+										placeholder="Company Name" readonly required />
+
+								</div>
+
+							</div>
+							<div class="col-md-4 pad-0">
+								<div class="field-box box-style-normal field-box-disabled">
+									<label class="app__label"
+										ng-style="{'visibility': groupName ? 'visible' : 'hidden'}">Nature
+										of Business</label> <input type="text" name="input-G5" id="input-G5"
+										ng-model="groupName"
+										class="input-setting input__style2 form-control"
+										placeholder="Nature of Business" readonly required />
+
+								</div>
+							</div>
+							<div class="col-md-4 pad-0">
+								<div class="field-box box-style-normal field-box-disabled">
+									<label class="app__label"
+										ng-style="{'visibility': industryName ? 'visible' : 'hidden'}">Industry
+										Type</label> <input type="text" name="input-G6" id="input-G6"
+										ng-model="industryName"
+										class="input-setting input__style2 form-control"
+										placeholder="Industry Type" readonly required />
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12 m-top-30 pad-0">
+							<div class="col-md-2 m-top-15 txt-left pad-0"
+								ng-style="{'visibility': account_balance > 0 ? 'visible' : 'hidden'}">
+								<button class="green-draft-btn" ng-click="customValidation()">Confirm</button>
+							</div>
+							<div class="col-md-2 col-md-offset-8 m-top-15 txt-left pad-0">
+								<button class="light-draft-btn" ng-click="saveDraft('draft')">Save
+									as Draft</button>
+							</div>
+							<!-- <div class="col-md-2 m-top-15 txt-left pad-0">
+                                <button class="green-draft-btn">Next</button>
+                            </div> -->
+
+						</div>
+
+						<div class="col-md-12 disclaimer-txt m-top-30 pad-0">
+							<p>
+								<b>Disclaimer:</b>We believe that you have entered the data to
+								the best of your knowledge, the right set of data is always
+								essential to churn an effective output.
+							</p>
+						</div>
+						</md-content>
+					</div>
+
+					<!-- ******************************** Company Basic Information ************************************* -->
+
+					<!-- ******************************** Facilities ************************************* -->
+					<!-- ________tab2________ -->
+					<div role="tabpanel" class="tab-pane" id="facilities">
+
+						<!-- hidden field of facility -->
+						<div ng-repeat="fs in facilityScope">
+							<div ng-if="fs.type='H'">
+								<input type="Hidden" name="{{fs.name}}" id="{{fs.name}}"
+									class="input-setting form-control" placeholder="{{fs.label}}"
+									title="{{fs.desc}}" />
+							</div>
+						</div>
+						<!-- hidden field of facility -->
+
+						<!-- _____________panel content_____________ -->
+						<div class="col-md-12 m-top-20 pad-0">
+							<div class="col-md-3 pad-0">
+								<div class="field-box box-style-normal">
+									<label class="app__label"
+										ng-style="{'visibility': name1 ? 'visible' : 'hidden'}">Select
+										facility</label> <select
+										class="input-setting input_style_select form-control"
+										name="name1" id="name1" ng-model="name1">
+										<option value="">Select facility<span
+												class="mandatory">*</span></option>
+										<option value="TERM_LOAN">Term Loan</option>
+										<option value="WC_FUND">Working Capital Fund Based</option>
+										<option value="WC_LC">Working Capital LC</option>
+										<option value="WC_BG">Working Capital Bank Guarantee</option>
+									</select>
+
+								</div>
+							</div>
+							<div class="col-md-3 pad-0">
+								<div class="field-box box-style-normal">
+									<label class="app__label"
+										ng-style="{'visibility': amount1 ? 'visible' : 'hidden'}">Amount
+										(In INR)</label> <input type="text"
+										class="input-setting input__style2 form-control border-bot"
+										id="amount1" name="amount1" numbers-only ng-model="amount1"
+										placeholder="Amount (In INR)" />
+								</div>
+							</div>
+							<div class="col-md-3 pad-0">
+								<div class="field-box box-style-normal">
+									<label class="app__label"
+										ng-style="{'visibility': percent1 ? 'visible' : 'hidden'}">ROI
+										/ ProcessingFee / Gurantee Commission (in %)</label> <input
+										type="text"
+										class="input-setting input__style2 form-control border-bot"
+										id="percent1" name="percent1" numbers-only ng-model="percent1"
+										placeholder="ROI / ProcessingFee / Gurantee Commission (in %)" />
+								</div>
+							</div>
+							<div class="col-md-3 pad-0">
+								<div class="field-box box-style-normal">
+									<label class="app__label"
+										ng-style="{'visibility': bank1 ? 'visible' : 'hidden'}">Bank
+										Name</label> <select
+										class="input-setting input_style_select form-control"
+										name="bank1" id="bank1" ng-model="bank1">
+										<option value="">Bank Name<span class="mandatory">*</span></option>
+										<option ng-repeat="b in bankNames.data" value="{{b.bankName}}">{{b.bankName}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div id="facilityDiv"></div>
+
+						<!-- button -->
+						<!-- <div class="col-md-12 m-top-30 pad-0">
+							<div class="col-md-2 m-top-15 txt-left pad-0">
+								<input ng-model="facilityDivCount" style="display: none">
+								<div class="col-md-2 m-top-15 txt-left pad-0">
+								<button class="green-draft-btn" ng-click="customValidation()">Confirm</button>
+							</div>
+								<button class="add-newEntry"
+									ng-click="count = count + 1 ; addAnotherFacility(count , companyForm)"
+									ng-init="count=1" ng-model="addAnotherFacility"
+									id="addFacility" add-facility>+Add Facility</button>
+							</div>
+							<div class="col-md-2 col-md-offset-8 m-top-15 txt-left pad-0">
+								<button class="light-draft-btn" ng-click="saveDraft()">Save
+									as Draft</button>
+							</div>
+							<div class="col-md-2 m-top-15 txt-left pad-0">
+                                <button class="green-draft-btn">Next</button>
+                            </div>
+						</div> -->
+
+						<div class="col-md-12 m-top-30 pad-0">
+							<button class="add-newEntry"
+								ng-click="count = count + 1 ; addAnotherFacility(count , companyForm)"
+								ng-init="count=1" ng-model="addAnotherFacility" id="addFacility"
+								add-facility>+Add Facility</button>
+						</div>
+						<div class="col-md-12 m-top-30 pad-0">
+							<div class="col-md-2 m-top-15 txt-left pad-0"
+								ng-style="{'visibility': account_balance > 0 ? 'visible' : 'hidden'}">
+								<button class="green-draft-btn" ng-click="customValidation()">Confirm</button>
+							</div>
+							<div class="col-md-2 col-md-offset-8 m-top-15 txt-left pad-0">
+								<button class="light-draft-btn" ng-click="saveDraft('draft')">Save
+									as Draft</button>
+							</div>
+							<!-- <div class="col-md-2 m-top-15 txt-left pad-0">
+                                <button class="green-draft-btn">Next</button>
+                            </div> -->
+
+						</div>
+						<!-- button -->
+						<div class="col-md-12 disclaimer-txt m-top-30 pad-0">
+							<p>
+								<b>Disclaimer:</b> We believe that you have entered the data to
+								the best of your knowledge, the right set of data is always
+								essential to churn an effective output.
+							</p>
+						</div>
+
+					</div>
+					<!-- ******************************** Facilities ************************************* -->
+
+					<!-- ******************************** Balance Sheet ************************************* -->
+					<div role="tabpanel" class="tab-pane" id="balanceSheet">
+
+						<!-- _____________panel content_____________ -->
+						<div class="col-md-12 m-top-20 pad-0">
+							<div class="col-md-4 pad-0" ng-repeat="bs in balanceSheet"
+								ng-if="$index<3">
+								<div class="field-box box-style-normal" ng-if="bs.type='N'">
+
+									<label class="app__label"
+										ng-style="{'visibility': balancesheet ? 'visible' : 'hidden'}">{{bs.label}}</label>
+									<input type="text" name="{{bs.name}}" id="{{bs.name}}"
+										ng-model="balancesheet" placeholder="{{bs.label}}"
+										ng-keyup=inputValidation(bs.name) ng-blur="getProgress()"
+										class="input-setting input__style2 form-control" numbers-only
+										title="{{bs.desc}}" required /> <span class="custom_ng-error"
+										id="{{bs.name}}_span"></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12 pad-0">
+							<div class="col-md-4 pad-0" ng-repeat="bs in balanceSheet"
+								ng-if="$index>2">
+								<div class="field-box box-style-normal" ng-if="bs.type='N'">
+
+									<label class="app__label"
+										ng-style="{'visibility': balancesheet ? 'visible' : 'hidden'}">{{bs.label}}</label>
+									<input type="text" name="{{bs.name}}" id="{{bs.name}}"
+										ng-model="balancesheet" placeholder="{{bs.label}}"
+										ng-keyup=inputValidation(bs.name) ng-blur="getProgress()"
+										class="input-setting input__style2 form-control" numbers-only
+										title="{{bs.desc}}" required /> <span class="custom_ng-error"
+										id="{{bs.name}}_span"></span>
+								</div>
+							</div>
+						</div>
+						<!-- buttons -->
+						<!-- <div class="col-md-12 m-top-30 pad-0">
+						<div class="col-md-2 m-top-15 txt-left pad-0"
+								ng-style="{'visibility': account_balance > 0 ? 'visible' : 'hidden'}">
+								<button class="green-draft-btn" ng-click="customValidation()">Confirm</button>
+							</div>
+							<div class="col-md-2 col-md-offset-10 m-top-15 txt-left pad-0">
+								<button class="light-draft-btn" ng-click="saveDraft()">Save
+									as Draft</button>
+							</div>
+							<div class="col-md-2 m-top-15 txt-left pad-0">
+                                <button class="green-draft-btn">Next</button>
+                            </div>
+						</div> -->
+
+						<div class="col-md-12 m-top-30 pad-0">
+							<div class="col-md-2 m-top-15 txt-left pad-0"
+								ng-style="{'visibility': account_balance > 0 ? 'visible' : 'hidden'}">
+								<button class="green-draft-btn" ng-click="customValidation()">Confirm</button>
+							</div>
+							<div class="col-md-2 col-md-offset-8 m-top-15 txt-left pad-0">
+								<button class="light-draft-btn" ng-click="saveDraft()">Save
+									as Draft</button>
+							</div>
+							<!-- <div class="col-md-2 m-top-15 txt-left pad-0">
+                                <button class="green-draft-btn">Next</button>
+                            </div> -->
+
+						</div>
+						<!-- buttons -->
+						<div class="col-md-12 disclaimer-txt m-top-30 pad-0">
+							<p>
+								<b>Disclaimer:</b>We believe that you have entered the data to
+								the best of your knowledge, the right set of data is always
+								essential to churn an effective output.
+							</p>
+						</div>
+
+					</div>
+
+					<!-- ******************************** Balance Sheet ************************************* -->
+
+					<!-- ******************************** Profit and loss ************************************* -->
+					<div role="tabpanel" class="tab-pane" id="profitAndLoss">
+
+						<!-- _____________panel content_____________ -->
+						<div class="col-md-12 m-top-20 pad-0">
+							<div class="col-md-4 pad-0" ng-repeat="pal in profitAndLoss"
+								ng-if="$index<3">
+								<div class="field-box box-style-normal" ng-if="pal.type='N'">
+									<label class="app__label"
+										ng-style="{'visibility': profitandLoss ? 'visible' : 'hidden'}">{{pal.label}}</label>
+									<input type="text" name="{{pal.name}}" id="{{pal.name}}"
+										ng-blur="getProgress()" ng-model="profitandLoss"
+										ng-keyup=inputValidation(pal.name)
+										class="input-setting input__style2 form-control"
+										placeholder="{{pal.label}}" numbers-only title="{{pal.desc}}"
+										required /> <span class="custom_ng-error"
+										id="{{pal.name}}_span"></span>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12 pad-0">
+							<div class="col-md-4 pad-0" ng-repeat="pal in profitAndLoss"
+								ng-if="$index>2">
+								<div class="field-box box-style-normal" ng-if="pal.type='N'">
+									<label class="app__label"
+										ng-style="{'visibility': profitandLoss ? 'visible' : 'hidden'}">{{pal.label}}<span
+										class="mandatory" ng-if="pal.mandat = 'true'"></span></label> <input
+										type="text" name="{{pal.name}}" id="{{pal.name}}"
+										ng-blur="getProgress()" ng-model="profitandLoss"
+										ng-keyup=inputValidation(pal.name)
+										class="input-setting input__style2 form-control"
+										placeholder="{{pal.label}}" numbers-only title="{{pal.desc}}"
+										required /> <span class="custom_ng-error"
+										id="{{pal.name}}_span"></span>
+
+								</div>
+							</div>
+
+						</div>
+
+						<!-- buttons -->
+						<div class="col-md-12 m-top-30 pad-0">
+							<div class="col-md-2 m-top-15 txt-left pad-0"
+								ng-style="{'visibility': account_balance > 0 ? 'visible' : 'hidden'}">
+								<button class="green-draft-btn" ng-click="customValidation()">Confirm</button>
+							</div>
+							<div class="col-md-2 col-md-offset-8 m-top-15 txt-left pad-0">
+								<button class="light-draft-btn" ng-click="saveDraft()">Save
+									as Draft</button>
+							</div>
+							<!-- <div class="col-md-2 m-top-15 txt-left pad-0">
+                                <button class="green-draft-btn">Next</button>
+                            </div> -->
+							<!-- buttons -->
+						</div>
+
+
+						<!-- buttons -->
+						<div class="col-md-12 disclaimer-txt m-top-30 pad-0">
+							<p>
+								<b>Disclaimer:</b> We believe that you have entered the data to
+								the best of your knowledge, the right set of data is always
+								essential to churn an effective output.
+							</p>
+						</div>
+
+					</div>
+					<!-- ******************************** Profit and loss ************************************* -->
+
+					<!-- ******************************** Non Financial ************************************* -->
+
+					<div role="tabpanel" class="tab-pane" id="nonFinancial">
+
+						<!-- _____________panel content_____________ -->
+						<div class="col-md-12 m-top-20 pad-0">
+							<div class="col-md-4 pad-0" ng-repeat="nf in nonFinancial"
+								ng-if="$index<3">
+
+								<div class="field-box box-style-normal" ng-if="nf.type='S'">
+									<label class="app__label"
+										ng-style="{'visibility': nonfinancial ? 'visible' : 'hidden'}">{{nf.label}}<span
+										class="mandatory" ng-if="nf.mandat = 'true'"></span></label> <select
+										class="input-setting input_style_select form-control"
+										id="{{nf.name}}" nane="{{nf.name}}" ng-model="nonfinancial"
+										ng-change="selectValidation(nf.name) ; getProgress()"
+										title="{{nf.desc}}" required>
+										<option value="">{{nf.label}}<span class="mandatory"
+												ng-if="nf.mandat = 'true'"></span></option>
+										<option ng-repeat="nfo in nf.values" value="{{nfo}}">{{nfo}}</option>
+										<select>
+											<span class="custom_ng-error" id="{{nf.name}}_span"></span>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="col-md-12 pad-0">
+							<div class="col-md-4 pad-0" ng-repeat="nf in nonFinancial"
+								ng-if="$index>2">
+								<div class="field-box box-style-normal" ng-if="nf.type='S'">
+									<label class="app__label"
+										ng-style="{'visibility': nonfinancial ? 'visible' : 'hidden'}">{{nf.label}}<span
+										class="mandatory" ng-if="nf.mandat = 'true'"></span></label> <select
+										class="input-setting input_style_select form-control"
+										id="{{nf.name}}" nane="{{nf.name}}" ng-model="nonfinancial"
+										ng-change="selectValidation(nf.name); getProgress()"
+										title="{{nf.desc}}" required>
+										<option value="">{{nf.label}}<span class="mandatory"
+												ng-if="nf.mandat = 'true'"></span></option>
+										<option ng-repeat="nfo in nf.values" value="{{nfo}}">{{nfo}}</option>
+									</select> <span class="custom_ng-error" id="{{nf.name}}_span"></span>
+								</div>
+							</div>
+						</div>
+						<!-- buttons -->
+
+						<!-- buttons -->
+						<div class="col-md-12 m-top-30 pad-0">
+							<div class="col-md-2 m-top-15 txt-left pad-0"
+								ng-style="{'visibility': account_balance > 0 ? 'visible' : 'hidden'}">
+								<button class="green-draft-btn" ng-click="customValidation()">Confirm</button>
+							</div>
+							<div class="col-md-2 col-md-offset-8 m-top-15 txt-left pad-0">
+								<button class="light-draft-btn" ng-click="saveDraft()">Save
+									as Draft</button>
+							</div>
+							<!-- <div class="col-md-2 m-top-15 txt-left pad-0">
+                                <button class="green-draft-btn">Next</button>
+                            </div> -->
+							<!-- buttons -->
+						</div>
+						<!-- <div class="col-md-12 disclaimer-txt m-top-30 pad-0">
+							<p>
+								<b>Disclaimer:</b> We believe that you have inputed the data to
+								the best of your knowledge as the efficiency of our model is
+								dependent on the right set of data to chum effective output.
+							</p>
+						</div> -->
+
+					</div>
+
+					<!-- ******************************** Non Financial ************************************* -->
+
+					<!-- ******************************** special Factors ************************************* -->
+					<div role="tabpanel" class="tab-pane" id="specialFactor">
+
+						<!-- _____________panel content_____________ -->
+						<div class="col-md-12 m-top-20 pad-0">
+							<div class="col-md-4 pad-0" ng-repeat="sf in specialFactors"
+								ng-if="$index<3">
+								<div class="field-box box-style-normal box-hgt"
+									ng-if="sf.type='S'">
+									<label class="app__label"
+										ng-style="{'visibility': specialfactors ? 'visible' : 'hidden'}">{{sf.label}}<span
+										class="mandatory" ng-if="{{sf.mandat}} = 'true'">*</span></label> <select
+										class="input-setting input_style_select form-control"
+										name="{{sf.name}}" id="{{sf.name}}" ng-model="specialfactors"
+										ng-change="selectValidation(sf.name); getProgress()"
+										title="{{sf.desc}}">
+										<option value="">{{sf.label}}<span class="mandatory"
+												ng-if="{{sf.mandat}} = 'true'">*</span></option>
+										<option ng-repeat="sfo in sf.values">{{sfo}}</option>
+									</select> <span class="custom_ng-error" id="{{sf.name}}_span"></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12 pad-0">
+							<div class="col-md-4 pad-0" ng-repeat="sf in specialFactors"
+								ng-if="$index>2">
+								<div class="field-box box-style-normal box-hgt"
+									ng-if="sf.type='S'">
+									<label class="app__label"
+										ng-style="{'visibility': specialfactors ? 'visible' : 'hidden'}">{{sf.label}}<span
+										class="mandatory" ng-if="{{sf.mandat}} = 'true'">*</span></label> <select
+										class="input-setting input_style_select form-control"
+										name="{{sf.name}}" id="{{sf.name}}" ng-model="specialfactors"
+										ng-change="selectValidation(sf.name); getProgress()"
+										title="{{sf.desc}}">
+										<option value="">{{sf.label}}<span class="mandatory"
+												ng-if="{{sf.mandat}} = 'true'">*</span></option>
+										<option ng-repeat="sfo in sf.values">{{sfo}}</option>
+									</select> <span class="custom_ng-error" id="{{sf.name}}_span"></p>
+								</div>
+							</div>
+						</div>
+
+						<!-- buttons -->
+						<div class="col-md-12 m-top-30 pad-0">
+							<div class="col-md-2 m-top-15 txt-left pad-0"
+								ng-style="{'visibility': account_balance > 0 ? 'visible' : 'hidden'}">
+								<button class="green-draft-btn" ng-click="customValidation()">Confirm</button>
+							</div>
+							<div class="col-md-2 col-md-offset-8 m-top-15 txt-left pad-0">
+								<button class="light-draft-btn" ng-click="saveDraft()">Save
+									as Draft</button>
+							</div>
+							<!-- <div class="col-md-2 m-top-15 txt-left pad-0">
+                                <button class="green-draft-btn">Next</button>
+                            </div> -->
+							<!-- buttons -->
+						</div>
+						<!-- buttons -->
+						<div class="col-md-12 disclaimer-txt m-top-30 pad-0">
+							<p>
+								<b>Disclaimer:</b> We believe that you have entered the data to
+								the best of your knowledge, the right set of data is always
+								essential to churn an effective output.
+							</p>
+						</div>
+
+					</div>
+					<!-- ****************************** special Factors ********************************* -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

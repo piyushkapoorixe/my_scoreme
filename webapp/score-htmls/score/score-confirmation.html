@@ -1,0 +1,26 @@
+ <!-- completion status block -->
+    <div class="col-md-10 pad-rgt-0" ng-controller="ratingController">
+    <div class="overlay" ng-if="dataLoading">
+		<img width="100" src="../assets/images/loaders/interwind-preloader.svg"/>
+	</div>
+        <div class="col-md-12 pad-0 pad-bot-10 ">
+            <div class="left-pane txt-left">
+                <button class="btn print-button" ng-click="printDiv('scoreConfirmDiv' ,'confirm')">Print</button>
+            </div>
+            <div class="right-pane txt-right">
+                <ul class="list-inline pad-fix">
+                    <li> <button class="btn print-button" back >Back</button></li>
+                    <li> <button class="btn calculate-button" ng-click="calculateRating()">Calculate Score</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12 confirmation-board pad-rgt-0 pad-0" id="scoreConfirmDiv">
+            <div class="col-md-12 pad-lr-30 board-heading" ng-repeat="(key, value) in completeData">
+                <h1>{{key}}</h1>
+                 <div class="col-md-4 board-label" ng-repeat="(k, v) in value">
+                 	<h3 class="confirm-size">{{v.label}}</h3>
+                    <p>{{v.name}}</p>
+                </div> 
+            </div>  
+         </div> 
+    </div>

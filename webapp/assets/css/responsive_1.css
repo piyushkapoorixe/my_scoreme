@@ -1,0 +1,161 @@
+/* ////////////////////////////
+________responsive stylesheet @480____
+__________(author - Govind)____________
+////////////////////// */
+@media screen and (max-width: 480px) {
+	/* ////////////////////////////
+______________DASHBOARD________________
+////////////////////// */
+	#myCarousel {
+		display: none;
+	}
+	.login-content>h1 {
+		padding-bottom: 0px;
+	}
+	.forgot-pass>p {
+		padding-top: 13px;
+	}
+	.forgot-pass {
+		display: block;
+		height: 0px;
+		margin-bottom: 0px;
+	}
+	.forgot-pass>p>a {
+		font-size: 10px;
+	}
+	md-input-container {
+		margin: 0px 0 !important;
+	}
+	.login-button-style2 {
+		width: 100px;
+		height: 45px;
+	}
+	.primaryCompany {
+		width: 100%;
+	}
+	ul.add-entity>li p {
+		top: -2px;
+		left: -10px;
+		font-size: 10px;
+	}
+	.add-entity>li:first-child>img {
+		position: relative;
+		top: 0px;
+	}
+	.manage-entity>a>p {
+		font-size: 10px;
+	}
+	.menu-item {
+		background: #fff;
+		height: 55px;
+		margin-left: -15px;
+		margin-right: -15px;
+		position: relative;
+		top: -10px;
+		-webkit-box-shadow: 0px 0px 5px 0px rgba(163, 163, 163, 1);
+		-moz-box-shadow: 0px 0px 5px 0px rgba(163, 163, 163, 1);
+		box-shadow: 0px 0px 5px 0px rgba(163, 163, 163, 1);
+	}
+	.navbar-default .navbar-toggle {
+		border-color: #fff;
+		padding-top: 19px;
+	}
+	.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover
+		{
+		background-color: #fff;
+	}
+	.dashboard-menu {
+		position: fixed;
+		left: -227px;
+		top: 115px;
+		z-index: 1;
+	}
+	.dropdown-menu-center {
+		position: relative;
+		left: 115px;
+		top: -25px;
+	}
+	.navbar-right>li {
+		font-family: 'Montserrat', sans-serif;
+		height: 4em;
+		text-align: center;
+		display: inline-block;
+		/*  padding: 0px 15px; */
+	}
+	.score-grid {
+		width: 100%;
+	}
+	.dashboard>h1 {
+		margin-bottom: 0px;
+	}
+	.pad-0-xs {
+		padding: 0px;
+	}
+	.circle-container {
+		margin-top: 20px;
+	}
+	/* ////////////////////////////
+    ________________Nav Bar Dropdown________________ 
+    ////////////////////////////*/
+	.filter_inputbox>a>span>i {
+		position: absolute;
+		top: 0px;
+		color: #516378;
+		left: 70px;
+		font-size: 15px;
+		cursor: pointer;
+	}
+	.filter_dropdown_list {
+		width: 175px;
+		left: -60px;
+	}
+
+	/* ////////////////////////////
+__________ADD ENTITY__________
+////////////////////// */
+	.pad-15-xs {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.txt-center-xs {
+		text-align: center;
+	}
+	.m-top-85-xs {
+		margin-top: 85px;
+	}
+	.progress-wrapper {
+		margin-top: 80px;
+		width: 76%;
+		margin: auto;
+	}
+	.milestone-card {
+		top: -66px;
+		left: 0px;
+	}
+	.page-heading {
+		margin-bottom: 75px;
+	}
+	.module-counter {
+		margin-top: 0px;
+	}
+	.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox],
+		.radio input[type=radio], .radio-inline input[type=radio] {
+		margin-left: 0px;
+	}
+
+	/* ////////////////////////////
+__________RECALCULATE DASHBOARD__________
+////////////////////// */
+	.score-slider>h1 {
+		padding-top: 0px;
+	}
+	.circle-value-recalculate {
+		top: 170px;
+	}
+	.benchmark-graph-block {
+		display: none;
+	}
+	.m-top-10-xs {
+		margin-top: 10px;
+	}
+}

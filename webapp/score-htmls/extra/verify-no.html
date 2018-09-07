@@ -1,0 +1,95 @@
+<div class="col-md-12 pad-0" ng-controller="loginController">
+	<!-- <div class="col-md-8 pad-0" ng-controller="industryController"
+		ng-init="getAllPrimaryCompany()"> -->
+<div class="col-md-8 pad-0" >
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<div class="slide__text">
+						<h1>Ready to play an active role in your financial affairs?</h1>
+						<h4>The perfect set of analytical tools to stay in charge of
+							your financial outlook.</h4>
+					</div>
+					<img src="../assets/images/banner1.jpg" alt="banner1"
+						draggable="false">
+				</div>
+
+				<div class="item">
+					<div class="slide__text">
+						<h1>Ground-breaking technology that calculates business
+							performance in minutes.</h1>
+						<h4>ScoreMe calculates the actual performance of your
+							business, along with a credit score.</h4>
+					</div>
+					<img src="../assets/images/banner2.jpg" alt="banner2"
+						draggable="false">
+				</div>
+
+				<div class="item">
+					<div class="slide__text">
+						<h1>Boost your bank statement analysis abilities to the next
+							level.</h1>
+						<h4>An automated process of reading bank statements for an
+							in-depth analysis.</h4>
+					</div>
+					<img src="../assets/images/banner3.jpg" alt="banner3"
+						draggable="false">
+				</div>
+			</div>	
+		</div>
+   </div> 
+	<div class="col-md-4 pad-0">
+		<div class="right-sidewall-login">
+			<a ui-sref="$state.go('signInState')"><img src="../assets/images/logo.png" width="140"></a>
+			<md-content>
+			<form role="form" name="mobileverifyForm" novalidate>
+				<div class="login-content">
+					<h1>OTP</h1>
+				</div>
+				<div class="col-md-12 pad-0">
+					<md-input-container> <input type="text"
+						class="form-control element-style"
+						ng-class="{myErrorBorder: mobileverifyForm.otp.$dirty && mobileverifyForm.otp.$invalid }"
+						placeholder="Enter your 6 Digits OTP" name="otp" ng-model="otp"
+						id="otp" minlength="6" maxlength="6"  required /> <span
+						ng-show="mobileverifyForm.otp.$dirty && mobileverifyForm.otp.$invalid"
+						ng-class="{myErrorText: mobileverifyForm.otp.$dirty && mobileverifyForm.otp.$invalid }">
+						<span ng-show="mobileverifyForm.otp.$error.required">Please
+							enter OTP.</span> <span ng-show="mobileverifyForm.otp.$error.minlength">Please
+							enter exact 6 digits.</span> <span
+						ng-show="mobileverifyForm.otp.$error.maxlength">Please
+							enter exact 6 digits.</span>
+					</span> </md-input-container>
+				</div>
+				<div class="col-md-12 m-top-15 pad-top-40 pad-0">
+
+					<div class="col-md-12 pad-0">
+						<div class="col-md-6 validate-btn pad-0">
+							<button class="login-button" ng-click="validateOTP()"
+								ng-disabled="mobileverifyForm.$invalid" disabled>Proceed</button>
+						</div>
+						<div class="col-md-6 resend-btn pad-0">
+							<button class="login-button" ng-click="resendOTP()">Resend
+								OTP</button>
+						</div>
+					</div>
+
+
+				</div>
+			</form>
+			</md-content>
+			<div class="col-md-12 m-top-15 divide-txt pad-0">
+				<p>If you do not receive OTP within 180 seconds. Press Resend
+					OTP.</p>
+			</div>
+		</div>
+	</div>
+</div>

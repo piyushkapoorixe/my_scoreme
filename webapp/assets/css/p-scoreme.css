@@ -1,0 +1,234 @@
+.form-group {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.onecol {
+    padding-left: 34px;
+    padding-right: 34px;
+   }
+   .twocol {
+       padding-left: 34px;
+       padding-right: 34px;
+   }
+   .threecol {
+       padding-left: 34px;
+       padding-right: 34px;
+   }
+   .billbutton {
+    
+        width: 100px;
+        height: 30px;
+        outline: none;
+        -webkit-border-radius: 26px;
+        -moz-border-radius: 26px;
+        -ms-border-radius: 26px;
+        border-radius: 26px;
+        -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+        -moz-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+        -ms-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+        border: solid 1px #0057ff;
+        background: transparent;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.13;
+        text-align: center;
+        color: #0057ff;
+        cursor: pointer !important;
+    
+   }
+   .billbutton:hover{
+    
+    width: 100px;
+    height: 30px;
+    outline: none;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -ms-border-radius: 26px;
+    border-radius: 26px;
+    -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -ms-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    border: solid 1px #0057ff;
+    background: #0057ff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.13;
+    text-align: center;
+    color: white;
+    cursor: pointer !important;
+
+}
+
+.billbutton2 {
+    
+    width: 150px;
+    height: 40px;
+    outline: none;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -ms-border-radius: 26px;
+    border-radius: 26px;
+    -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -ms-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    border: solid 1px #0057ff;
+    background: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.13;
+    text-align: center;
+    color: #0057ff;
+    cursor: pointer !important;
+
+}
+.billbutton2:hover{
+
+width: 150px;
+height: 40px;
+outline: none;
+-webkit-border-radius: 26px;
+-moz-border-radius: 26px;
+-ms-border-radius: 26px;
+border-radius: 26px;
+-webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+-moz-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+-ms-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+border: solid 1px #0057ff;
+background: #0057ff;
+font-family: 'Montserrat', sans-serif;
+font-size: 13px;
+font-weight: 600;
+line-height: 1.13;
+text-align: center;
+color: white;
+cursor: pointer !important;
+
+}
+
+.m-top-75 {
+    margin-top: 75px;
+} 
+.billbutton2 {
+
+    width: 150px;
+    height: 40px;
+    outline: none;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -ms-border-radius: 26px;
+    border-radius: 26px;
+    -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -ms-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    border: solid 1px #0057ff;
+    background: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.13;
+    text-align: center;
+    color: #0057ff;
+    cursor: pointer !important;
+    
+    }
+    .billbutton2:hover{
+    
+    width: 150px;
+    height: 40px;
+    outline: none;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -ms-border-radius: 26px;
+    border-radius: 26px;
+    -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -ms-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    border: solid 1px #0057ff;
+    background: #0057ff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.13;
+    text-align: center;
+    color: white;
+    cursor: pointer !important;
+    
+    }   
+
+    .p-top-15 {
+        padding-top: 15px;
+    }
+
+    .m-top-65 {
+        margin-top: 65px;
+    }
+
+    .m-top-50 {
+        margin-top: 50px;
+    }
+    .m-top-35 {
+        margin-top: 35px;
+    }
+
+    .m-left-50 {
+        margin-left: 50px;
+    }
+
+    .m-left-35 {
+        margin-left: 35px;
+    }
+
+
+    .m-left-minus8 {
+        margin-left: -8px;
+    }
+    .help-block {
+        font-size: 11px;
+        font-style: normal;
+        font-family: tahoma;
+        text-transform: capitalize;
+        color: #e53935 !important;
+        margin-bottom: -13px !important;
+        margin-top: -1px;
+    }
+    .button.small {
+        width: 59px;
+        height: 21px;
+        outline: none;
+        -webkit-border-radius: 26px;
+        -moz-border-radius: 26px;
+        -ms-border-radius: 26px;
+        border-radius: 26px;
+        -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+        -moz-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+        -ms-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+        border: solid 1px #0057ff;
+        background: transparent;
+        font-family: 'Montserrat', sans-serif;
+        /* font-size: 13px; */
+        font-weight: 600;
+        line-height: 1.13;
+        text-align: center;
+        color: #0057ff;
+        cursor: pointer !important;
+        /* transition: width 0.5s; */
+    }
+
+.mywidth130 {
+    width: 130%;
+}
+
+.mywidth150 {
+    width: 150%;
+}

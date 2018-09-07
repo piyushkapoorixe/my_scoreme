@@ -1,0 +1,175 @@
+
+
+<!-- completion status block -->
+<div class="col-md-10" ng-controller="dashboardController">
+	<div class="overlay" ng-if="dataLoading">
+		<img width="100"
+			src="../assets/images/loaders/interwind-preloader.svg" />
+	</div>
+	<div class="col-md-12 pad-lft-8 pad-rgt-0">
+		<div
+			class="col-md-12 report-history-heading pad-0-xs pad-20 pad-top-0 pad-rgt-0 pad-lft-0">
+
+			<div class="col-md-3 pad-0-xs">
+				<div class="last-rating txt-center">
+					<p class="pad-top-20">LAST RATING</p>
+					<h1>{{grade}}</h1>
+					<p class="pad-top-40">LAST SCORE</p>
+					<h2 class="circle-value-recalculate">{{score}}/100</h2>
+					<div id="recalculateScore" class="circle-container"
+						ng-init="initRecalculateCircle()">
+						<!--  <h2 id="recalculateScore" class="circle-value-recalculate circle-container">{{score}}%</h2> -->
+					</div>
+					<!--   	<span class="spinner"></span> -->
+					<a ng-href="{{report}}" target="_blank">
+					   <button class="btn spinner download-report neeraj-report">
+						DOWNLOAD REPORT
+						<span
+							class="entity"><img src="../assets/images/right-arrow.svg"
+								width="20"></span>
+					</button></a>
+					
+				</div>
+			</div>
+			<div class="col-md-9 pad-rgt-0">
+				<div class="benchmark-graph-block">
+					<h1>INDUSTRY BENCHMARK</h1>
+					<div class="col-md-12 pad-0">
+						<!-- <div id="recalculate-chart" style="min-width: 310px; height: 280px; margin: 0 auto"></div> -->
+						<highchart id="chart1" series="chart.series" options="chart.options"></highchart> 
+					</div>				
+				</div>
+			</div>
+
+		</div>
+		<div
+			class="col-md-12 report-history-heading pad-20 pad-0-xs pad-top-0 pad-rgt-0">
+			<div class="col-md-12 pad-0-xs pad-rgt-0 m-top-10 pad-0">
+				<div class="score-slider-container score-slider col-md-12 pad-0-xs">
+					<h1>SCORE SLIDER</h1>
+					<!-- fields -->
+					<!-- hidden fields  -->
+					<input type="hidden" name="input-G4" ng-value="{{companyName}}"
+						id="input-G4"> <input type="hidden" name="input-G5"
+						ng-value="{{groupName}}" id="input-G5"> <input
+						type="hidden" name="input-G6" ng-value="{{industryName}}"
+						id="input-G6">
+
+					<div ng-repeat="cd in companyData">
+						<div ng-if="cd.group == 'Request'">
+							<div ng-repeat="r in cd.param">
+								<input type="hidden" name="{{r.name}}" id="{{r.name}}"
+									ng-value="r.label" />
+							</div>
+						</div>
+
+						<!-- hidden fields  -->
+						<div ng-if="cd.group != 'Request'">
+							<div class="col-md-12 pad-0">
+								<div class="col-md-4" ng-repeat="s in cd.param track by $index">
+									<div ng-if="s.slider == 'Y'">
+										<ul class="range-header list-inline m-bot-15">
+											<li>
+												<h1>{{s.label}}</h1>
+											</li>
+											<li>
+											<input type="text" id="percentage_{{s.min}}"
+											class="range-value" pre
+											ng-keyup="changeSliderValueOnPercKeyUp(s.min , s.name)">
+											<h2>%</h2>
+											</li>																																							
+										</ul>
+										
+										<input type="range" min="0" 
+											id="slider_{{s.min}}">
+										<ul class="range-data list-inline">
+											<li>
+												<p>
+													Previous : <span id="previous_{{s.min}}" 
+													ng-bind="getMinValue(s.min , s.name)"></span>
+										       </p>
+											</li>
+											<li>
+												<p>
+													 Current : <span id="{{s.name}}" class="ng-binding"></span>
+													<!-- //Current : --> 												
+												</p> 
+											</li>
+											<!-- <li><input type="text" id="{{s.name}}" class="range-value" 
+													 ng-keyup="changeSliderValueOnKeyUp(s.min , s.name)"></li> -->
+										</ul>
+									</div>
+									<div ng-if="s.slider == 'N'">
+										<input type="hidden" name="{{s.name}}" id="{{s.name}}"
+											ng-value="getKeyValue(s.name)" />
+										<!--<div ng-init="getKeyValue(s.name)"></div> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 txt-center-xs txt-right">
+						<button class="btn spinner download-report wd-180 m-top-10-xs m-top-35"
+							ng-click="getRecalculateRatingData()">
+							<a ng-href="" target="_blank"> RE-CALCULATE SCORE<span
+								class="entity"><img
+									src="../assets/images/right-arrow.svg" width="20"></span>
+							</a>
+						</button>
+					</div>
+
+
+					<!-- fields -->
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="col-md-12 pad-0">
+
+		<!-- Sart Modal -->
+		<div class="modal fade" id="recalculate-confirm" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog small-modal">
+				<div class="modal-content">
+					<div class="modal-header pad-0 no-border justify-content-center">
+						<div class="closer">
+							<span data-dismiss="modal" aria-hidden="true"> <img
+								src="../assets/images/close-lite.svg" width="15"
+								draggable="false">
+							</span>
+						</div>
+
+					</div>
+					<div class="modal-body pad-0">
+						<div class="col-md-12 recalculate-cnf-box pad-0">
+							<table class="table table-striped score-datalist ">
+								<thead>
+									<tr>
+										<th class="txt-center">Parameters</th>
+										<th class="txt-center">New Value</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="sd in sliderData.SLIDER">
+										<td>{{sd.label}}</td>
+										<td>{{sd.name}}</td>
+									</tr>								
+								</tbody>
+							</table>
+
+						</div>
+						<div class="col-md-12 button-area pad-0">
+							<button class="blue-save-btn" ng-click="recalculateRating()">Calculate
+								Score</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!--  End Modal -->
+	</div>
+</div>
+
+

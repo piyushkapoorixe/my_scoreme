@@ -1,0 +1,199 @@
+.profile-rectangle{
+  height: 90px;
+  border: solid 0.5px #dfe2e9;
+}
+
+
+.profile-detail{
+  width: 260px;
+  height: 18px;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: left;
+  color: #516378;
+  padding : 0px 17px;
+}
+
+.credit-div{
+    width: 344px;
+    height: 90px;
+    border-radius: 3px;
+    border: solid 0.5px #dfe2e9;
+}
+
+
+.credit-heading{
+    width: 260px;
+    height: 18px;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.67;
+    letter-spacing: normal;
+    text-align: left;
+    color: #516378;
+    padding : 10px 17px;
+}
+
+
+.credit-subheading{
+  width: 118px;
+  height: 18px;
+  font-size: 10px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2;
+  letter-spacing: normal;
+  text-align: left;
+  color: #9b9b9b;
+  padding : 18px 17px;
+}
+
+.credit-number{
+  width: 118px;
+  height: 18px;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: left;
+  color: #0057ff;
+  padding : 0px 17px;
+}
+
+.li-tabs{
+padding:0px 35px;
+}
+
+.credit-detail{
+  width: 878px;
+  height: 16px;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+ /*  line-height: 2; */
+  letter-spacing: normal;
+  text-align: left;
+  color: #9b9b9b;
+  padding : 0px 1px 34px 0px;
+}
+
+
+
+.billing-address-div{
+	height:90px;
+}
+
+.billing-address-heading{
+  width: 200px;
+  height: 40px; 
+  font-family: Montserrat;
+  font-size: 11px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  text-align: left;
+  color: #9b9b9b;
+  padding : 10px 17px;
+	
+}
+
+
+.billing-address-detail{
+  width: 144px;
+  height: 35px;
+  font-size: 13px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  text-align: left;
+  color: #516378;
+  padding : 17px 17px;
+}
+
+
+.edit-btn{
+  width: 20px;
+  height: 10px;
+  font-family: Montserrat;
+  font-size: 10px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.2px;
+  text-align: justify;
+  color: #0057ff;
+  padding:10px
+	
+}
+
+.asterisk_input:after {
+  content: " *";
+  color: #e32;
+  position: absolute;
+ /*  margin: 0px 0px 0px -20px; */
+  margin:-39px 8px 36px 568px;
+  font-size: 17px;
+  padding: 0 5px 0 0;
+}
+
+.asterisk_input_login:after {
+  content: " *";
+  color: #e32;
+  position: absolute;
+ /*  margin: 0px 0px 0px -20px; */
+  margin:-35px 8px 35px 310px;
+  font-size: 17px;
+  padding: 0 5px 0 0;
+}
+
+.asterisk_input_login_mobile:after {
+  content: " *";
+  color: #e32;
+  position: absolute;
+ /*  margin: 0px 0px 0px -20px; */
+  margin:-35px 8px 35px 260px;
+  font-size: 17px;
+  padding: 0 5px 0 0;
+}
+
+
+.asterisk_input_bank:after {
+  content: " *";
+  color: #e32;
+  position: absolute;
+ /*  margin: 0px 0px 0px -20px; */
+  margin:-39px 8px 36px 475px;
+  font-size: 17px;
+  padding: 0 5px 0 0;
+}
+
+
+
+/* pagination css */
+
+.select-page {
+  width: 28px;
+  text-align: center;
+}
+.pagination li a input {
+  padding: 0;
+  margin: -5px 0;
+}
+
+

@@ -1,0 +1,68 @@
+<div class="col-md-10 pad-rgt-0" ng-controller="userDashboardTableController">
+	<div class="overlay" ng-if="dataLoading">
+		<img width="100"
+			src="../assets/images/loaders/interwind-preloader.svg" />
+	</div>
+	<div class="col-md-12 pad-rgt-0 pad-lft-0 pad-0">
+		<div class="col-md-12 pad-20 pad-top-0 pad-rgt-0">
+			<div class="col-md-10 pad-0 report-history-heading ">
+				<h1>Bank Statement Analysis Entities</h1>
+				
+			</div>
+			<div class="col-md-2  pad-0">
+				<div class="text-right">
+					<select ng-model="items" ng-change="changeItems(items)"
+						class="filter-dropdown">
+						<option value="5">5</option>
+						<option value="10" selected="selected">10</option>
+						<option value="15">15</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-md-12 report-block m-top-20">
+				<table st-table="bankTableDataBase"
+					st-safe-src="bankTableData"
+					class="table table-striped table_head_Style">
+					<thead>
+						<tr>
+							<th colspan="7"><input st-search placeholder="Search"
+								class="input-sm form-control tbl-search" type="search" /></th>
+						</tr>
+						<tr>
+							<th>Sl. No.</th>
+				 	        <th>Entity Name</th>
+				 	        <th>Date</th>
+				 	        <th>Bank Name</th>
+				 	        <th>Reports</th></tr>
+						</tr>
+					</thead>
+					<tbody>
+					  <tr ng-repeat="bt in bankTableDataBase track by $index" ng-if="bankTableData != undefined && bankTableData.length >0">
+				 	     <td>{{$index+1}}</td>
+				 	     <td>{{bt.companyName}}</td>
+				 	     <td>{{bt.date}}</td>
+				 	     <td>{{bt.bankName}}</td>
+				 	     <!-- <td><a href={{sd.url}}>Download</a></td> -->	
+				 	     <td><a ng-href="{{'..'+bt.url}}"
+								target="_blank"><button class="btn download-btn">Download</button></a></td>
+						 <td>
+				 	   </tr>
+				 	   <tr ng-if="bankTableData.length <= 0 || bankTableData == undefined">
+							<td colspan="6" class="text-center">No Data Available</td>
+						</tr>
+						<tr>
+							<!-- <td colspan="6" class="text-center">
+								<div st-pagination="" st-items-by-page="itemsPerPage"
+									st-displayed-pages="5"></div>
+							</td> -->
+							<td colspan="6" class="text-center">
+	<div st-items-by-page="itemsPerPage" st-pagination="" st-template="../score-htmls/pagination/pagination.custom.html"></div>
+		                   </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

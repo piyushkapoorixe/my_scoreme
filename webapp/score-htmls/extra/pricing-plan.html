@@ -1,0 +1,299 @@
+
+<!-- __________flowbar-navigation area___________ -->
+<section class="pad-lr-60">
+    <div class="col-md-12 pad-0 m-top-120">
+        <div class="col-md-4 page-heading pad-0">
+            <h1>Pricing Plans</h1>
+            <p>Select the Products you want to buy.</p>
+        </div>
+        <div class="col-md-4">
+            <div class="progress-wrapper">
+                <div class="progress-track">
+                    <div class="milestone-holder">
+                        <div class="milestone-done">
+                            <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="milestone-holder">
+                        <div class="milestone-active m-auto"></div>
+                        <div class="milestone-card-step2">
+                            <h2>Step 2</h2>
+                            <p>Products</p>
+                            <span class="chevdrop"></span>
+                        </div>
+                    </div>
+                    <div class="milestone-holder">
+                        <div class="milestone-inactive-end"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 m-top-15 txt-right pad-0">
+            <a ui-sref="confirmPlanState"><button class="next-step" > Next Step</button></a>         
+           <!--  ng-disabled="((selectAllCheckboxes)||(scorePlanCheckbox)||(bankStatementCheckbox) ||
+            (financialDocumentCheckbox) || (tradeLicenseCheckbox)||(creditReportCheckbox) || (valuationCheckbox)) ? false :true"    
+            ng-class="((selectAllCheckboxes)||(scorePlanCheckbox)||(bankStatementCheckbox) ||
+            (financialDocumentCheckbox) || (tradeLicenseCheckbox)||(creditReportCheckbox) || (valuationCheckbox)) ? 'button-enable' : ''" -->
+         
+        </div>
+    </div>
+</section>
+
+<!-- __________Main Content area___________ -->
+<section class="pad-lr-60">
+    <div class="col-md-12 pad-0 m-top-20 pricing-box m-bot-30">
+        <div class="col-md-12 txt-right pad-0">
+            <form role="form">
+                <div class="col-md-4 col-md-offset-8 pad-0">
+                    <ul class="list-inline">
+                        <li>
+                            <select class="form-control currency-type">
+                                        <option>INR</option>
+                                        <option>USD</option>
+                            </select>
+                        </li>
+                        <li>
+                            <div class="total-amount">
+                                <p >Total - XXXXXXXXX</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+      <!--   <div class="col-md-12 txt-left pad-0">
+            <ul class="list-inline txt-left m-0">
+                <li>
+                    <div class="checkbox light-checkbox">
+                        <label>
+                                    <input type="checkbox" ng-model="selectAllCheckboxes" ng-checked="((scorePlanCheckbox)||(bankStatementCheckbox) ||
+            (financialDocumentCheckbox) || (tradeLicenseCheckbox)||(creditReportCheckbox) || (valuationCheckbox)) ? true:false"/>
+                                    <i class="input-helper"></i>
+                                </label>
+                    </div>
+                </li>
+                <li>
+                    <div class="m-top-15 tnd-txt txt-left pad-0">
+                        <p> Select all Radio button</p>
+                    </div>
+                </li>
+            </ul>
+
+        </div> -->
+        <!-- _______________________Plans Grids________________________ -->
+
+        <div class="col-md-12 m-top-15 pad-0">
+            <!-- score plan -->
+           <!--  <div class="col-md-4 pad-0">
+                <div class="price-box m-lft-0">
+                    <div class="col-md-12 pad-0">
+                        <div class="pricing-checkbox">
+                            <label>
+                                        <input type="checkbox" ng-model="scorePlanCheckbox" ng-checked="selectAllCheckboxes"/>
+                                        <i class="input-helper"></i>
+                                    </label>
+                        </div>
+                    </div>
+                    <h2>Score Plan</h2>
+                    <div class="logo-img m-top-20"></div>
+                    <h1>INR 3999</h1>
+                    <div class="line-breaker"></div>
+                    <p>Generate score free for the first time,<br> Request for Coupon. <span><a href="#">READ MORE</a></span></p>
+                </div>
+            </div> -->
+              <div class="col-md-4 pad-0">
+                        <div class="price-box m-lft-0">
+                            <h2>Score Plan</h2>
+                            <div class="logo-img m-top-20"></div>
+                            <h1>INR 3999</h1>
+                            <div class="line-breaker-80"></div>
+                            <p>Generate score free for the first time,<br> Request for Coupon. <span><a href="#">READ MORE</a></span></p>
+                            <div class="col-md-12 txt-center">
+                                <div class="plan-addon">
+                                    <input type="button" value="-" class="button-minus2" data-field="quantity">
+                                    <input type="text" step="1" max="" value="0" name="quantity" class="quantity-field2">
+                                    <input type="button" value="+" class="button-plus2" data-field="quantity">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!-- Bank Statement -->
+           <!--  <div class="col-md-4 pad-0">
+                <div class="price-box">
+                    <div class="col-md-12 pad-0">
+                        <div class="pricing-checkbox">
+                            <label>
+                                            <input type="checkbox" ng-model="bankStatementCheckbox" ng-checked="selectAllCheckboxes"/>
+                                            <i class="input-helper"></i>
+                                        </label>
+                        </div>
+                    </div>
+                    <h2>Bank Statement</h2>
+                    <div class="logo-img m-top-20"></div>
+                    <h1>INR 3999</h1>
+                    <div class="line-breaker"></div>
+                    <p>Generate score free for the first time,<br> Request for Coupon. <span><a href="#">READ MORE</a></span></p>
+                </div>
+            </div> -->
+             <div class="col-md-4 pad-0">
+                        <div class="price-box m-lft-0">
+                            <h2>Bank Statement</h2>
+                            <div class="logo-img m-top-20"></div>
+                            <h1>INR 3999</h1>
+                            <div class="line-breaker-80"></div>
+                            <p>Generate score free for the first time,<br> Request for Coupon. <span><a href="#">READ MORE</a></span></p>
+                            <div class="col-md-12 txt-center">
+                                <div class="plan-addon">
+                                    <input type="button" value="-" class="button-minus2" data-field="quantity">
+                                    <input type="text" step="1" max="" value="0" name="quantity" class="quantity-field2">
+                                    <input type="button" value="+" class="button-plus2" data-field="quantity">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+            <!-- Financial Document Reader -->
+           <!--  <div class="col-md-4 pad-0">
+                <div class="price-box m-rgt-0">
+                    <div class="col-md-12 pad-0">
+                        <div class="pricing-checkbox">
+                            <label>
+                                                <input type="checkbox" ng-model="financialDocumentCheckbox" ng-checked="selectAllCheckboxes"/>
+                                                <i class="input-helper"></i>
+                                            </label>
+                        </div>
+                    </div>
+                    <h2>Financial Document<br> Reader
+                    </h2>
+                    <div class="logo-img m-top-20"></div>
+                    <h1>INR 3999</h1>
+                    <div class="line-breaker"></div>
+                    <p>Generate score free for the first time,<br> Request for Coupon. <span><a href="#">READ MORE</a></span></p>
+                </div>
+            </div> -->
+              <div class="col-md-4 pad-0">
+                        <div class="price-box m-lft-0">
+                            <h2>Financial Document<br> Reader</h2>
+                            <div class="logo-img m-top-20"></div>
+                            <h1>INR 3999</h1>
+                            <div class="line-breaker-80"></div>
+                            <p>Generate score free for the first time,<br> Request for Coupon. <span><a href="#">READ MORE</a></span></p>
+                            <div class="col-md-12 txt-center">
+                                <div class="plan-addon">
+                                    <input type="button" value="-" class="button-minus2" data-field="quantity">
+                                    <input type="text" step="1" max="" value="0" name="quantity" class="quantity-field2">
+                                    <input type="button" value="+" class="button-plus2" data-field="quantity">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+        <!-- _______________________Plans Grids________________________ -->
+        <div class="col-md-12 m-top-40 pad-0">
+            <!-- Trade License -->
+           <!--  <div class="col-md-4 pad-0">
+                <div class="price-box m-lft-0">
+                    <div class="col-md-12 pad-0">
+                        <div class="pricing-checkbox">
+                            <label>
+                                            <input type="checkbox" ng-model="tradeLicenseCheckbox" ng-checked="selectAllCheckboxes"/>
+                                            <i class="input-helper"></i>
+                                        </label>
+                        </div>
+                    </div>
+                    <h2>Trade License</h2>
+                    <div class="logo-img m-top-20"></div>
+                    <h1>INR 3999</h1>
+                    <div class="line-breaker"></div>
+                    <p>Generate score free for the first time,<br> Request for Coupon. <span><a href="#">READ MORE</a></span></p>
+                </div>
+            </div> -->
+              <div class="col-md-4 pad-0">
+                        <div class="price-box m-lft-0">
+                            <h2>Trade License</h2>
+                            <div class="logo-img m-top-20"></div>
+                            <h1>INR 3999</h1>
+                            <div class="line-breaker-80"></div>
+                            <p>Generate score free for the first time,<br> Request for Coupon. <span><a href="#">READ MORE</a></span></p>
+                            <div class="col-md-12 txt-center">
+                                <div class="plan-addon">
+                                    <input type="button" value="-" class="button-minus2" data-field="quantity">
+                                    <input type="text" step="1" max="" value="0" name="quantity" class="quantity-field2">
+                                    <input type="button" value="+" class="button-plus2" data-field="quantity">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!-- Ethiad Credit Report -->
+        <!--     <div class="col-md-4 pad-0">
+                <div class="price-box">
+                    <div class="col-md-12 pad-0">
+                        <div class="pricing-checkbox">
+                            <label>
+                                                <input type="checkbox" ng-model="creditReportCheckbox" ng-checked="selectAllCheckboxes"/>
+                                                <i class="input-helper"></i>
+                                            </label>
+                        </div>
+                    </div>
+                    <h2>Ethiad Credit Report</h2>
+                    <div class="logo-img m-top-20"></div>
+                    <h1>INR 3999</h1>
+                    <div class="line-breaker"></div>
+                    <p>Generate score free for the first time,<br> Request for Coupon. <span><a href="#">READ MORE</a></span></p>
+                </div>
+            </div> -->
+             <div class="col-md-4 pad-0">
+                        <div class="price-box m-lft-0">
+                            <h2>Ethiad Credit Report</h2>
+                            <div class="logo-img m-top-20"></div>
+                            <h1>INR 3999</h1>
+                            <div class="line-breaker-80"></div>
+                            <p>Generate score free for the first time,<br> Request for Coupon. <span><a href="#">READ MORE</a></span></p>
+                            <div class="col-md-12 txt-center">
+                                <div class="plan-addon">
+                                    <input type="button" value="-" class="button-minus2" data-field="quantity">
+                                    <input type="text" step="1" max="" value="0" name="quantity" class="quantity-field2">
+                                    <input type="button" value="+" class="button-plus2" data-field="quantity">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!--Valuation -->
+       <!--      <div class="col-md-4 pad-0">
+                <div class="price-box m-rgt-0">
+                    <div class="col-md-12 pad-0">
+                        <div class="pricing-checkbox">
+                            <label>
+                                                    <input type="checkbox" ng-model="valuationCheckbox" ng-checked="selectAllCheckboxes"/>
+                                                    <i class="input-helper"></i>
+                                                </label>
+                        </div>
+                    </div>
+                    <h2>Valuation
+                    </h2>
+                    <div class="logo-img m-top-20"></div>
+                    <h1>INR 3999</h1>
+                    <div class="line-breaker"></div>
+                    <p>Generate score free for the first time,<br> Request for Coupon. <span><a href="#">READ MORE</a></span></p>
+                </div>
+            </div> -->
+             <div class="col-md-4 pad-0">
+                        <div class="price-box m-lft-0">
+                            <h2>Valuation</h2>
+                            <div class="logo-img m-top-20"></div>
+                            <h1>INR 3999</h1>
+                            <div class="line-breaker-80"></div>
+                            <p>Generate score free for the first time,<br> Request for Coupon. <span><a href="#">READ MORE</a></span></p>
+                            <div class="col-md-12 txt-center">
+                                <div class="plan-addon">
+                                    <input type="button" value="-" class="button-minus2" data-field="quantity">
+                                    <input type="text" step="1" max="" value="0" name="quantity" class="quantity-field2">
+                                    <input type="button" value="+" class="button-plus2" data-field="quantity">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+</section>

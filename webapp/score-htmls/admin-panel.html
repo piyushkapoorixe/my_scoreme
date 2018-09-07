@@ -1,0 +1,734 @@
+<div class="col-md-10" ng-controller="adminController">
+    <div class="col-md-12  pad-right-0">
+        <div class="score-box col-md-12">
+            <div class="col-md-8 pad-0">
+                <div class="col-md-7 pad-0 info_detail">
+                    <ul>
+                        <li>
+                            <h1 class="ng-binding">Admin Panel</h1>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-12 m-top-20 pad-0">
+                <!-- <form role="form" name="scoreForm" novalidate>  -->
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+
+                    <li class="active"><a ui-sref="industryState" aria-controls="tab1" role="tab" data-toggle="tab">Industry Type</a></li>
+                    <li role="presentation"><a ui-sref="businessState" aria-controls="tab2" role="tab" data-toggle="tab">Business Type</a></li>
+                    <li role="presentation"><a ui-sref="instituteState" aria-controls="tab3" role="tab" data-toggle="tab">Institute</a></li>
+                    <li role="presentation"><a ui-sref="userInstituteMappingState" aria-controls="tab4" role="tab" data-toggle="tab">User Institute Mapping</a></li>
+                    <li role="presentation"><a ui-sref="creditScoreAdminState" aria-controls="tab5" role="tab" data-toggle="tab">Credit Score</a></li>
+                    <li role="presentation"><a ui-sref="bankStatementAdminState" aria-controls="tab6" role="tab" data-toggle="tab">Bank Statement</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <!--___________________________________INDUSTRY TYPE ADMIN PANEL_______________________________  -->
+                <div role="tabpanel" class="tab-pane active" id="industry">
+                    <form role="form" name="industryForm" id="industryForm" action="#" data-validate="parsley" novalidate class="md-inline-form">
+                        <div class="col-md-12 m-top-20 pad-0">
+                            <div class="col-md-6 pad-0">
+                                <div class="field-box box-style-normal mid-top">
+                                    <select class="input-setting input__style2 form-control" data-required="true" title="Please select the Business" ng-model="businessType" name="businessType" required>
+								<option value="">Select Business Type*</option>
+								<option ng-repeat="b in businessTypeData.data" value="{{b.id}}">{{b.groupName}}</option>
+							</select>
+                                    <span ng-show="industryForm.businessType.$invalid && isIndustryFormValid">
+								<span class="custom_ng-error"
+								ng-show="industryForm.businessType.$error.required">Please
+								Select Business Type.</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pad-0">
+                                <div class="field-box box-style-normal mid-top">
+                                    <input type="text" name="industryType" class="input-setting input__style2 form-control" placeholder="Industry Type*" ng-model="industryType" required>
+                                    <span ng-show="industryForm.industryType.$invalid && isIndustryFormValid">
+								<span class="custom_ng-error"
+								ng-show="industryForm.industryType.$error.required">Please
+								Enter Industry Type.</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-md-12 pad-0 m-top-20">
+                        <!--<button class="light-draft-btn" ng-click="addIndustryType(industryForm.$valid);isIndustryFormValid=true">Submit</button>-->
+                        <button class="next-step" ng-click="addIndustryType(industryForm.$valid);isIndustryFormValid=true" ng-model="addEntityBtn" id="addcomp-button" ng-class="{nextstep: companyForm.$valid && companyCheckbox}">
+							Submit</button>
+                    </div>
+
+
+                    <!-- table starts -->
+                    <div class="col-md-12 col-xs-12 txt-right">
+                        <ul class="list-inline">
+                            <li>
+                                <select ng-model="itemsI" ng-change="changeItems(itemsI)" class="filter-dropdown">
+						<option value="5">5</option>
+						<option value="10">10</option>
+						<option value="15">15</option>
+					</select>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12 pad-top-30 pad-0">
+                        <div class="col-md-12 admin-panel">
+                            <table st-table="businessIndustryTypeDataBase" st-safe-src="businessIndustryTypeData" st-set-filter="myCustomFilterIndustry" class="table table-striped m-bot-0 ">
+                                <thead>
+                                    <tr>
+                                        <th colspan="7"><input st-search="" placeholder="search" class="input-sm form-control tbl-search m-0" type="search">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Sl. No.</th>
+                                        <th>NATURE OF BUSINESS</th>
+                                        <th>INDUSTRY</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-if="businessIndustryTypeDataBase.length > 0" ng-repeat="bitd in businessIndustryTypeDataBase track by $index">
+                                        <td>{{bitd.serialno}}</td>
+                                        <td>{{bitd.groupName}}</td>
+                                        <td>{{bitd.industryName}}</td>
+                                    </tr>
+                                    <tr ng-if="businessIndustryTypeDataBase.length <= 0">
+                                        <td colspan="6" class="text-center">No Data Available</td>
+                                    </tr>
+                                    <tr>
+                                        <!--  <td colspan="6" class="text-center">
+								        <div st-pagination="" st-items-by-page="itemsPerPage"
+									      st-displayed-pages="5"></div>
+							          </td> -->
+                                        <td colspan="6" class="text-center">
+                                            <div st-items-by-page="itemsPerPage" st-pagination="" st-template="../score-htmls/pagination/pagination.custom.html"></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- table starts -->
+
+                </div>
+                <!--________________________________BUSINESS ADMIN PANEL________________________________________________ -->
+
+                <div role="tabpanel" class="tab-pane " id="business">
+
+                    <form role="form" name="businessForm" id="businessForm" action="#" data-validate="parsley" novalidate class="md-inline-form">
+                        <div class="col-md-12 m-top-20 pad-0">
+                            <div class="col-md-6 pad-0">
+                                <div class="field-box box-style-normal mid-top">
+                                    <input type="text" name="businessTypeName" class="input-setting input__style2 form-control" placeholder="Business Type*" ng-model="BusinessTypeName" required>
+                                    <span ng-show="businessForm.businessTypeName.$invalid && isBusinessFormValid">
+								    <span class="custom_ng-error"
+									  ng-show="businessForm.businessTypeName.$error.required">Please
+									  Enter Valid Data
+									</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-md-2 pad-0 m-top-20">
+                        <!--<button class="light-draft-btn" ng-click="addBusinessType(businessForm.$valid) ; isBusinessFormValid=true">Submit</button>-->
+                        <button class="next-step" ng-click="addBusinessType(businessForm.$valid) ; isBusinessFormValid=true" ng-model="addEntityBtn" id="addcomp-button" ng-class="{ nextstep: companyForm.$valid && companyCheckbox}">
+							Submit</button>
+                    </div>
+
+                    <!-- table starts -->
+                    <div class="col-md-12 col-xs-12 txt-right">
+                        <ul class="list-inline">
+                            <li>
+                                <select ng-model="itemsB" ng-change="changeItems(itemsB)" class="filter-dropdown">
+						<option value="5">5</option>
+						<option value="10">10</option>
+						<option value="15">15</option>
+					 </select>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-12 pad-top-30 pad-0">
+                        <div class="col-md-12 admin-panel">
+
+                            <table st-table="BusinessTypeAdminDataBase" st-safe-src="BusinessTypeAdminData" st-set-filter="myCustomFilterBusiness" class="table table-striped m-bot-0 ">
+                                <thead>
+                                    <tr>
+                                        <th colspan="7"><input st-search="" placeholder="search" class="input-sm form-control tbl-search m-0" type="search">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Sl. No.</th>
+                                        <th>NATURE OF BUSINESS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-if="BusinessTypeAdminDataBase.length > 0" ng-repeat="btad in BusinessTypeAdminDataBase track by $index">
+                                        <td>{{btad.id}}</td>
+                                        <td>{{btad.groupName}}</td>
+                                    </tr>
+                                    <tr ng-if="BusinessTypeAdminDataBase.length <= 0">
+                                        <td colspan="6" class="text-center">No Data Available</td>
+                                    </tr>
+                                    <tr>
+                                        <!--  <td colspan="6" class="text-center">
+								        <div st-pagination="" st-items-by-page="itemsPerPage"
+									      st-displayed-pages="5"></div>
+							         </td> -->
+
+                                        <td colspan="6" class="text-center">
+                                            <div st-items-by-page="itemsPerPage" st-pagination="" st-template="../score-htmls/pagination/pagination.custom.html"></div>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- table ends -->
+
+
+                </div>
+                <!--________________________________________INSTITUE ADMIN PANEL________________________________________  -->
+
+                <div role="tabpanel" class="tab-pane " id="institute">
+
+                    <form role="form" name="instituteForm" id="instituteForm" action="#" data-validate="parsley" novalidate class="md-inline-form">
+                        <div class="col-md-12 m-top-20 pad-0">
+                            <div class="col-md-6 pad-0">
+                                <div class="field-box box-style-normal mid-top">
+
+                                    <input type="text" name="instituteName" class="input-setting input__style2 form-control " placeholder="Institute Name*" ng-model="instituteName" required>
+
+                                    <span ng-show="instituteForm.instituteName.$invalid && isInstituteFormValid">
+								<span class="custom_ng-error"
+								ng-show="instituteForm.instituteName.$error.required">Please
+								Enter Institute Name.</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pad-0">
+                                <div class="field-box box-style-normal mid-top">
+                                    <input type="text" name="instituteAddress" class="input-setting input__style2 form-control" placeholder="Address*" ng-model="instituteAddress" required>
+
+                                    <span ng-show="instituteForm.instituteAddress.$invalid && isInstituteFormValid">
+								<span class="custom_ng-error"
+								ng-show="instituteForm.instituteAddress.$error.required">Please
+								Enter Address.</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pad-0">
+                                <div class="field-box box-style-normal mid-top">
+                                    <select ng-model="instituteState" name="instituteState" title="Please select the state" class="input-setting input_style_select form-control border-bot" ng-change="getCities(instituteState)" required>
+									<option value="">Select State*</option>
+									<option ng-repeat="s in stateData.data" value="{{s.id}}">{{s.name}}</option>
+								</select>
+                                    <span ng-show="instituteForm.instituteState.$invalid && isInstituteFormValid">
+								<span class="custom_ng-error"
+								ng-show="instituteForm.instituteState.$error.required">Please
+								Select State</span>
+                                    </span>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 pad-0">
+                                <div class="field-box box-style-normal mid-top">
+
+                                    <select ng-model="instituteCity" name="instituteCity" ng-disabled="!instituteState" title="Please select the city" class="input-setting input_style_select form-control border-bot bdr-right f-col" required>
+									<option value="">Select City*</option>
+									<option ng-repeat="c in cityData.data" value="{{c.id}}">{{c.name}}</option>
+						      </select>
+
+                                    <span ng-show="instituteForm.instituteCity.$invalid && isInstituteFormValid">
+								<span class="custom_ng-error"
+								ng-show="instituteForm.instituteCity.$error.required">Please
+								Select City.</span>
+                                    </span>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 pad-0">
+                                <div class="field-box box-style-normal mid-top">
+                                    <input type="text" name="instituteContactName" class="input-setting input__style2 form-control" placeholder="Contact Name*" ng-model="instituteContactName" required>
+                                    <span ng-show="instituteForm.instituteContactName.$invalid && isInstituteFormValid">
+								<span class="custom_ng-error"
+								ng-show="instituteForm.instituteContactName.$error.required">Please
+								Enter Contact Name</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pad-0">
+                                <div class="field-box box-style-normal mid-top">
+                                    <input type="text" required name="instituteContactNumber" class="input-setting input__style2 form-control" placeholder="Contact Number*" ng-model="instituteContactNumber" minlength="10" numbers-only maxlength="10">
+                                    <span ng-show="instituteForm.instituteContactNumber.$invalid && isInstituteFormValid">
+								<span class="custom_ng-error"
+								ng-show="instituteForm.instituteContactNumber.$error.required">
+								Please Enter Contact Number.</span>
+                                    <span class="custom_ng-error" ng-show="instituteForm.instituteContactNumber.$error.minlength">
+							    Please enter exact 10 digits.
+								</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-md-6 pad-0">
+						<div class="field-box box-style-normal mid-top">
+										
+					<select ng-model="instituteTypeName" name="instituteTypeName"
+							title="Please select Institute" required
+							class="input-setting input__style2 form-control">
+							<option value="">Select Institute Type*</option>
+							<option value="Hindu Undivided Family">Hindu Undivided Family</option>
+							<option value="Proprietorship">Proprietorship</option>
+							<option value="Partnership">Partnership</option>
+							<option value="Limited Liability Partnership (LLP)">Limited Liability Partnership (LLP)</option>
+							<option value="Private Limited">Private Limited</option>
+							<option value="Public Limited - Unlisted">Public Limited - Unlisted</option>
+							<option value="Public Limited - listed">Public Limited - listed</option>
+					</select>
+					        <span
+								ng-show="instituteForm.instituteTypeName.$invalid && isInstituteFormValid">
+								<span class="custom_ng-error"
+								ng-show="instituteForm.instituteTypeName.$error.required">Please
+								Enter Institute Type</span>
+						    </span>												
+						</div>
+					</div> -->
+                        </div>
+                    </form>
+                    <div class="col-md-2 pad-0 m-top-20">
+                        <!--  <button class="add-newEntry" ng-click="addInstitute(instituteForm.$valid); isInstituteFormValid=true">+ Add</button>-->
+                        <button class="next-step" ng-click="addInstitute(instituteForm.$valid); isInstituteFormValid=true" ng-model="addEntityBtn" id="addcomp-button" ng-class="{ nextstep: companyForm.$valid && companyCheckbox}">
+							Submit</button>
+                    </div>
+
+                    <!-- table starts -->
+                    <div class="col-md-12 col-xs-12 txt-right">
+                        <ul class="list-inline">
+                            <li>
+                                <select ng-model="itemsIn" ng-change="changeItems(itemsIn)" class="filter-dropdown">
+						<option value="5">5</option>
+						<option value="10" selected>10</option>
+						<option value="15">15</option>
+					 </select>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-12 pad-top-30 pad-0">
+                        <div class="col-md-12 admin-panel">
+
+                            <table st-table="instituteNameDataBase" st-safe-src="instituteNameData" st-set-filter="myCustomFilterInstitute" class="table table-striped m-bot-0 ">
+                                <thead>
+                                    <tr>
+                                        <th colspan="7"><input st-search="" placeholder="search" class="input-sm form-control tbl-search m-0" type="search">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Sl. No.</th>
+                                        <th>INSTITUTE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-if="instituteNameDataBase.length > 0" ng-repeat="ind in instituteNameDataBase track by $index">
+                                        <td>{{ind.serialno}}</td>
+                                        <td>{{ind.instituteName}}</td>
+                                    </tr>
+                                    <tr ng-if="instituteNameDataBase.length <= 0">
+                                        <td colspan="6" class="text-center">No Data Available</td>
+                                    </tr>
+                                    <tr>
+                                        <!-- <td colspan="6" class="text-center">
+								        <div st-pagination="" st-items-by-page="itemsPerPage"
+									      st-displayed-pages="5"></div>
+							         </td> -->
+                                        <td colspan="6" class="text-center">
+                                            <div st-items-by-page="itemsPerPage" st-pagination="" st-template="../score-htmls/pagination/pagination.custom.html"></div>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- table ends -->
+
+                </div>
+
+                <!--__________________________________USER INSTITUTE MAPPING________________________________ -->
+
+                <div role="tabpanel" class="tab-pane" id="userInstituteMapping">
+                    <form role="form" name="userInstituteMappingForm" id="userInstituteMappingForm" action="#" data-validate="parsley" novalidate class="md-inline-form">
+                        <div class="col-md-12 m-top-20 pad-0">
+                            <div class="col-md-6 pad-0">
+                                <div class="field-box box-style-normal mid-top">
+                                    <select name="userName" id="userName" title="Please select the username" required class="input-setting input__style2 form-control" ng-model="userName">
+							<option value="">Select User Name*</option>
+							<option ng-repeat="u in userData.data" value="{{u.id}}">{{u.firstName}} {{u.lastName}} : {{u.username}}</option>
+						  </select>
+                                    <span ng-show="userInstituteMappingForm.userName.$invalid && isUserInstituteMappingFormValid">
+								<span class="custom_ng-error"
+								ng-show="userInstituteMappingForm.userName.$error.required">Please
+								Enter User Name</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pad-0">
+                                <div class="field-box box-style-normal mid-top">
+                                    <select title="Please select the institute" name="userInstitute" class="input-setting input__style2 form-control" ng-model="userInstitute" required>
+								 <option value="">Select Institute Name*</option>
+								 <option ng-repeat="i in instituteData.data" value="{{i.id}}">{{i.instituteName}}</option>			
+						     </select>
+                                    <span ng-show="userInstituteMappingForm.userInstitute.$invalid && isUserInstituteMappingFormValid">
+								<span class="custom_ng-error"
+								ng-show="userInstituteMappingForm.userInstitute.$error.required">Please
+								Select Institute Name</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    <div class="col-md-12 pad-0 m-top-20">
+                        <ul class="list-inline admin_panel_list">
+                            <li>
+                                <!--<button class="light-draft-btn" data-toggle="modal"
+								data-target="#mapping_modal" ng-click="mapUserInstitute(userInstituteMappingForm.$valid);isUserInstituteMappingFormValid=true">Map</button>-->
+                                <button class="next-step" ng-click="mapUserInstitute(userInstituteMappingForm.$valid);isUserInstituteMappingFormValid=true" ng-model="addEntityBtn" id="addcomp-button" ng-class="{ nextstep: companyForm.$valid && companyCheckbox}">
+							Map</button>
+                            </li>
+                            <!-- <li><a href="javascript:void()" data-toggle="modal" data-target="#mapping_modal">Multiples User Map</a></li> -->
+                            <!--	<li><a href="../rest/cs/download/userTemplate/xls" target="_blank">User Excel Template</a></li>-->
+                        </ul>
+                    </div>
+
+                    <!-- table starts -->
+                    <div class="col-md-12 col-xs-12 txt-right">
+                        <ul class="list-inline">
+                            <li>
+                                <select ng-model="itemsUi" ng-change="changeItems(itemsUi)" class="filter-dropdown">
+						<option value="5">5</option>
+						<option value="10" selected>10</option>
+						<option value="15">15</option>
+					 </select>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-12 pad-top-30 pad-0">
+                        <div class="col-md-12 admin-panel">
+
+                            <table st-table="userInstituteMapDataBase" st-safe-src="userInstituteMapData" st-set-filter="myCustomFilterUserInstitute" class="table table-striped m-bot-0 ">
+                                <thead>
+                                    <tr>
+                                        <th colspan="7"><input st-search="" placeholder="search" class="input-sm form-control tbl-search m-0" type="search">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Sl. No.</th>
+                                        <th>NAME</th>
+                                        <th>USER NAME</th>
+                                        <th>INSTITUTE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-if="userInstituteMapDataBase.length > 0" ng-repeat="uim in userInstituteMapDataBase track by $index">
+                                        <td>{{uim.serialno}}</td>
+                                        <td>{{uim.firstName}}</td>
+                                        <td>{{uim.username}}</td>
+                                        <td>{{uim.instituteName}}</td>
+                                    </tr>
+                                    <tr ng-if="userInstituteMapDataBase.length <= 0">
+                                        <td colspan="6" class="text-center">No Data Available</td>
+                                    </tr>
+                                    <tr>
+                                        <!-- <td colspan="6" class="text-center">
+								        <div st-pagination="" st-items-by-page="itemsPerPage"
+									      st-displayed-pages="5"></div>
+							         </td> -->
+                                        <td colspan="6" class="text-center">
+                                            <div st-items-by-page="itemsPerPage" st-pagination="" st-template="../score-htmls/pagination/pagination.custom.html"></div>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- table ends -->
+                </div>
+
+                <!-- credit score starts -->
+                <div role="tabpanel" class="tab-pane" id="creditScore">
+                    <div class="col-md-12 pad-top-30 pad-0">
+                        <div class="col-md-12 admin-panel">
+                            <table st-table="creditScoreBase" st-safe-src="creditScore" st-set-filter="" class="table table-striped m-bot-0 ">
+                                <thead>
+                                    <tr>
+                                        <th colspan="11">
+                                            <input st-search placeholder="search" class="input-sm form-control tbl-search m-0" type="search">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Sl. No.</th>
+                                        <th>Institute Name</th>
+                                        <th>Email Id</th>
+                                        <th>Ref Id</th>
+                                        <th>Date & Time</th>
+                                        <th>Credit Used</th>
+                                        <th>Type</th>
+                                        <th>Company Name</th>
+                                        <th>Rating</th>
+                                        <th>Score</th>
+                                        <th>Report</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-if="creditScoreBase.length > 0" ng-repeat="csb in creditScoreBase track by $index">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{csb.instituteName}}</td>
+                                        <td>{{csb.username}}</td>
+                                        <td>--</td>
+                                        <td>{{csb.requestDateTime}}</td>
+                                        <td>{{csb.credits}}</td>
+                                        <td>{{csb.type}}</td>
+                                        <td>{{csb.companyName}}</td>
+                                        <td>{{csb.grade}}</td>
+                                        <td>{{csb.score}}</td>
+                                        <td><a href="{{csb.reportFileUrl}}">{{csb.report}}</a></td>
+                                    </tr>
+                                    <tr ng-if="creditScoreBase.length <= 0">
+                                        <td colspan="11" class="text-center">No Data Available</td>
+                                    </tr>
+                                    <tr>
+                                        <!-- <td colspan="6" class="text-center">
+								        <div st-pagination="" st-items-by-page="itemsPerPage"
+									      st-displayed-pages="5"></div>
+							         </td> -->
+                                        <td colspan="11" class="text-center">
+                                            <div st-items-by-page="itemsPerPage" st-pagination="" st-template="../score-htmls/pagination/pagination.custom.html"></div>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- credit score ends -->
+
+
+                <!-- bank statement starts -->
+                <div role="tabpanel" class="tab-pane" id="bankStatement">
+                    <div class="col-md-12 pad-top-30 pad-0">
+                        <div class="col-md-12 admin-panel bank-statement-scroll">
+                            <table st-table="bankStatementBase" st-safe-src="bankStatement" st-set-filter="" class="table table-striped m-bot-0 ">
+                                <thead>
+                                    <tr>
+                                        <th colspan="7"><input st-search placeholder="search" class="input-sm form-control tbl-search m-0" type="search">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Sl. No.</th>
+                                        <th>Institute Name</th>
+                                        <th>Email Id</th>
+                                        <th>Ref Id</th>
+                                        <th>Date & Time</th>
+                                        <th>Credit Used</th>
+                                        <th>Company Name</th>
+                                        <th>Bank Name</th>
+                                        <th>A/c Number</th>
+                                        <th>No. of Files Uploaded</th>
+                                        <th>Type</th>
+                                        <th>Uploaded Files</th>
+                                        <th>Converted Files</th>
+                                        <th>Converted File Date & Time</th>
+                                        <th>Report File</th>
+                                        <th>Reported File Date & Time</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-if="bankStatementBase.length > 0" ng-repeat="bsb in bankStatementBase track by $index">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{bsb.instituteName}}</td>
+                                        <td>{{bsb.emailAddress}}</td>
+                                        <td>{{bsb.refId}}</td>
+                                        <td>{{bsb.creationTime}}</td>
+                                        <td>{{bsb.credits}}</td>
+                                        <td>{{bsb.companyName}}</td>
+                                        <td>{{bsb.bankName}}</td>
+                                        <td>{{bsb.accNumber}}</td>
+                                        <td>{{bsb.noOfFilesUploaded}}</td>
+                                        <td>--</td>
+                                        <td><select class="admin-drop" ng-model="upload" ng-change="hitUrl(upload)">
+												<option value="">--Select--</option>
+												 <option ng-repeat="luf in bsb.uploadedfileslist" value="{{luf.url}}">{{luf.filename}}</option>
+												</select></td>
+                                        <td><select class="admin-drop" ng-model="uploadConFile" ng-change="hitConUrl(uploadConFile)">
+												<option value="">--Select--</option>
+												<option ng-repeat="lcf in bsb.convertedfileslist" value="{{lcf.url}}">{{lcf.filename}}</option>
+												</select></td>
+                                        <td>{{bsb.convertedFileDateTime}}</td>
+                                        <td><a href="{{bsb.reportFileUrl}}">{{bsb.reportFile}}</a></td>
+                                        <td>{{bsb.reportFileDateTime}}</td>
+                                        <td>{{bsb.status}}</td>
+                                    </tr>
+                                    <tr ng-if="userInstituteMapDataBase.length <= 0">
+                                        <td colspan="17" class="text-center">No Data Available</td>
+                                    </tr>
+                                    <tr>
+                                        <!-- <td colspan="6" class="text-center">
+								        <div st-pagination="" st-items-by-page="itemsPerPage"
+									      st-displayed-pages="5"></div>
+							         </td> -->
+                                        <td colspan="17" class="text-center">
+                                            <div st-items-by-page="itemsPerPage" st-pagination="" st-template="../score-htmls/pagination/pagination.custom.html"></div>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- bank statement ends -->
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <!--_____________________________Upload Files Admin Panel Modal____________________________  -->
+
+    <!--  <div class="modal fade" id="mapping_modal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true"
+	data-backdrop="static">
+	<div class="modal-dialog lg-modal">
+		<div class="modal-content">
+			<div class="modal-header pad-0 no-border justify-content-center">
+				<div class="closer">
+					<span data-dismiss="modal" aria-hidden="true"> <img
+						src="../assets/images/close-lite.svg" width="15" draggable="false">
+					</span>
+				</div>
+			</div>
+			<div class="modal-body pad-0">
+				<div class="col-md-12 panel-modal pad-0">
+					<div class="col-md-8 pad-0">
+						<div class="col-md-7 pad-0 info_detail">
+							<ul>
+								<li>
+									<h1 class="ng-binding">Upload Files</h1>
+								</li>
+							</ul>
+
+						</div>
+
+					</div>
+					<div class="col-md-12 m-top-20 pad-0">
+						<div class="col-md-6 pad-0">
+							<div class="field-box box-style-normal ">
+							
+								<input type="file" id="file1" class="input-setting input__style2 form-control"
+								placeholder="User Sheet" required/>	
+
+							</div>
+
+						</div>
+						<div class="col-md-6 pad-0">
+							<div class="field-box box-style-normal ">
+								
+                                <select name="instituteName" id="instituteNameAjax"
+									required title="Please select the institute" class="input-setting input__style2 form-control" required="true">
+									<option value="">SELECT INSTITUTE NAME</option>
+									<option ng-repeat="i in instituteData.data" value="{{i.id}}">{{i.instituteName}}</option>
+								</select>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-md-12 pad-0 m-top-20">
+						<button class="light-draft-btn">Upload</button>
+					</div>
+
+
+					<div class="col-md-12 col-xs-12 txt-right">
+						<ul class="list-inline">
+							<li><select class="reports-filter form-control" aria-invalid="false" ng-change="changeItems(items)" ng-model="items">
+									<option value="5">5</option>
+									<option value="10">10</option>
+									<option value="15">15</option>
+							</select></li>
+									<li>
+					</li>
+
+						</ul>
+					</div>
+
+					<div class="col-md-12 pad-top-30 pad-0">
+						<div class="col-md-12 admin-panel">
+
+							<table class="table table-striped m-bot-0 ">
+								<thead>
+									<tr>
+										<th colspan="7"><input st-search="" placeholder="search"
+											class="input-sm form-control tbl-search m-0" type="search">
+										</th>
+									</tr>
+									<tr>
+
+										<th>Sl. No.</th>
+										<th>USER NAME</th>
+										<th>MAPPED</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>NEFT CITIN17797852362 <br> ICICI PRUNDENTIAL MF
+											<br> DIVIDEN
+										</td>
+										<td>Yes</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>NEFT CITIN17797852362 <br> ICICI PRUNDENTIAL MF
+											<br> DIVIDEN
+										</td>
+										<td>Yes</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>NEFT CITIN17797852362 <br> ICICI PRUNDENTIAL MF
+											<br> DIVIDEN
+										</td>
+										<td>Yes</td>
+									</tr>
+								</tbody>
+
+							</table>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>  -->
+
+
+
+
+
+
+</div>

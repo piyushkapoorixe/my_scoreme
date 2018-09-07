@@ -1,0 +1,190 @@
+<div class="col-md-10 " ng-controller="userDashboardController">
+<div class="overlay" ng-if="dataLoading">
+		<img width="100"
+			src="../assets/images/loaders/interwind-preloader.svg" />
+</div>
+   <div class="col-md-12 pad_left">
+       <div class="col-md-12 main-box ">
+
+				 <div class="row space-bottom">
+				 	<div class="col-md-6">
+				 		<span class="ac-sum">Account Summary</span>
+				 	</div>
+				 	<div class="col-md-6 text-right">
+				 	 	<div class="inline-in box-style-normal">				
+						    <select
+								class="input-setting input__style2 form-control"
+								data-required="true" ng-model="periodFilter" ng-change="filterGraphs(periodFilter,businessType,industryType,accountType,odLimit)"
+								name="periodFilter" required>
+								<option value="">Period Filter</option>
+								<option value="week">Week</option>
+								<option value="month">Month</option>
+								<option value="quarter">Quarter</option>
+								<option value="sixmonth">6 Months</option>
+								<option value="year">Year</option>		
+							</select>					
+						</div>
+				    </div>
+				 </div>
+		         <div class="col-md-12 pad-left"><span class="cre-bal">Credit Balance</span></div>
+				 <div class="col-md-12 mar_6">
+				 	
+						 	<div class="row">
+						 			<div class="col-md-2 rect">
+								 	  <div class="cre_dit">Credit Score</div>
+								 	    <div class="cr_two">{{creditScore}}</div>
+								 	 
+								 	 </div>
+								 	 <div class="col-md-2 rect">
+								 	 	<div class="cre_dit">Bank Statement Analyzer</div>
+								 	    <div class="cr_two">{{bankStatement}}</div>
+								 	 </div>
+								 	<!--  <div class="col-md-2 rect">
+								 	 <div class="cre_dit">ECB</div>
+								 	    <div class="cr_two">0</div>	 	 
+								 	 </div>
+								 	 <div class="col-md-2 rect">
+								 	 <div class="cre_dit">Document Reader</div>
+								 	    <div class="cr_two">0</div> 
+								 	 </div>
+								 	 <div class="col-md-2 rect">
+								 	 <div class="cre_dit">Licence Reader</div>
+								 	    <div class="cr_two">0</div>
+								 	 </div>
+								 	 <div class="col-md-2 rect">
+								 	   <div class="cre_dit">Valuation</div>
+								 	    <div class="cr_two">0</div>
+								 	 </div>
+								  -->	 
+						 	</div>
+						 	<div class="row space-top">
+						 		<div class="col-md-4 sec_rec">
+								 		<div class="box-text">Total Entities / Groups Managed</div>
+										 <div class="two_box">{{totalEntities}}/{{totalGroupName}}</div>
+						 		</div>
+						 		<div class="col-md-4 sec_rec">
+						 			<div class="box-text">Scores Calculated for Entities</div>
+										 <div class="two_box">{{scoreCalForEntities}}</div>
+						 		</div>
+						 		<div class="col-md-4 sec_rec">
+							 		<div class="box-text">Bank Statement Reports Calculated</div>
+									<div class="two_box">{{bankStatementReportGenerated}}</div>
+						 		</div>	 	
+						 	</div>	 	
+				 </div>
+				 <div class="col-md-12 pad-left space-top">
+				
+				 	<span class="static">Statistics</span>
+				 	  <div class="inline-in box-style-normal">					
+						   <select
+								class="input-setting input__style2 form-control"
+								data-required="true" title="Please select the Business" ng-model="businessType"
+								name="businessType" required ng-change="getIndustryType(businessType);filterScoreSGraphs(periodFilter,businessType,industryType)">
+								<option value="">Select Business Type</option>
+								<option ng-repeat="b in businessTypeData" value="{{b.id}}">{{b.groupName}}</option>
+							</select>
+													
+						</div>
+						<div class="inline-in box-style-normal">					
+						    <select
+								class="input-setting input__style2 form-control user-wid f-col" ng-disabled="!businessType"
+								data-required="true" title="Please select the Industry Type" ng-model="industryType"
+								name="industryType" required ng-change="filterScoreSGraphs(periodFilter,businessType,industryType)">
+								<option value="">Select Industry Type</option>
+								<option ng-repeat="i in industryTypeData" value="{{i.industryId}}">{{i.industryName}}</option>
+							</select>											
+						</div>
+				 </div>
+				 
+				 <div class="row top-bot grph-box" id="scoreDiv" ng-show="score != null || score.length > 0 || score != undefined ">				 	
+				 	<highchart id="scoreChart" series="scoreChart.series" options="scoreChart.options"></highchart> 			 
+				 </div>
+				 
+				  <div class="inline-in box-style-normal">					
+						   <select class="input-setting input__style2 form-control" ng-model="accountType"
+						        ng-change="accountChange(periodFilter,accountType,odLimit)">
+								<option value="">Select account type</option>
+							    <option value="SAVING">Saving Account</option>
+							    <option value="CURRENT">Current Account</option>
+							    <option value="CREDIT_CARD">Credit Card</option>
+							    <option value="CASH_CREDIT">Cash Credit(CC)</option>
+							    <option value="OVER_DRAFT">Over Draft(OD)</option>				
+							</select>										
+				 </div>
+			  <div class="inline-in box-style-normal">					
+				<select class="input-setting input__style2 form-control user-wid f-col" 
+			    ng-model="odLimit" ng-disabled="((accountType!='CASH_CREDIT')&&(accountType!='OVER_DRAFT'))"
+				ng-change="filterBankSGraphs(periodFilter,accountType,odLimit)">
+							<option value="">Select CC/OD Range</option>
+							<option value="5000000-10000000">50L - 1Cr.</option>
+							<option value="10000000-20000000">1Cr - 2Cr.</option>
+							<option value="20000000-50000000">2Cr - 5Cr.</option>
+							<option value="50000000-100000000">5Cr - 10Cr.</option>
+							<option value="100000000-250000000">10Cr - 25Cr.</option>
+							<option value="250000000-500000000">25Cr - 50Cr.</option>
+							<option value="500000000-above">50Cr and Above.</option>
+				</select>											
+			  </div>
+				 
+				 <div class="row top-bot grph-box" id="bankDiv" ng-show="bank != null || bank.length  > 0 || bank != undefined">				 	
+				 	<highchart id="bankChart" series="bankChart.series" options="bankChart.options"></highchart> 				 
+				 </div>				 
+				 
+				 <div class="row top-bot">
+				 <div class="col-md-6 data-box">			 	
+				 	<table class="table table-striped table_head_Style only-font-size">
+				 	   <thead>
+				 	    <tr>
+				 	       <th colspan="4">Credit Score Entities</th>
+				 	       <!--  <th><a href="#">Download Full List</a></th> -->
+				 	  </tr>
+				 	   <th>Sl. No.</th>
+				 	   <th>Entity Name</th>
+				 	   <th>Date</th>
+				 	   <th>Score</th>
+				 	   <th>Reports</th>
+				 	   </thead>
+				 	   <tbody>
+				 	  
+				 	   <tr ng-repeat="sd in scoreData track by $index">
+				 	   <td>{{$index+1}}</td>
+				 	   <td>{{sd.companyName}}</td>
+				 	   <td>{{sd.date}}</td>
+				 	   <td>{{sd.grade}}</td>
+				 	   <td><a ng-href="{{'..'+sd.url}}" target="_blank">Download</a></td>	
+				 	   </tr>
+				 	   </tbody>			 	
+				 	</table>	
+				 	  <div class="col-md-12 text-center"> <span><a ui-sref="userDashboardScoreTableState">Load more >>></a></span>
+				 	  </div>		 	
+				 </div>
+				 <div class="col-md-6 data-box">
+				 	<table class="table table-striped table_head_Style only-font-size">
+				 	   <thead>
+				 	    <tr>
+				 	       <th colspan="4">Bank Statement Analysis Entities</th>
+				 	       <!--<th><a href="#">Download Full List</a></th>-->
+				 	   </tr>
+				 	   <th>Sl. No.</th>
+				 	   <th>Entity Name</th>
+				 	   <th>Date</th>
+				 	   <th>Bank</th>
+				 	   <th>Reports</th>
+				 	   </thead>
+				 	   <tbody>	 
+				 	   <tr ng-repeat="bs in bankStatementData track by $index">
+				 	   <td>{{$index+1}}</td>
+				 	   <td>{{bs.companyName}}</td>
+				 	   <td>{{bs.date}}</td>
+				 	   <td>{{bs.bankName}}</td>
+				 	   <td><a ng-href="{{'..'+bs.url}}" target="_blank">Download</a></td>	 	   
+				 	   </tr>		 	
+				 	   </tbody>			 	
+				     </table>	
+				 	   <div class="col-md-12 text-center"> <span><a ui-sref="userDashboardBankTableState">Load more >>></a></span>				
+				 		</div>
+				 </div>
+				 </div>
+     </div>
+   </div>
+</div>

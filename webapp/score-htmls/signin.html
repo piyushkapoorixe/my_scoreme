@@ -1,0 +1,153 @@
+<div class="col-md-12 pad-0" ng-controller="loginController">
+	<div class="overlay" ng-if="dataLoading">
+		<img width="100"
+			src="../assets/images/loaders/interwind-preloader.svg" />
+	</div>
+	<div class="col-md-8 pad-0">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!--   Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+
+			<!--   Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<div class="slide__text">
+						<h1>Ready to play an active role in your financial affairs?</h1>
+						<h4>The perfect set of analytical tools to stay in charge of
+							your financial outlook.</h4>
+					</div>
+					<img src="../assets/images/banner1.jpg" alt="banner1"
+						draggable="false">
+				</div>
+
+				<div class="item">
+					<div class="slide__text">
+						<h1>Ground-breaking technology that calculates business
+							performance in minutes.</h1>
+						<h4>ScoreMe calculates the actual performance of your
+							business, along with a credit score.</h4>
+					</div>
+					<img src="../assets/images/banner2.jpg" alt="banner2"
+						draggable="false">
+				</div>
+
+				<div class="item">
+					<div class="slide__text">
+						<h1>Boost your bank statement analysis abilities to the next
+							level.</h1>
+						<h4>An automated process of reading bank statements for an
+							in-depth analysis.</h4>
+					</div>
+					<img src="../assets/images/banner3.jpg" alt="banner3"
+						draggable="false">
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-4 pad-0">
+		<div class="right-sidewall-login">
+			<a href="../index.html"><img src="../assets/images/logo.png" width="140"></a>
+
+			<!-- <div class="col-md-4 pad-5">
+            <div class="alert alert-success fade">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Success!</strong> Company has been removed successfully.
+            </div>
+        </div>
+         <div class="col-md-4 pad-0">
+            <div class="alert alert-danger fade" style="display:none;">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+               <strong>Success!</strong> Company has been removed successfully.
+            </div>
+        </div> -->
+
+			<form role="form" name="signinForm" novalidate>
+				<div class="login-content">
+					<h1>Sign in</h1>
+				</div>
+
+				<div class="col-md-12 pad-0">
+
+					<!--   <label class="app__label" ng-style="{'visibility': username ? 'visible' : 'hidden'}">Username or e-mail<span>*</span></label> -->
+					<!--   <label class="app__label" ng-style="{'visibility': company_name1 ? 'visible' : 'hidden'}">Entity Name <span>*</span></label> -->
+					<input type="email" class="form-control element-style"
+						ng-class="{myErrorBorder: signinForm.username.$dirty && signinForm.username.$invalid }"
+						name="username" ng-model="username" id="username" ng-pattern="/^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"
+						placeholder="E-mail" required /> 
+					<!-- <span class="asterisk_input_login" ng-style="{'visibility': !username ? 'visible' : 'hidden'}"></span> -->
+			<span ng-show="signinForm.username.$dirty && signinForm.username.$invalid"
+			ng-class="{myErrorText: signinForm.username.$dirty && signinForm.username.$invalid }">			
+				<span ng-show="signinForm.username.$error.required">Please Enter Email</span> 
+				<span ng-show="signinForm.username.$error.pattern">Please Enter Valid Email</span>
+				<!-- <span ng-show="signinForm.username.$error.pattern">Please Enter Valid Email Id</span> -->
+		  </span>
+	</div>
+
+				<div class="col-md-12 pad-top-20 pad-0">
+
+					<!--    <label class="app__label" ng-style="{'visibility': password ? 'visible' : 'hidden'}">Password<span>*</span></label> -->
+			<input type="password" class="form-control element-style"
+						minlength="8"
+						ng-class="{myErrorBorder: signinForm.password.$dirty && signinForm.password.$invalid }"
+						name="password" id="password" ng-model="password"
+						placeholder="Password" required /> 
+				<!-- <span class="asterisk_input_login" ng-style="{'visibility': !password ? 'visible' : 'hidden'}"></span> -->		
+						<span
+						ng-show="signinForm.password.$dirty && signinForm.password.$invalid"
+						ng-class="{myErrorText: signinForm.password.$dirty && signinForm.password.$invalid}">
+						<span ng-show="signinForm.password.$error.required">Please
+							Enter Password</span> 
+							<!-- <span
+						ng-show="signinForm.password.$error.minlength">Password
+							should be minimum 8 characters</span> -->
+					</span>
+				</div>
+
+
+
+
+
+				<div class="col-md-12 m-top-15 col-xs-12 pad-top-40 pad-0">
+					<div class="col-md-6 forgot-pass pad-0">
+						<p>
+							<a ui-sref="resetPasswordState">Forgot Password?</a>
+						</p>
+					</div>
+					<div class="col-md-6 pad-0">
+						<button class="login-button" ng-click="loginUser()"
+							ng-disabled="signinForm.$invalid" disabled>LOGIN</button>
+					</div>
+
+				</div>
+
+			</form>
+			<div class="col-md-12 col-xs-12 m-top-15 divide-txt pad-0">
+				<p>OR</p>
+			</div>
+			<div class="col-md-12 m-top-15 pad-0">
+				<a ng-href="{{url}}" target="_blank"><button
+						class="google-login">
+						<span><i class="fa fa-google" aria-hidden="true"></i></span>
+						<p>LOGIN WITH GOOGLE</p>
+					</button></a>
+			</div>
+			<div class="col-md-12 m-top-15 col-xs-12 divide-txt pad-0">
+				<p>OR</p>
+			</div>
+			<div class="col-md-12 col-xs-12 m-top-15 pad-0 ">
+				 <div class="col-md-12 forgot-pass pad-0 chnge-align">
+                       <p><a ui-sref="signUpState">Create an account?</a></p>
+                   </div> 
+				<!--   <div class="pad-0 forgot-pass"> -->
+				<!-- <a ui-sref="signUpState"><button class="login-button-style2">SIGN
+						UP</button></a> -->
+				<!-- </div> -->
+			</div>
+		</div>
+	</div>
+</div>

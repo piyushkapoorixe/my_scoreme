@@ -1,0 +1,113 @@
+<!-- completion status block -->
+<div class="col-md-10 pad-0" ng-controller="dashboardController">
+
+	<div class="col-md-12 pad-rgt-0">
+		<div class="col-md-12 tp-heading pad-lr-20">
+			<p>Basis your inputs placed, the final result for your company is
+				as follows.</p>
+		</div>
+		<div class="col-md-12 analysis-board ana-board-heading pad-0">
+			<div class="col-md-12 pad-0">
+				<div class="wth-60">
+					<h2>Credit Rating</h2>
+				</div>
+				<div class="wth-40">
+
+					<a ng-href="{{'../'+report}}" target="_blank">
+						<button class="btn default-button download-rp m-top-27 m-rgt-27">Download
+							Report</button>
+					</a>
+
+				</div>
+			</div>
+			<div class="col-md-12 m-top-30 pad-0">
+				<div class="col-md-6 rating-label txt-center">
+					<p>Ratings</p>
+				</div>
+				<div class="col-md-6 rating-label txt-center">
+					<p>Score</p>
+				</div>
+			</div>
+			<div class="col-md-12 m-bot-30 m-top-20 pad-0">
+				<div class="col-md-6 score-company txt-center">
+					<h1>{{grade}}</h1>
+				</div>
+				<div class="col-md-6 txt-center">
+					<div id="score-rating" class="circle-container">
+						<h2 class="circle-value-rating">{{score}}/100</h2>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 m-top-20 pad-0">
+				<table class="table table-striped score-rating-datalist">
+					<thead>
+						<tr>
+							<th>PARTICULARS</th>
+							<th>ADVICE</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<p>Long term loan</p>
+							</td>
+							<td>
+								<p>{{MSG_LTL}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>CC / Overdraft facility</p>
+							</td>
+							<td>
+								<p>{{MSG_OD}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>Letter of Credit</p>
+							</td>
+							<td>
+								<p>{{MSG_LC}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>Bank Guarantee</p>
+							</td>
+							<td>
+								<p>{{MSG_BG}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>Scope of negotiations on ROI for term loan</p>
+							</td>
+							<td>
+								<p>{{MSG_ROI_LTL}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>Scope of negotiations on ROI for working capital loan</p>
+							</td>
+							<td>
+								<p>{{MSG_ROI_WC}}</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<p class="pad-lr-30">Please note that the Score Calculated is
+				representative and is not supposed to be placed across at any form
+				as we are NOT an accredited rating agency by SEBI or RBI. Our sole
+				objective is to assist companies in understanding their business
+				health from the perspective of an analyst.</p>
+			<p class="pad-lr-30">Thanks a lot for availing our services. Hope
+				you had a great experience. Please let us know of your FEEDBACK at
+				info@scoreme.in. It will be of immense help to us for improving our
+				services.</p>
+			<p class="pad-lr-30">TEAM - SCOREME</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,520 @@
+<!-- completion status block -->
+<div class="col-md-10 pad-right-0" ng-controller="ratingController">
+	<div class="overlay" ng-if="dataLoading">
+		<img width="100"
+			src="../assets/images/loaders/interwind-preloader.svg" />
+	</div>
+	<div class="col-md-12 pad-0">
+		<div class="col-md-4">
+			<div class="col-md-12 complete-status">
+				<ul class="list-inline">
+					<li class="txt-center">
+						<div class="t-box">
+							<h2 class="circle-value circle-pos1 txt-center">{{percentageCircleBar}}%</h2>
+						</div>
+						<div id="circle_scoredash" class="circle-container2 m-top-20"></div>
+					</li>
+					<li>
+						<h2>Complete the form</h2>
+						<p>Note:</p>
+						<p>Please input all the below figures in INR</p>
+					</li>
+				</ul>
+
+			</div>
+			<div class="col-md-12" style="height: 108px; display: none;">
+				<ul class="list-inline">
+					<li class="txt-center">
+						<div class="t-box"></div>
+
+					</li>
+					<li></li>
+				</ul>
+
+			</div>
+		</div>
+
+		<div class="col-md-3 col-md-offset-5 pad-right-0">
+
+			<ul class="txt-right upload-block">
+				<li>
+					<!--  <label>Year</label> --> <select class="year-dropdown"
+					id="input-G186" name="input-G186">
+						<option value="" disabled hidden selected>FY</option>
+						<option value="2016-2017">2016-2017</option>
+						<option value="2017-2018">2017-2018</option>
+				</select>
+
+				</li>
+				<li><span class="custom_ng-error" id="input-G186_span"></span></li>
+				<li>
+					<!-- <button class="upload-doc">Upload Documents</button> -->
+				</li>
+			</ul>
+
+		</div>
+	</div>
+	<!-- _______New score container_______ -->
+	<div class="col-md-12 m-top-30 pad-right-0">
+		<div class="score-box col-md-12">
+
+			<div class="col-md-8 pad-0">
+				<div class="col-md-7 pad-0 info_detail">
+					<ul>
+						<li>
+							<h1>{{headerName}}</h1>
+						</li>
+						<li>
+							<!-- <img src="../assets/images/info.png" alt="info"
+							class="img-info" data-toggle="tooltip" data-placement="right"
+							title="Calculator" draggable="false" aria-disabled="false"> --> <span
+							data-toggle="tooltip" data-placement="right"
+							title="For financial parameter you can do calculation"
+							draggable="false" aria-disabled="false"><i
+								class="fa fa-calculator img-info"></i></span>
+						</li>
+
+					</ul>
+
+				</div>
+				<div class="col-md-4 pad-top-14"></div>
+
+			</div>
+			<div class="col-md-2  pad-top-10 pad-left-0">
+				<button class="green-draft-btn" ng-click="saveDraft('draft')"
+					style="margin-left: -15px;"
+					ng-if="headerName == 'Last Saved Draft'">Print</button>
+			</div>
+			<div class="col-md-2  pad-top-10"
+				ng-style="{'visibility': account_balance > 0 ? 'visible' : 'hidden'}">
+				<button class="green-draft-btn" ng-click="customValidation()"
+					style="margin-left: -15px;"
+					ng-class="{filledGreen : percentageCircleBar == 100}">Confirm</button>
+			</div>
+
+
+
+			<div class="col-md-12 m-top-20 pad-0">
+				<!-- <form role="form" name="scoreForm" novalidate>  -->
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+
+					<li role="presentation" class="active"><a
+						ui-sref="companyInformationState" aria-controls="tab1" role="tab"
+						data-toggle="tab">Company Basic Information</a></li>
+
+					<li role="presentation"><a ui-sref="facilitiesState"
+						aria-controls="tab2" role="tab" data-toggle="tab">Facilities</a></li>
+
+					<li role="presentation"
+						ng-repeat="labelName in companyData track by $index"
+						ng-if="labelName.group != 'Request' && labelName.group != 'SCOPE' && labelName.group != 'SLIDER' && labelName.group != 'Company'">
+
+						<a ui-sref="{{'companyLabelState'+[$index]}}" aria-controls="tab3"
+						role="tab" data-toggle="tab">{{labelName.group}} <span
+							class="tab-errors" id="{{'companyLabelId'+[$index]}}"
+							style="visibility: hidden"> <i
+								class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+						</span>
+					</a>
+					</li>
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content" ng-form="scoreForm">
+
+					<!-- ******************************** Company Basic Information ************************************* -->
+					<div role="tabpanel" class="tab-pane active"
+						id="companyInformation">
+
+						<!-- hidden field of facility -->
+						<!-- <div class="col-md-12" ng-repeat="ci in companyInfo">
+							<div class="col-md-4" ng-if="ci.type='H'">
+
+								<input type="hidden" name="{{ci.name}}" id="{{ci.name}}"
+									ng-value="ci.label" />
+
+							</div>
+						</div>
+						<div class="col-md-12">
+							<input type="hidden" name="industryId" id="industryId"
+								ng-value="industryId" />
+						</div> -->
+						<!-- hidden field of facility -->
+						<!-- _____________panel content_____________ -->
+						<div class="col-md-12 m-top-20 pad-0">
+							<div class="col-md-4 pad-0">
+								<div class="field-box box-style-normal field-box-disabled">
+									<!--  <select class="input-setting form-control">
+                                                        <option>Company Name <span class="mandatory">*</span></option>
+                                                    </select> -->
+									<label class="app__label"
+										ng-style="{'visibility': companyName ? 'visible' : 'hidden'}">Company
+										Name </label> <input type="text" name="input-G4" id="input-G4"
+										ng-model="companyName"
+										class="input-setting input__style2 form-control f-col"
+										placeholder="Company Name" readonly required />
+
+								</div>
+
+							</div>
+							<div class="col-md-4 pad-0">
+								<div class="field-box box-style-normal field-box-disabled">
+									<label class="app__label"
+										ng-style="{'visibility': groupName ? 'visible' : 'hidden'}">Nature
+										of Business</label> <input type="text" name="input-G5" id="input-G5"
+										ng-model="groupName"
+										class="input-setting input__style2 form-control f-col"
+										placeholder="Nature of Business" readonly required />
+								</div>
+							</div>
+							<div class="col-md-4 pad-0">
+								<div class="field-box box-style-normal field-box-disabled">
+									<label class="app__label"
+										ng-style="{'visibility': industryName ? 'visible' : 'hidden'}">Industry
+										Type </label> <input type="text" name="input-G6" id="input-G6"
+										ng-model="industryName"
+										class="input-setting input__style2 form-control f-col"
+										placeholder="Industry Type" readonly required />
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12 m-top-30 pad-0"
+							ng-if="headerName == 'New Score'">
+							<div class="col-md-3  m-top-15  pad-0">
+								<!--  <input type="text" ng-model="filterCompanyNamesData" ng-repeat="pcdd in filterCompanyNames" value="{{pcdd.id}}-{{pcdd.companyName}}" ng-change="changeLocalCompanyDropDown(filterCompanyNamesData)" class="filter-select"/> -->
+								<!-- 	<select ng-model="filterCompanyNamesData"
+									ng-change="changeLocalCompanyDropDown(filterCompanyNamesData)"
+									class="filter-select">
+									 <option value>Score Me (Golden Group of Companies)</option>
+									<option ng-repeat="pcdd in filterCompanyNames"
+										value="{{pcdd.id}}-{{pcdd.companyName}}">{{pcdd.companyName}}</option>
+								</select> -->
+
+
+								<div class="filter_inputbox0">
+
+									<ul class="list-inline">
+										<li><a href="javascript:void(0)"
+											class="dropdown-toggle_small">
+												<div ng-bind="filterCompanyNamesData"
+													class="dropdown-toggle wid-temp"></div></li>
+										<li><span><i
+												class="fa fa-caret-down dropdown-toggle"></i></span> </a></li>
+									</ul>
+									<div class="filter_dropdown_list_small closeDropdown">
+										<input type="text" id="searchBar" ng-model="mySearch"
+											ng-keyup="mySearchLocalFunction(mySearch)">
+										<div class="scroll">
+											<ul class="companynamedata"
+												ng-repeat="pcdd in filterCompanyNames"
+												ng-init="parentIndex = $index">
+												<li class="localCompanyLi"
+													ng-click="changeLocalCompanyDropDown(pcdd.id , pcdd.companyName)">{{pcdd.companyName|capitalize}}</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 disclaimer-txt m-top-15  pad-0">
+								<p>Select company from dropdown to populate the data of
+									existing companies in the fields.</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- ******************************** Company Basic Information ************************************* -->
+
+					<!-- ******************************** Facilities ************************************* -->
+					<!-- ________tab2________ -->
+					<div role="tabpanel" class="tab-pane" id="facilities">
+							
+						<!-- _____________panel content_____________ -->
+						<div class="col-md-12 m-top-20 pad-0" ng-repeat="(key , item) in noOfFacilityDiv track by $index">
+						    <div class="col-md-12 pad-0">
+						         <div class="col-md-6 pad-0">
+						         </div>
+						         <div class="col-md-6 pad-0" ng-if="noOfFacilityDiv.length > 1">
+							          <button class="module_close" type="button" ng-click="delFacility($index)">
+								      <i class="fa fa-times" aria-hidden="true"></i>
+							         </button>
+						         </div>
+					        </div>
+						      
+						
+						
+							<div class="col-md-3 pad-0">
+								<div class="field-box box-style-normal">
+									<label class="app__label"
+										ng-style="{'visibility': name1 ? 'visible' : 'hidden'}">Select
+										Facility</label> <select
+										class="input-setting input_style_select form-control"
+										ng-model="name1" id="{{'name' + [$index+1]}}" name="{{'name' + [$index+1]}}" >
+										<option value="" disabled hidden selected>Select
+											Facility</option>
+										<!-- <option value="TERM_LOAN">Term Loan</option>
+										<option value="WC_FUND">Working Capital Fund Based</option>
+										<option value="WC_LC">Working Capital LC</option>
+										<option value="WC_BG">Working Capital Bank Guarantee</option> -->
+										<option value="Auto Loan">Auto Loan</option>
+										<option value="Bank Guarantee">Bank Guarantee</option>
+										<option value="Equipment Finance">Equipment Finance</option>
+										<option value="Housing Loan">Housing Loan</option>
+										<option value="Letter of Credit">Letter of Credit</option>
+										<option value="Personal Loan">Personal Loan</option>
+										<option value="Term Loan">Term Loan</option>
+										<option value="WC Fund Based">WC Fund Based</option>
+									</select>
+
+								</div>
+							</div>
+							<div class="col-md-3 pad-0">
+								<div class="field-box box-style-normal">
+									<label class="app__label"
+										ng-style="{'visibility': amount1 ? 'visible' : 'hidden'}">Amount
+										(In INR)</label>
+										 <input type="text" calculator-valid
+										 class="input-setting input__style2 form-control border-bot" numeric-input
+									     pre id="{{'amount' + [$index+1]}}" name="{{'amount' + [$index+1]}}" 
+									     ng-model="amount1"
+										 formatted-number placeholder="Amount (In INR)" />
+								</div>
+							</div>
+							<div class="col-md-3 pad-0">
+								<div class="field-box box-style-normal">
+									<label class="app__label"
+										ng-style="{'visibility': {{'percent' + [$index+1]}} ? 'visible' : 'hidden'}">ROI
+										/Commission (in %)</label> <!-- <input type="text" min="0" limit-to="5"
+										class="input-setting input__style2 form-control border-bot"
+										id="percent1" name="percent1" numbers-only ng-model="percent1"
+										placeholder="ROI / Commission (in %)" /> -->
+										<input type="text" calculator-valid pre
+										class="input-setting input__style2 form-control border-bot" ng-model="percent1" 
+									 id="{{'percent' + [$index+1]}}" name="{{'percent' + [$index+1]}}" numeric-input
+									    formatted-number
+										placeholder="ROI / Commission (in %)" />
+								</div>
+							</div>
+							<div class="col-md-3 pad-0">
+								<div class="field-box box-style-normal">
+									<label class="app__label"
+										ng-style="{'visibility': bank1 ? 'visible' : 'hidden'}">Bank
+										Name</label> <select
+										class="input-setting input_style_select form-control"
+										name="{{'bank' + [$index+1]}}" id="{{'bank' + [$index+1]}}" ng-model="bank1">
+										<option value="" disabled hidden selected>Bank Name</option>
+										<option ng-repeat="b in bankNames.data" value="{{b.bankName}}">{{b.bankName}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div id="facilityDiv"></div>
+
+						<!-- button -->
+						<div class="col-md-12 pad-0">
+							<div class="col-md-3 col-md-offset-9 pad-0 txt-right">
+								<div class="download_content">
+									<p>Click download for excel template</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12  pad-0">
+							<div class="col-md-4 pad-0">
+								<button class="add-newEntry"
+									ng-click="facilityDivCount = facilityDivCount + 1 ; addAnotherFacility()"
+									ng-init="facilityDivCount=1" ng-model="addAnotherFacility"
+									id="addFacility">+Add Facility</button>
+							</div>
+
+							<div class="col-md-4 pad_lft_80">
+								<label class="fileContainer"> Upload File <input
+									type="file" id="uploadExcelId" import-sheet-js="uploadExcel"
+									class="upload_file">
+								</label>
+								<span class="custom_ng-error" id="uploadExcel_span"></span>
+							</div>
+
+							<div class="col-md-3 col-md-offset-1 pad-0  pad-left-80">
+								<!--  <button ng-click="downloadExcel()"  class="download_btn"> -->
+								<!-- <img src="../assets/images/info.png" alt="info"
+									class="download-info" data-toggle="tooltip"
+									data-placement="left" title="Click download for excel template"
+									draggable="false" aria-disabled="false"> -->
+								<a href="../rest/extws/download/template/xls">
+									<button type="button"
+										class="fileContainer text-decoration pad-l-r-50">Download</button>
+								</a>
+								<!-- </button> -->
+							</div>
+
+						</div>
+						<div class="col-md-12 m-top-30 pad-0"></div>
+					</div>
+
+
+					<!-- ******************************** Facilities ************************************* -->
+
+					<!-- ******************************** Balance Sheet ************************************* -->
+
+					<div role="tabpanel" class="tab-pane"
+						id="{{'companyLabel'+$index}}"
+						ng-repeat="data in companyData track by $index"
+						ng-if="data.group != 'Request' && data.group != 'SCOPE' && data.group != 'SLIDER' && data.group != 'Company'">
+						<!-- hidden field -->
+						<!-- <div ng-if="data.group == 'SCOPE'" ng-repeat="fs in data.param">
+							<div ng-if="fs.type='H'">
+								<input type="Hidden" name="{{fs.name}}" id="{{fs.name}}"
+									class="input-setting form-control" placeholder="{{fs.label}}"
+									title="{{fs.desc}}" />
+							</div>
+						</div> -->
+
+						<!-- hidden field -->
+						<!-- _____________panel content_____________ -->
+						<div class="col-md-12 m-top-20 pad-0">
+							<div class="col-md-4 pad-0" ng-repeat="bs in data.param">
+								<div class="field-box box-style-normal" ng-if="bs.type =='N'">
+									<label class="app__label"
+										ng-style="{'visibility': balancesheet ? 'visible' : 'hidden'}"
+										id="{{bs.name+'_label'}}">{{bs.label}} <span
+										class="mandatory" ng-if="bs.mandat == 'true'">*</span>
+									</label> 
+									<input type="text" name="{{bs.name}}" id="{{bs.name}}" class="numeric input-setting input__style2 form-control"
+										calculator-valid my-format-number ng-model="balancesheet" numeric-input
+										placeholder="{{bs.label}}" my-placeholder astrick
+										my-placeholder-label="{{bs.label}}"
+										my-placeholder-mandat="{{bs.mandat}}"
+										ng-keyup="keyupValidation(bs.name , bs.label , bs.mandat); calculator($event, balancesheet , bs.name , 'key')"
+										ng-blur="getProgress();calculator($event, balancesheet , bs.name , 'blur')"
+										title="{{bs.desc}}" required /> 
+										<span class="custom_ng-error"
+										id="{{bs.name}}_span"></span>
+								</div>
+								<!-- <div class="field-box box-style-normal" ng-if="bs.type!='N'">
+
+								 <label class="app__label"
+ 										ng-style="{'visibility': balancesheet ? 'visible' : 'hidden'}"
+ 										id="{{bs.name+'_label'}}">{{bs.label}} <span
+										class="mandatory" ng-if="bs.mandat == 'true'">*</span>
+								 </label>
+									<select class="input-setting input_style_select form-control" ng-if="bs.mandat == 'true'"
+									   id="{{bs.name}}" nane="{{bs.name}}" ng-model="balancesheet"
+										ng-change="keyupValidation(bs.name , bs.label , bs.mandat) ; getProgress()"
+										title="{{bs.desc}}" required>
+										<option value="" disabled selected hidden>{{bs.label}}</option>
+										<option ng-repeat="bso in bs.values" value="{{bso}}">{{bso}}</option>
+									</select>
+									<select class="input-setting input_style_select form-control" ng-if="bs.mandat == 'false'"
+ 										id="{{bs.name}}" nane="{{bs.name}}" ng-model="balancesheet"
+ 										ng-change="keyupValidation(bs.name , bs.label , bs.mandat) ; getProgress()"
+ 										title="{{bs.desc}}" required>
+										<option value="">--Select--</option>
+ 										<option value="" disabled selected hidden>{{bs.label}}</option>
+ 										<option ng-repeat="bso in bs.values" value="{{bso}}">{{bso}}</option>
+									</select>					
+										<span class="custom_ng-error" id="{{bs.name}}_span"></span>
+								</div> -->
+								
+								<div class="field-box box-style-normal" ng-if="bs.type!='N'">
+ 
+
+									<!-- <label class="app__label"
+ 										ng-style="{'visibility': balancesheet ? 'visible' : 'hidden'}"
+ 										id="{{bs.name+'_label'}}">{{bs.label}} <span
+ 										class="mandatory" ng-if="bs.mandat == 'true'">*</span>
+ 										title="{{bs.desc}}" required>
+ 										<option value="" disabled selected hidden>{{bs.label}}</option>
+ 										<option ng-repeat="bso in bs.values" value="{{bso}}">{{bso}}</option>
+										<select>
+										<select> -->
+										<label class="app__label"
+ 										ng-style="{'visibility': balancesheet ? 'visible' : 'hidden'}"
+ 										id="{{bs.name+'_label'}}">{{bs.label}} <span
+										class="mandatory" ng-if="bs.mandat == 'true'">*</span>
+									</label> <select class="input-setting input_style_select form-control" ng-if="bs.mandat == 'true'"
+									id="{{bs.name}}" name="{{bs.name}}" ng-model="balancesheet"
+										ng-change="keyupValidation(bs.name , bs.label , bs.mandat) ; getProgress()"
+										title="{{bs.desc}}" required>
+										<option value="" disabled selected hidden>{{bs.label}}</option>
+										<option ng-repeat="bso in bs.values" value="{{bso}}">{{bso}}</option>
+										</select>
+										<select class="input-setting input_style_select form-control" ng-if="bs.mandat == 'false'"
+										id="{{bs.name}}" name="{{bs.name}}" ng-model="balancesheet"
+ 										ng-change="keyupValidation(bs.name , bs.label , bs.mandat) ; getProgress()"
+ 										title="{{bs.desc}}" required>
+										<option value="">--Select--</option>
+										<option value="" disabled selected hidden>{{bs.label}}</option>
+ 										<option ng-repeat="bso in bs.values" value="{{bso}}">{{bso}}</option>
+										</select>
+
+										
+ 											<span class="custom_ng-error" id="{{bs.name}}_span"></span>
+ 								</div>
+								
+								
+								
+								
+							</div>
+							<!--  <div class="col-md-12 disclaimer-txt m-top-30 pad-0">
+                                <p>
+                                    <b>Disclaimer:</b> We believe that you have inputed the data to the best of your knowledge,
+                                    the right set of data is always essential to churn an effective output.
+                                </p>
+                            </div> -->
+						</div>
+
+
+					</div>
+					<div class="col-md-2 col-md-offset-10 m-top-15 txt-left pad-0">
+						<button class="light-draft-btn" ng-click="saveDraft()">Save
+							as Draft</button>
+					</div>
+					<div class="col-md-12 disclaimer-txt m-top-30 pad-0">
+						<p>
+							<b>Disclaimer:</b> We believe that you have entered the data to
+							the best of your knowledge, the right set of data is always
+							essential to churn an effective output.
+						</p>
+					</div>
+					<!-- buttons -->
+					<!-- <progressbar max="100" value="60">
+                  60
+                </progressbar>		 -->
+				</div>
+				<!-- hidden fields -->
+				<div ng-repeat="data in companyData" ng-if="data.group == 'Request'">
+					<div class="col-md-12" ng-repeat="ci in data.param">
+						<!-- {{data.group}} -->
+						<div class="col-md-4" ng-if="ci.type == 'H' || ci.type == null">
+							<input type="hidden" name="{{ci.name}}" id="{{ci.name}}"
+								ng-value="ci.label" />
+						</div>
+					</div>
+				</div>
+				<div ng-repeat="data in companyData"
+					ng-if="data.group == 'SCOPE' || data.group == 'Company'">
+					<div class="col-md-12" ng-repeat="ci in data.param">
+						<!-- {{data.group}} -->
+						<div class="col-md-4" ng-if="ci.type == 'H' || ci.type == null">
+							<input type="hidden" name="{{ci.name}}" id="{{ci.name}}" />
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<input type="hidden" name="industryId" id="industryId"
+						ng-value="industryId" />
+				</div>
+
+				<!-- hidden field of facility -->
+
+
+
+				<!-- hidden fields -->
+				<!-- ******************************** Balance Sheet ************************************* -->
+
+			</div>
+		</div>
+	</div>
+</div>

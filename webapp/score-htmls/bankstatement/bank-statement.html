@@ -1,0 +1,453 @@
+<!-- <div class="container-fluid pad-lr-30 m-top-40 m-bot-50"> -->
+
+<!-- completion status block -->
+<div class="col-md-10 pad-right-0" ng-controller="bankController">
+    <div class="col-md-12 pad-rgt-0">
+        <div class="col-md-12 analysis-board ana-board-heading pad-20">
+            <h1 class="bank-header">Add Bank Statement</h1>
+            <p>
+                If entity does not exist please <a ui-sref="addEntityState">Add
+					Entity.</a>
+            </p>
+            <form role="form" name="bankStatementForm" novalidate>
+                <div class="col-md-6 pad-0">
+                    <div class="field-box">
+                        <label class="app__label" ng-style="{'visibility': bankName ? 'visible' : 'hidden'}">Bank
+							Name<span>*</span>
+						</label> <select name="bankName" id="bankName" class="input-setting input_style_select form-control border-bot " ng-model="bankName" required>
+							<option value="" disabled hidden selected>Select Bank
+								Name</option>
+							<option ng-repeat="b in bankData.data" value="{{b.id}}">{{b.bankName}}</option>
+						</select>
+                        <span class="asterisk_input_bank" ng-style="{'visibility': !bankName ? 'visible' : 'hidden'}"></span>
+                        <span ng-show="bankStatementForm.bankName.$invalid && isInValidOnSubmit" ng-class="{myErrorText:bankStatementForm.bankName.$invalid && isInValidOnSubmit}">
+							<span ng-show="bankStatementForm.bankName.$error.required"
+							class="custom_ng-error">Please Select Bank Name</span>
+                        </span>
+                    </div>
+
+                </div>
+                <div class="col-md-6 pad-0">
+                    <div class="field-box">
+                        <label class="app__label" ng-style="{'visibility': accountType ? 'visible' : 'hidden'}">Account
+							Type<span>*</span>
+						</label> <select class="input-setting input_style_select form-control border-bot" id="accountType" name="accountType" ng-model="accountType" ng-change="accountChange(accountType)" required>
+							<option value="" disabled hidden selected>Select Account Type</option>
+							<!-- <option value="SAVING">Saving Account</option> -->
+							<option value="CURRENT">Current Account</option>
+							<!-- <option value="CREDIT_CARD">Credit Card</option> -->
+							<option value="CASH_CREDIT">Cash Credit(CC)</option>
+							<option value="OVER_DRAFT">Over Draft(OD)</option>
+						</select>
+                        <span class="asterisk_input_bank" ng-style="{'visibility': !accountType ? 'visible' : 'hidden'}"></span>
+
+                        <span ng-show="isInValidOnSubmit && bankStatementForm.accountType.$invalid" ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.accountType.$invalid }">
+							<span ng-show="bankStatementForm.accountType.$error.required"
+							class="custom_ng-error">Please Select Account Type</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-12 pad-0">
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': bankCompanyName ? 'visible' : 'hidden'}">Company
+								Name<span>*</span>
+							</label> <input type="text" class="input-setting input__style2 form-control border-bot f-col" id="bankCompanyName" name="bankCompanyName" ng-model="bankCompanyName" placeholder="Company Name" required readonly>
+                            <span class="asterisk_input_bank" ng-style="{'visibility': !bankCompanyName ? 'visible' : 'hidden'}"></span>
+
+                            <span ng-show="isInValidOnSubmit && bankStatementForm.bankCompanyName.$invalid" ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.bankCompanyName.$invalid }">
+								<span
+								ng-show="bankStatementForm.bankCompanyName.$error.required"
+								class="custom_ng-error">Please Enter Company Name</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': companyType ? 'visible' : 'hidden'}">Company
+								Type<span>*</span>
+							</label> <select class="input-setting input_style_select form-control border-bot" ng-model="companyType" id="companyType" name="companyType" required>
+								<option value="" disabled hidden selected>Company Type</option>
+								<option value="Free Zone Company">Free Zone Company</option>
+								<option value="Hindu Undivided Family">Hindu Undivided
+									Family</option>
+								<option value="LLC">LLC</option>
+								<option value="Limited Liability Partnership (LLP)">Limited
+									Liability Partnership (LLP)</option>
+								<option value="Partnership">Partnership</option>
+								<option value="Private Limited">Private Limited</option>
+								<option value="Public Limited - listed">Public Limited
+									- listed</option>
+								<option value="Public Limited - Unlisted">Public
+									Limited - Unlisted</option>
+								<option value="Sole Proprietorship">Sole Proprietorship</option>
+							</select>
+                            <span class="asterisk_input_bank" ng-style="{'visibility': !companyType ? 'visible' : 'hidden'}"></span>
+
+                            <span ng-show="isInValidOnSubmit && bankStatementForm.companyType.$invalid" ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.companyType.$invalid }">
+								<span ng-show="bankStatementForm.companyType.$error.required"
+								class="custom_ng-error">Please Enter Company Type</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12 pad-0">
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': accountNumber ? 'visible' : 'hidden'}">Account
+								Number<span>*</span>
+							</label> <input type="text" class="input-setting input__style2 form-control border-bot" placeholder="Account Number" ng-model="accountNumber" id="accountNumber" name="accountNumber" required numbers-only maxlength="18"
+                                minlength="8">
+                            <span class="asterisk_input_bank" ng-style="{'visibility': !accountNumber ? 'visible' : 'hidden'}"></span>
+
+                            <span ng-show="isInValidOnSubmit && bankStatementForm.accountNumber.$invalid" ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.accountNumber.$invalid }">
+								<span ng-show="bankStatementForm.accountNumber.$error.required"
+								class="custom_ng-error">Please Enter Account Number</span>
+                            <span ng-show="bankStatementForm.accountNumber.$error.minlength" class="custom_ng-error">Please Enter minimum 8 digit</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pad-0">
+                        <div class="col-md-12 pad-0">
+                            <div class="col-md-8 pad-0">
+                                <div class="field-box field-box3 lr-no-border">
+                                    <label class="app__label" ng-style="{'visibility': od ? 'visible' : 'hidden'}">CC/OD
+										Limit<span>*</span>
+									</label>
+
+                                    <input type="text" calculator-valid numeric-input class="input-setting input__style2 form-control border-bot f-col" pre id="od" name="od" ng-model="od" placeholder="CC / OD Limit" ng-disabled="((accountType!='CASH_CREDIT')&&(accountType!='OVER_DRAFT'))"
+                                        ng-required="((accountType=='CASH_CREDIT')||(accountType=='OVER_DRAFT'))">
+
+                                    <span class="asterisk_input_bank" ng-style="{'visibility': !od ? 'visible' : 'hidden'}"></span>
+
+                                    <span ng-show="isInValidOnSubmit && bankStatementForm.od.$invalid" ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.od.$invalid }">
+										<span ng-show="bankStatementForm.od.$error.required"
+										class="custom_ng-error">Please Enter CC/OD Limit</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pad-0">
+                                <div class="field-box l-no-border">
+                                    <label class="app__label" ng-style="{'visibility': inr ? 'visible' : 'hidden'}">INR<span>*</span></label>
+                                    <select name="inr" class="input-setting input_style_select inr-dropdown hgt-35 form-control border-bot">
+										<option>INR</option>
+									</select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- confirm add bank statement text -->
+                <!-- is user hero  -->
+                <div class="col-md-6 pad-0" ng-if="isHeroUser == '1'">
+                    <div class="field-box">
+                        <label class="app__label" ng-style="{'visibility': product ? 'visible' : 'hidden'}"> Product<span></span>
+							</label> <select class="input-setting input_style_select form-control border-bot" id="product" name="product" ng-model="product">
+								<option value="" disabled hidden selected>Select Product</option>
+								<option value="NMP">NMP</option>
+								<option value="STFT">STFT</option>
+								<option value="FTB">FTB</option>
+								<option value="Fasttrack">Fasttrack</option>
+								<option value="GMP">GMP</option>
+								<option value="BSP">BSP</option>
+								<option value="LIP">LIP</option>
+								<option value="MTO">MTO</option>
+								<option value="GLP">GLP</option>
+								<option value="Eastman">Eastman</option>
+								<option value="Rockman">Rockman</option>
+								<option value="Raymond">Raymond</option>
+								<option value="Sandhar">Sandhar</option>
+								<option value="Bluestar">Bluestar</option>
+								<option value="Daikin">Daikin</option>
+								<option value="SKF">SKF</option>
+								<option value="KMPL">KMPL</option>
+								<option value="Haier">Haier</option>
+								<option value="TATA">TATA</option>
+								<option value="MEP">MEP</option>
+								<option value="TPA & CSR">TPA & CSR</option>
+							</select>
+                    </div>
+                </div>
+                <!-- is hero ends -->
+
+                <div class="col-md-12 pad-0">
+                    <div class="col-md-12 txt-left pad-0">
+                        <ul class="list-inline">
+                            <li>
+                                <div class="checkbox">
+                                    <label> <input type="checkbox"
+										ng-model="bankStatementCheckbox"> <i
+										class="input-helper"></i>
+									</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="m-top-15 tnd-txt txt-left pad-0">
+                                    <p>Please select the checkbox to enter the keywords for Related Party Transactions.</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-12 pad-0" id="keywordDivOne" ng-show="bankStatementCheckbox">
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': keyword1 ? 'visible' : 'hidden'}">Keyword
+								1</label> <input type="text" class="input-setting input__style2 form-control border-bot" placeholder="Keyword 1" ng-model="keyword1" id="keyword1" name="keyword1">
+                            <!-- <span
+								ng-show="isInValidOnSubmit && bankStatementForm.keyword1.$invalid"
+								ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.keyword1.$invalid }">
+								<span ng-show="bankStatementForm.keyword1.$error.required">Please
+									Enter Keyword 1</span>
+							</span> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': keyword2 ? 'visible' : 'hidden'}">Keyword
+								2</label> <input type="text" class="input-setting input__style2 form-control border-bot" placeholder="Keyword 2" ng-model="keyword2" id="keyword2" name="keyword2">
+                            <!-- <span
+								ng-show="isInValidOnSubmit && bankStatementForm.keyword2.$invalid"
+								ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.keyword2.$invalid }">
+								<span ng-show="bankStatementForm.keyword2.$error.required">Please
+									Enter Keyword 2</span>
+							</span> -->
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12 pad-0" id="keywordDivOne" ng-show="bankStatementCheckbox">
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': keyword3 ? 'visible' : 'hidden'}">Keyword
+								3</label> <input type="text" class="input-setting input__style2 form-control border-bot" placeholder="Keyword 3" ng-model="keyword3" id="keyword3" name="keyword3">
+                            <!-- <span
+								ng-show="isInValidOnSubmit && bankStatementForm.keyword3.$invalid"
+								ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.keyword3.$invalid }">
+								<span ng-show="bankStatementForm.keyword3.$error.required">Please
+									Enter Keyword 3</span>
+							</span> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': keyword4 ? 'visible' : 'hidden'}">Keyword
+								4</label> <input type="text" class="input-setting input__style2 form-control border-bot" placeholder="Keyword 4" ng-model="keyword4" id="keyword4" name="keyword4">
+                            <!-- <span
+								ng-show="isInValidOnSubmit && bankStatementForm.keyword4.$invalid"
+								ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.keyword4.$invalid }">
+								<span ng-show="bankStatementForm.keyword4.$error.required">Please
+									Enter Keyword 4</span>
+							</span> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 pad-0" id="keywordDivOne" ng-show="bankStatementCheckbox">
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': keyword5 ? 'visible' : 'hidden'}">Keyword
+								5</label> <input type="text" class="input-setting input__style2 form-control border-bot" placeholder="Keyword 5" ng-model="keyword5" id="keyword5" name="keyword5">
+                            <!-- <span
+								ng-show="isInValidOnSubmit && bankStatementForm.keyword5.$invalid"
+								ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.keyword5.$invalid }">
+								<span ng-show="bankStatementForm.keyword5.$error.required">Please
+									Enter Keyword 5</span>
+							</span> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': keyword6 ? 'visible' : 'hidden'}">Keyword
+								6</label> <input type="text" class="input-setting input__style2 form-control border-bot" placeholder="Keyword 6" ng-model="keyword6" id="keyword6" name="keyword6">
+                            <!-- <span
+								ng-show="isInValidOnSubmit && bankStatementForm.keyword6.$invalid"
+								ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.keyword6.$invalid }">
+								<span ng-show="bankStatementForm.keyword6.$error.required">Please
+									Enter Keyword 6</span>
+							</span> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 pad-0" id="keywordDivOne" ng-show="bankStatementCheckbox">
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': keyword7 ? 'visible' : 'hidden'}">Keyword
+								7</label> <input type="text" class="input-setting input__style2 form-control border-bot" placeholder="Keyword 7" ng-model="keyword7" id="keyword7" name="keyword7">
+                            <!--  <span
+								ng-show="isInValidOnSubmit && bankStatementForm.keyword7.$invalid"
+								ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.keyword7.$invalid }">
+								<span ng-show="bankStatementForm.keyword7.$error.required">Please
+									Enter Keyword 7</span>
+							</span> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': keyword8 ? 'visible' : 'hidden'}">Keyword
+								8</label> <input type="text" class="input-setting input__style2 form-control border-bot" placeholder="Keyword 8" ng-model="keyword8" id="keyword8" name="keyword8">
+                            <!-- <span
+								ng-show="isInValidOnSubmit && bankStatementForm.keyword8.$invalid"
+								ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.keyword8.$invalid }">
+								<span ng-show="bankStatementForm.keyword8.$error.required">Please
+									Enter Keyword 8</span>
+							</span> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 pad-0" id="keywordDivOne" ng-show="bankStatementCheckbox">
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': keyword9 ? 'visible' : 'hidden'}">Keyword
+								9</label> <input type="text" class="input-setting input__style2 form-control border-bot" placeholder="Keyword 9" ng-model="keyword9" id="keyword9" name="keyword9">
+                            <!-- <span
+								ng-show="isInValidOnSubmit && bankStatementForm.keyword9.$invalid"
+								ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.keyword9.$invalid }">
+								<span ng-show="bankStatementForm.keyword9.$error.required">Please
+									Enter Keyword 9</span>
+							</span> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 pad-0">
+                        <div class="field-box">
+                            <label class="app__label" ng-style="{'visibility': keyword10 ? 'visible' : 'hidden'}">Keyword
+								10</label> <input type="text" class="input-setting input__style2 form-control border-bot" placeholder="Keyword 10" ng-model="keyword10" id="keyword10" name="keyword10">
+                            <!-- <span
+								ng-show="isInValidOnSubmit && bankStatementForm.keyword10.$invalid"
+								ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.keyword10.$invalid }">
+								<span ng-show="bankStatementForm.keyword10.$error.required">Please
+									Enter Keyword 10</span>
+							</span> -->
+                        </div>
+                    </div>
+                </div>
+
+                <!--________________________ Monthly Drawing Power Limit _____________________-->
+
+                <div class="col-md-12 m-top-10 pad-0" ng-hide="((accountType!='CASH_CREDIT')&&(accountType!='OVER_DRAFT'))">
+                    <div class="bank_limit pad-bot-15 ">
+                        <label class="bank-limit-label">Monthly Drawing Power
+							Limit</label>
+                        <button type="button" class="bank-limit-button" ng-click="count = count + 1 ; addAnotherMonthYearAmount()" ng-model="addAnotherMonthYearAmount" ng-init="count=1">Add</button>
+
+                        <ul class="list-inline m-top-10" ng-repeat="(key , item) in noOfMonthYearDiv">
+                            <li><select class="bank-limit-selectbox" name="{{'month' + [$index+1]}}" id="{{'month' + [$index+1]}}" ng-model="month">
+									<option value="">Month</option>
+									<option value="1">January</option>
+									<option value="2">February</option>
+									<option value="3">March</option>
+									<option value="4">April</option>
+									<option value="5">May</option>
+									<option value="6">June</option>
+									<option value="7">July</option>
+									<option value="8">August</option>
+									<option value="9">September</option>
+									<option value="10">October</option>
+									<option value="11">November</option>
+									<option value="12">December</option>
+
+							</select></li>
+                            <li><select class="bank-limit-selectbox" name="{{'year' + [$index+1]}}" id="{{'year' + [$index+1]}}" ng-model="year">
+									<option value="">Year</option>
+									<option value="2000">2000</option>
+									<option value="2001">2001</option>
+									<option value="2002">2002</option>
+									<option value="2003">2003</option>
+									<option value="2004">2004</option>
+									<option value="2005">2005</option>
+									<option value="2006">2006</option>
+									<option value="2007">2007</option>
+									<option value="2008">2008</option>
+									<option value="2009">2009</option>
+									<option value="2010">2010</option>
+									<option value="2011">2011</option>
+									<option value="2012">2012</option>
+									<option value="2013">2013</option>
+									<option value="2014">2014</option>
+									<option value="2015">2015</option>
+									<option value="2016">2016</option>
+									<option value="2017">2017</option>
+									<option value="2018">2018</option>
+							</select></li>
+                            <li><input type="text" placeholder="Amount (INR)" class="bank-limit-selectbox" name="{{'amount' + [$index+1]}}" id="{{'amount' + [$index+1]}}" ng-model="amount"></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ___________Upload Documents_______________ -->
+                <div class="col-md-12 m-top-15 pad-0">
+                    <div class="col-md-6 pad-0" ng-class="{disabled_div: uploadCount >= 12}">
+
+                        <label class="fileContainerUpload"> Upload Bank Statement
+							* <input type="file" id="bankStmtFile" name="bankStmtFile"
+							ng-model="bankStmtFile"
+							class="form-control col-md-6 pad-0 upload-document0"
+							placeholder="Upload Bank Statement" multiple
+							onchange="angular.element(this).scope().setFile(this)"
+							accept=".xls, .xlsx, .pdf,.txt ,.PDF , .XLS , .XLSX" size="12" /> <!-- <span
+							ng-show="isInValidOnSubmit && bankStatementForm.bankStmtFile.$invalid"
+							ng-class="{myErrorText: isInValidOnSubmit && bankStatementForm.bankStmtFile.$invalid }">
+								<span ng-show="bankStatementForm.bankStmtFile.$error.required">Please
+									Select Atleast One File</span> -->
+
+						</label>
+                        <span class="custom_ng-error" id="upload_span"></span>
+                    </div>
+                </div>
+                <div class="col-md-12 upload-box pad-0">
+                    <p>You can add upto 12 files</p>
+                    <!-- <p class="custom_ng-error fileSizeMsg"
+						ng-class="{fileSizeMsgShow: totalFileSize > 20480}">Please
+						select the file size below or equal to 20MB</p> -->
+                </div>
+                <div class="col-md-6 m-top-5 pad-0">
+                    <div ng-repeat="file in bFiles" class="multiple_file">
+                        {{$index+1}} {{file.name}}
+                        <button ng-click="removeFile($index)">
+							<i class="fa fa-close"></i>
+						</button>
+                    </div>
+                </div>
+
+                <!-- ___________ADD NEW ENTRY_______________ -->
+                <div class="col-md-12 pad-0">
+                    <div class="col-md-2 col-md-offset-10 m-top-15 txt-left pad-0">
+                        <button class="next-step" ng-model="bankBtn" ng-class="{disabled_div : bankCredits <= 0}" ng-click="uploadUserExcel(bankStmtFile , bankStatementForm.$valid ) ; isInValidOnSubmit = true">
+							Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--  progress bar -->
+        <div class="bank_statement_progress" id="uploadProgressBar" ng-show="showUploadingBar">
+            <div class="col-md-12 pad-0">
+                <div class="col-md-8 col-md-offset-3 ">
+                    <div class="progress_div0">
+                        <div class="tip">
+                            <div progressbar="value"></div>
+                            <span id="percentage" style="display: none;"></span>
+                        </div>
+                        <div class="progress_content">Uploading</div>
+                        <div class="progress_notification">
+                            Please do not <b>click</b>, <b>refresh</b> or <b>close</b> the browser page while your file is being processed/uploaded.
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{uploadPercentComplete}}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width':uploadPercentComplete}">
+                                {{uploadPercentComplete}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  progress bar -->
+    </div>
+</div>

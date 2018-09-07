@@ -1,0 +1,472 @@
+<!-- completion status block -->
+<div class="col-md-10 pad-right-0" ng-controller="accountController">
+	
+	
+	<!-- _______New score container_______ -->
+	<div class="col-md-12 pad-right-0">
+		<div class="score-box col-md-12">
+
+			<div class="col-md-8 pad-0">
+				<div class="col-md-7 pad-0 info_detail">
+					<ul>
+						<li>
+							<h1>ACCOUNT SETTING</h1>
+						</li>			
+					</ul>
+				</div>
+				<div class="col-md-4 pad-top-14"></div>
+			</div>
+			
+			<div class="col-md-12 m-top-20 pad-0">
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a
+						ui-sref="profileState" aria-controls="tab1" role="tab"
+						data-toggle="tab">Profile</a></li>
+					<li role="presentation" class="li-tabs"><a ui-sref="creditsState"
+						aria-controls="tab2" role="tab" data-toggle="tab">Credits</a>
+					</li>
+					 <li role="presentation" class="li-tabs pad-left-0"><a ui-sref="billingAddressState"
+						aria-controls="tab2" role="tab" data-toggle="tab">Billing Address</a>
+					</li>
+					<!-- <li role="presentation" class="li-tabs"><a ui-sref="billingHistoryState"
+						aria-controls="tab2" role="tab" data-toggle="tab">Billing History</a>
+					</li> -->
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+
+					<!-- ******************************** Company Basic Information ************************************* -->
+					<div role="tabpanel" class="tab-pane active"
+						id="profile">
+											
+
+						<!-- _____________ 1st row_____________ -->
+						<div class="col-md-12 m-top-20 pad-0">
+						<div class="credit-detail">Manage your Account details</div>
+							<div class="col-md-4 pad-0">
+								<div class="field-box box-style-normal profile-rectangle">
+							
+								<div class="app__label billing-address-heading">
+										Email Id
+									</div>  
+									<div class="profile-detail">{{emailId}}</div>
+									<!-- <input type="text" name="emailId" id="emailId"
+										ng-model="emailId"
+										class="input-setting input__style2 form-control"
+										placeholder="Email Id" readonly required /> -->
+								</div>
+							</div>
+							<div class="col-md-4 pad-0">
+								<div class="field-box box-style-normal profile-rectangle">
+									<div class="app__label billing-address-heading">
+										First Name
+									</div> 
+										<div class="profile-detail">{{firstName|capitalize}}</div>
+										<!-- <input type="text" name="firstName" id="firstName"
+										ng-model="firstName"
+										class="input-setting input__style2 form-control"
+										placeholder="First Name" readonly required /> -->
+
+								</div>
+							</div>
+							<div class="col-md-4 pad-0">
+								<div class="field-box box-style-normal profile-rectangle">
+									<div class="app__label billing-address-heading">
+										Last Name
+									</div> 
+										 
+									<div class="profile-detail">{{lastName|capitalize}}</div>
+										  <!-- <input type="text" name="lastName" id="lastName"
+										ng-model="lastName"
+										class="input-setting input__style2 form-control"
+										placeholder="Last Name" readonly required /> -->
+
+								</div>
+								
+							</div>						
+						</div>
+						
+						
+						<!-- _____________ 2st row start_____________ -->
+						<div class="col-md-12 pad-0">
+
+							<div class="col-md-4 pad-0">
+								<div class="field-box box-style-normal profile-rectangle">
+							
+									<div class="app__label billing-address-heading">
+										Phone Number
+									</div> 
+									<div class="profile-detail">{{phoneNo}}</div>
+									<!-- <input type="text" name="phoneNo" id="phoneNo"
+										ng-model="phoneNo"
+										class="input-setting input__style2 form-control"
+										placeholder="Phone Number" readonly required /> -->
+								</div>
+							</div>
+							<div class="col-md-4 pad-0">
+								<div class="field-box box-style-normal profile-rectangle">
+							
+									<div class="app__label billing-address-heading">
+										Institute Name
+									</div> 
+									<div class="profile-detail">{{instituteName}}</div>
+									<!-- <input type="text" name="instituteName" id="instituteName"
+										ng-model="instituteName"
+										class="input-setting input__style2 form-control"
+										placeholder="Institute Name" readonly required /> -->
+								</div>
+							</div>
+						</div>	
+						<!-- _____________ 1st row end_____________ -->	
+						
+	                        <div class="col-md-10 ch-mar-top">
+									<div class="Transfer-Rights-You ">
+										<a ui-sref="changePasswordState">Change Password
+										</a>
+										<p>If you wish to reset your password, We recommended that doing every month for security concerns.</p>
+															           
+										 <a href="javascript:void(0)" ng-click="deactivateAccount()">Deactivate Account
+										</a>
+										<p> If you wish to deactivate your account for personal / professional or any other reason. </p>
+									
+						           
+									<!--<a href="#">Transfer Rights
+										</a>
+										<p> You can transfer your right to someone in your personal and professional domian as a primary user for the entire account. </p>
+									 -->
+						           </div> 													
+						     </div>					
+										
+					</div>
+
+					<!-- ******************************** Company Basic Information ************************************* -->
+
+					<!-- ******************************** Credits ************************************* -->
+					<!-- ________tab2________ -->
+			<div role="tabpanel" class="tab-pane" id="credits">
+
+						<!-- _____________panel content_____________ -->
+				<div class="col-md-12 m-top-20 pad-0">
+					<!-- <div class="credit-detail">You can manage your credits here.</div> -->
+					<div class="col-md-4 pad-0">
+						<div class="field-box box-style-normal credit-div">
+							<div class="app__label credit-heading">
+								Credit Score
+							</div> 							
+							<div class="col-md-6 pad-0 credit-subheading">Available Credits
+							</div>
+						    <div class="col-md-6 pad-0 credit-subheading">Used Credits
+							</div>
+							<div class="col-md-6 pad-0 credit-number">{{creditscoreCredits}}
+							</div>
+							<div class="col-md-6 pad-0 credit-number">{{creditscoreDebits}}
+						    </div>
+												
+						</div>
+					</div>	
+					<div class="col-md-4 pad-0">
+								<div class="field-box box-style-normal credit-div">
+									<div class="app__label credit-heading">
+										Bank Statement Analyzer
+									</div> 
+							        <div class="col-md-6 pad-0 credit-subheading">Available Credits
+							        </div>
+						             <div class="col-md-6 pad-0 credit-subheading">Used Credits
+							</div>
+							<div class="col-md-6 pad-0 credit-number">{{bankstatementCredits}}
+							</div>
+							<div class="col-md-6 pad-0 credit-number">{{bankstatementDebits}}
+						   </div>								
+								</div>
+					</div>	
+				</div>
+						<!-- button -->					
+						
+			</div>
+				
+				<!-- ******************************** Credits ************************************* -->
+				
+				<!-- ********************** Billing Address Starts********************* -->
+			<div role="tabpanel" class="tab-pane" id="billingAddress">
+
+						<!-- _____________panel content_____________ -->
+				<div class="col-md-12 m-top-20 pad-0">
+					<div class="credit-detail">You can manage your billing address here.<a href="javascript:void(0)" id="billing-address-modal"
+							data-toggle="modal" data-target="#billingAddressModal" class="left-mar">Edit</a></div>
+					
+					<div class="col-md-6 pad-0">
+						<div class="field-box box-style-normal billing-address-div">
+							<!-- <div class="app__label billing-address-heading">
+								Billed To
+							</div>  -->
+							<div class="col-md-12 pad-0">
+							   <div class="col-md-6 app__label billing-address-heading">
+										Billed To
+							   </div> 
+						   </div>	
+									
+							<div class="billing-address-detail">
+							 {{fullName}}<br/>{{emailId}}
+							</div>
+												
+						</div>
+					</div>	
+					<div class="col-md-6 pad-0">
+								<div class="field-box box-style-normal billing-address-div">
+								<div class="col-md-12 pad-0">
+									<div class="col-md-6 app__label billing-address-heading">
+										GSTIN
+									</div> 
+									 <div class="col-md-6 edit-btn"><!--  <a href="javascript:void(0)" id="billing-address-modal"
+							data-toggle="modal" data-target="#billingAddressModal">Edit</a>--></div>
+								</div>	 
+						          	<div class="billing-address-detail">{{gstin}}</div>
+									
+								</div>
+					</div>	
+					<div class="col-md-6 pad-0">
+								<div class="field-box box-style-normal billing-address-div">
+								   <div class="col-md-12 pad-0">
+									  <div class="col-md-6 app__label billing-address-heading">
+										  Billing Address
+									  </div> 
+									  <div class="col-md-6 edit-btn"><!--  <a href="javascript:void(0)" id="billing-address-modal"
+							data-toggle="modal" data-target="#billingAddressModal">Edit</a>--></div>
+								   </div>
+									
+						          	<div class="billing-address-detail">{{billingAddress}}</div>
+									
+								</div>
+					</div>	
+					<div class="col-md-6 pad-0">
+						<div class="field-box box-style-normal billing-address-div">
+							<div class="col-md-12 pad-0">
+								<div class="col-md-6 app__label billing-address-heading">
+										  Mailing Address
+							   </div> 
+								<div class="col-md-6 edit-btn">
+								<!--  <a href="javascript:void(0)" id="billing-address-modal"
+							data-toggle="modal" data-target="#billingAddressModal">Edit</a>--></div>
+						   </div>
+						         <div class="billing-address-detail">{{mailingAddress}}</div>
+									
+						</div>
+					</div>	
+				</div>
+						<!-- button -->					
+		</div>	
+				
+				
+				
+				
+				
+				<!-- ********************** Billing Address ends ********************* -->
+				
+				
+<!-- ********************** Billing History starts ********************* -->
+	<div role="tabpanel" class="tab-pane" id="billingHistory">	
+	   <div class="col-md-12 pad-rgt-0 pad-lft-0 pad-0">
+		 <div class="col-md-12 pad-20 pad-top-0 pad-rgt-0">
+		      <!-- table starts -->  	
+		 <div class="col-md-12 report-block">     
+			<table st-table="allCompanyRatingDataBase"
+					st-safe-src="allCompanyRatingData" st-set-filter="myCustomFilter"
+					class="table table-striped table_head_Style">
+					<thead>
+						<tr>
+							<th colspan="7"><input st-search placeholder="Search"
+								class="input-sm form-control tbl-search" type="search" /></th>
+						</tr>
+						<tr>
+							<th>Sl. No.</th>
+							<th st-sort="requestDate">Date</th>
+							<th st-sort="score">Score</th>
+							<th st-sort="grade">Grade</th>
+							<th>Report</th>
+							<th class="text-center">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="rd in allCompanyRatingDataBase track by rd.serialno"
+							ng-if="allCompanyRatingDataBase.length > 0">
+							<td>{{::rd.serialno}}</td>
+							<td>{{::rd.requestDate}}</td>
+							<td>{{::rd.score}}</td>
+							<td>{{::rd.grade}}</td>
+							<td><a ng-href="{{'/creditscoreAngular'+rd.certificate}}"
+								target="_blank"><button class="btn download-btn">Download</button></a></td>
+							<td>
+								<div class="action-bar">
+									<div class="edit">
+										<button class="btn recalculate-btn"
+											ng-click="recalculateScore(rd.ratingId)">Revise</button>
+									</div>
+									<div class="delete">
+										<button class="btn delete-button"
+											ng-click="deleteReportHistory(rd.ratingId)">Delete</button>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr ng-if="allCompanyRatingDataBase.length <= 0">
+							<td colspan="6" class="text-center">No Data Available</td>
+						</tr>
+						<tr>
+							<td colspan="6" class="text-center">
+								<div st-pagination="" st-items-by-page="itemsPerPage"
+									st-displayed-pages="5"></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		  </div>		
+				<!-- table ends -->
+		</div>
+		</div>		
+	</div>
+												
+<!-- ********************** Billing History ends ********************* -->					
+				</div>			
+			</div>
+		</div>
+	</div>
+	
+	<!--  modal starts -->
+	<!--Billing address modal starts -->
+	<div class="modal fade in" id="billingAddressModal" role="dialog" data-backdrop="static" >
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content m-top-120">
+					<!-- <div class="closer">
+						<span data-dismiss="modal" aria-hidden="true"> <img
+							src="../assets/images/close-lite.svg" width="15"
+							draggable="false">
+						</span>
+					</div> -->
+					
+					<!-- modalbody start -->
+					<div class="modal-body pad-0">
+						<div class="col-md-12 main-box">
+		<div class="col-md-12" >
+			<span class="gstn">GSTIN</span>
+			
+			<div class="next-row">
+				<span class="gstn-billed">GSTIN to be billed</span>
+			</div>
+			<div >
+				<input type="text" class="first-input pad-left-12" ng-model="gstin" placeholder="GSTIN">
+			</div>
+			<div class="line"></div>
+			
+			<div class="col-md-12 for-space">
+			
+				<div class="nxt-col">
+					<span class="bill-add">Billing Address</span>
+					<div class="col-md-12 ">
+						<span class="add">Address</span>
+					</div>
+					<div class="col-md-12 pad-left">
+						<input type="text" class="sec-input" ng-model="billingAddress" Placeholder="Enter Individual">
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="col-md-12 on-margin-top">
+								<span class="add">city</span>
+							</div>
+							<input type="text" class="first-input pad-left-12" ng-model="billingCity" placeholder="city">
+							
+							<div class="col-md-12 on-margin-top">
+								<span class="add">state</span>
+							</div>
+							<input type="text" class="first-input pad-left-12" ng-model="billingState" placeholder="state">
+							<input type="hidden" class="first-input" ng-model="billingStateId" >			
+						
+						</div>
+						<div class="col-md-5 col-md-offset-2 on-margin-top left-m">
+						
+							<div class="col-md-12 ">
+								<span class="add">pincode</span>
+							</div>
+							<input type="text" class="first-input pad-left-12" ng-model="billingPincode" ng-keyup="getStateAndCountryByPincode(billingPincode , 'billing')" placeholder="pincode">
+							
+							<div class="col-md-12 on-margin-top">
+								<span class="add">country</span>
+							</div>
+							<input type="text" class="first-input pad-left-12" ng-model="billingCountry" placeholder="country">
+							<input type="hidden" class="first-input" ng-model="billingCountryId">
+						</div>					
+					</div>		
+				
+				</div>
+			<div class="line"></div>
+			
+			<div class="col-md-12 for_top">
+			
+				<div class="row nxt-col">
+					<span class="bill-add">Shipping Address</span>
+					<div class="col-md-12 ">
+						<span class="add">Address</span>
+					</div>
+					<div class="col-md-12 pad-left">
+						<input type="text" class="sec-input" ng-model="mailingAddress" Placeholder="Enter Individual">
+					</div>
+					<div class="row">
+						<div class="col-md-5 on-margin-top">
+							<div class="col-md-12 ">
+								<span class="add">city</span>
+							</div>
+							<input type="text" class="first-input pad-left-12" ng-model="mailingCity" placeholder="city">
+							
+							<div class="col-md-12 on-margin-top">
+								<span class="add">state</span>
+							</div>
+							<input type="text" class="first-input pad-left-12" ng-model="mailingState" placeholder="state">
+							<input type="hidden" class="first-input" ng-model="mailingStateId">
+						
+						
+						</div>
+						<div class="col-md-5 col-md-offset-2 on-margin-top left-m">
+						
+							<div class="col-md-12 ">
+								<span class="add">pincode</span>
+							</div>
+							<input type="text" class="first-input pad-left-12" ng-model="mailingPincode" placeholder="pincode" ng-keyup="getStateAndCountryByPincode(mailingPincode , 'mailing')">
+							
+							<div class="col-md-12 on-margin-top">
+								<span class="add">country</span>
+							</div>
+							<input type="text" class="first-input pad-left-12" ng-model="mailingCountry" placeholder="country">
+							<input type="hidden" class="first-input" ng-model="mailingCountryId">
+						</div>		
+					</div>			
+				</div>
+	<div class="col-md-12 pad-left pad-right">
+		<div class="text-right">
+			<a href="javascript:void(0)" class="cancel" data-dismiss="modal">cancel</a>
+			<a href="javascript:void(0)" class="for-link" ng-click="saveUserAddress()">save</a>
+		</div>
+    </div>		
+			</div>		
+		</div>	
+	</div>					
+				</div>
+					<!-- ends -->				
+			</div>
+		</div>
+	</div>
+
+	
+	
+	
+<!--Billing address modal ends -->
+	
+	
+	<!-- modal ends -->
+	
+	
+	
+</div>
+
+
+<!-- modal starts -->

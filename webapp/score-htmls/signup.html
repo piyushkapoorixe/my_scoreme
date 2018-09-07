@@ -1,0 +1,393 @@
+<div class="col-md-12 pad-0" ng-controller="loginController">
+	<div class="overlay" ng-if="dataLoading">
+		<img width="100"
+			src="../assets/images/loaders/interwind-preloader.svg" />
+	</div>
+	<div class="col-md-8 pad-0">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<div class="slide__text">
+						<h1>Ready to play an active role in your financial affairs?</h1>
+						<h4>The perfect set of analytical tools to stay in charge of
+							your financial outlook.</h4>
+					</div>
+					<img src="../assets/images/banner1.jpg" alt="banner1"
+						draggable="false">
+				</div>
+
+				<div class="item">
+					<div class="slide__text">
+						<h1>Ground-breaking technology that calculates business
+							performance in minutes.</h1>
+						<h4>ScoreMe calculates the actual performance of your
+							business, along with a credit score.</h4>
+					</div>
+					<img src="../assets/images/banner2.jpg" alt="banner2"
+						draggable="false">
+				</div>
+
+				<div class="item">
+					<div class="slide__text">
+						<h1>Boost your bank statement analysis abilities to the next
+							level.</h1>
+						<h4>An automated process of reading bank statements for an
+							in-depth analysis.</h4>
+					</div>
+					<img src="../assets/images/banner3.jpg" alt="banner3"
+						draggable="false">
+				</div>
+			</div>
+		</div>
+		<!--  <div class="left-sidewall-login">
+            <h1>What Your Score?</h1>
+            <p>Lorem Ipsum Sit Dolores Omnia Vanitas</p>
+        </div> -->
+	</div>
+	<div class="col-md-4 pad-0">
+		<div class="right-sidewall-login">
+			<a href="../index.html"><img src="../assets/images/logo.png" width="140"></a>
+
+			<form role="form" name="signupForm" novalidate>
+				<div class="login-content">
+					<h1>Sign up</h1>
+				</div>
+				<div class="col-md-12 pad-0">
+
+					<!-- <label>First Name</label> -->
+					<input type="text" placeholder="First Name"
+						class="form-control-signup element-style capitalize"
+						ng-class="{myErrorBorder: (signupForm.firstName.$dirty && signupForm.firstName.$invalid) || (!signupForm.firstName.$dirty && signupCheck)}"
+						name="firstName" id="firstName" ng-model="firstName" alphabet-only capitalize
+						required 
+						/> 
+					<!-- <span class="asterisk_input_login" ng-style="{'visibility': !firstName ? 'visible' : 'hidden'}"></span> -->	
+						
+						<span
+						ng-show="(signupForm.firstName.$dirty && signupForm.firstName.$invalid) || signupCheck"
+						ng-class="{myErrorText: (signupForm.firstName.$dirty && signupForm.firstName.$invalid) || signupCheck}">
+						<span ng-show="signupForm.firstName.$error.required">Please
+							Enter First Name</span>
+					</span>
+
+				</div>
+				<div class="col-md-12 m-top-15 pad-0">
+
+					<!-- <label>Last Name</label> -->
+					<input type="text" placeholder="Last Name"
+						class="form-control-signup element-style capitalize"
+						ng-class="{myErrorBorder: (signupForm.lastName.$dirty && signupForm.lastName.$invalid) || (!signupForm.lastName.$dirty && signupCheck) }"
+						name="lastName" id="lastName" ng-model="lastName" alphabet-only capitalize
+						required /> 
+					<!-- <span class="asterisk_input_login" ng-style="{'visibility': !lastName ? 'visible' : 'hidden'}"></span>	 -->
+						<span
+						ng-show="(signupForm.lastName.$dirty && signupForm.lastName.$invalid) || signupCheck"
+						ng-class="{myErrorText:(signupForm.lastName.$dirty && signupForm.lastName.$invalid)|| signupCheck }">
+						<span ng-show="signupForm.lastName.$error.required">Please
+							Enter Last Name.</span>
+					</span>
+
+				</div>
+				<div class="col-md-12 m-top-15 pad-0">
+
+					<!-- <label>Email</label> -->
+					<input type="email" placeholder="Email"
+						class="form-control-signup element-style"
+						ng-class="{myErrorBorder: (signupForm.email.$dirty && signupForm.email.$invalid) || (!signupForm.email.$dirty && signupCheck) }"
+						data-analytics="" name="email" id="email" ng-model="email" ng-pattern="/^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"
+						required /> 
+		<!-- <span class="asterisk_input_login" ng-style="{'visibility': !email? 'visible' : 'hidden'}"></span>	 -->			
+						<span
+						ng-show="(signupForm.email.$dirty && signupForm.email.$invalid ) || signupCheck"
+						ng-class="{myErrorText: (signupForm.email.$dirty && signupForm.email.$invalid)|| signupCheck }">
+						<span ng-show="signupForm.email.$error.required">Please
+							Enter Email.</span> 
+							<span ng-show="signupForm.email.$error.pattern">Please
+							Enter Valid Email.</span>
+					</span>
+
+				</div>
+				<div class="col-md-12 m-top-15 pad-0">
+					<ul class="list-inline mobile-with-countrycode">
+						<li><input type="text" value="" disabled placeholder="+91"
+							class="form-control-signup element-style country-code" /></li>
+						<li>
+							<!-- <label>Phone Number</label> --> <input type="text"
+							placeholder="Phone Number"
+							class="form-control-signup element-style"
+							ng-class="{myErrorBorder: (signupForm.mobileNo.$dirty && signupForm.mobileNo.$invalid) || (!signupForm.mobileNo.$dirty && signupCheck) }"
+							name="mobileNo" id="mobileNo" ng-model="mobileNo" required
+							minlength="10" numbers-only maxlength="10" />
+			<!-- 	<span class="asterisk_input_login_mobile" ng-style="{'visibility': !mobileNo ? 'visible' : 'hidden'}"></span>	 -->			
+							 <span
+							ng-show="(signupForm.mobileNo.$dirty && signupForm.mobileNo.$invalid) || signupCheck"
+							ng-class="{myErrorText: (signupForm.mobileNo.$dirty && signupForm.mobileNo.$invalid)|| signupCheck }">
+								<span ng-show="signupForm.mobileNo.$error.required">Please
+									Enter Phone Number.</span> <span
+								ng-show="signupForm.mobileNo.$error.minlength">Please
+									enter exact 10 digits.</span>
+						</span>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-12 m-top-15 pad-0">
+
+					<!-- <label>Password</label> -->
+					<input type="password" placeholder="Password"
+						class="form-control-signup element-style"
+						ng-class="{myErrorBorder: (signupForm.password.$dirty && signupForm.password.$invalid) || (!signupForm.password.$dirty && signupCheck) }"
+						data-analytics="" name="password" id="password"
+						ng-model="password" password-verify="confirmPassword" required
+						minlength="8" />
+			<!-- <span class="asterisk_input_login" ng-style="{'visibility': !password ? 'visible' : 'hidden'}"></span>	 -->		
+						
+						 <span
+						ng-show="(signupForm.password.$dirty && signupForm.password.$invalid)|| signupCheck"
+						ng-class="{myErrorText: (signupForm.password.$dirty && signupForm.password.$invalid)|| signupCheck }">
+						<span ng-show="signupForm.password.$error.required">Please
+							Enter Password</span> <span
+						ng-show="signupForm.password.$error.minlength">Password
+							should be minimum 8 characters</span>
+					</span>
+
+				</div>
+
+				<div class="col-md-12 m-top-15 pad-0">
+
+					<!-- <label>Confirm Password</label> -->
+					<input type="password" placeholder="Confirm Password"
+						class="form-control-signup element-style"
+						ng-class="{myErrorBorder: (signupForm.confirmPassword.$dirty && signupForm.confirmPassword.$invalid) || (!signupForm.confirmPassword.$dirty && signupCheck) }"
+						name="confirmPassword" id="confirmPassword"
+						ng-model="confirmPassword" password-verify="password" required
+						minlength="8" />
+		<!-- <span class="asterisk_input_login" ng-style="{'visibility': !confirmPassword ? 'visible' : 'hidden'}"></span>	 -->			
+						
+						 <span
+						ng-show="(signupForm.confirmPassword.$dirty && signupForm.confirmPassword.$invalid) || signupCheck"
+						ng-class="{myErrorText: (signupForm.confirmPassword.$dirty && signupForm.confirmPassword.$invalid)||signupCheck }">
+						<span ng-show="signupForm.confirmPassword.$error.required">Please
+							Enter Confirm Password</span> <!--  <span ng-show="signupForm.confirmPassword.$error.minlength">Your password is too short</span>   -->
+						<span ng-show="signupForm.confirmPassword.$error.passwordVerify">Password
+							does not match</span>
+
+					</span>
+
+				</div>
+
+				<div class="col-md-12 txt-left pad-0">
+					<ul class="list-inline m-top-10 txt-left m-0">
+						<li>
+							<div class="checkbox light-checkbox">
+								<label> <input ng-model="signupCheck" type="checkbox">
+									<i class="input-helper"></i>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="m-top-15 tnd-txt txt-left pad-0">
+								<p class="pos-fix-txt">
+									I agree to the <span ng-click="open()" data-toggle="modal"
+										data-target="#terms-condition" class="tc-trigger">Terms and Conditions
+										</span>
+								</p>
+							</div>
+						</li>
+					</ul>
+
+				</div>
+				<div class="col-md-12 pad-0 ">
+					<button class="google-login signup-btn" ng-click="signupUser()"
+						ng-disabled="(signupForm.$invalid) ||(!signupCheck)">
+						<p>SIGN UP</p>
+					</button>
+				</div>
+				<div class="col-md-12 m-top-15 pad-top-20 pad-0">
+					<div class="col-md-12 forgot-pass pad-0 chnge-align">
+						<p>
+							<a ui-sref="signInState">Already have an account?</a>
+						</p>
+					</div>
+					<!--  <div class="col-md-6 pad-0">
+						<a ui-sref="signInState"><button class="login-button-style2">SIGN
+								IN</button></a>
+					</div>-->
+				</div>
+
+
+			</form>
+
+		</div>
+	</div>
+
+	<!--  <div modal="showModal" close="cancel()">
+      <div class="modal-header">
+          <h4>Modal Dialog</h4>
+      </div>
+      <div class="modal-body">
+          <p>Example paragraph with some text.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" ng-click="ok()">Okay</button>
+        <button class="btn" ng-click="cancel()">Cancel</button>
+      </div>
+    </div> -->
+	<!-- Sart Modal -->
+	<div class="modal fade" id="terms-condition" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog lg-modal">
+			<div class="modal-content">
+				<div class="modal-header pad-0 no-border justify-content-center">
+					<div class="closer">
+						<span data-dismiss="modal" aria-hidden="true"> <img
+							src="../assets/images/close-lite.svg" width="15"
+							draggable="false">
+						</span>
+					</div>
+				</div>
+				<div class="modal-body pad-0">
+					<div class="col-md-12 tc-box pad-0">
+						<h1>Terms and Conditions</h1>
+						<div class="line-br"></div>
+						<h3>Use of Information and Materials</h3>
+						<p>By accessing this web site and or using the information
+							provided on or via this web site you agree to be bound by this
+							Disclaimer..</p>
+						<h3>Terms of use</h3>
+						<p>Scoreme Solutions Pvt Ltd shall not have any responsibility
+							to maintain the data and services made available on this Web site
+							or to supply any corrections, updates, or releases in connection
+							therewith. Availability of the data is subject to change without
+							prior notice. It is recommended that you review the information
+							provided on or via this web site, including the terms of this
+							Disclaimer, periodically for changes. The information contained
+							in this website is based on sources believed to be reliable but
+							is neither all-inclusive nor guaranteed by Scoreme Solutions Pvt
+							Ltd. Opinions, if any, reflect our judgment at this time and are
+							subject to change. In the course of our firm's regular business,
+							we may perform or seek to perform investment banking services for
+							any of the company (ies) mentioned herein or act as advisor or
+							lender / borrower to such company (ies) or have other interest
+							with respect to any recommendation and related information and
+							opinions. .</p>
+						<h3>No part of this material may be:</h3>
+						<p>Copied, photocopied, or duplicated in any form by any means
+							or Re-distributed without Scoreme Solutions Pvt Ltd.' prior
+							written consent If you download any information or software from
+							this site, you agree that you will not copy it or remove or
+							obscure any copyright or other notices or legends contained in
+							any such information.</p>
+
+						<h3>We Follow a no refund policy.</h3>
+
+						<h3>Privacy Policy</h3>
+						<h5>Use of Information and Materials</h5>
+						<p>The information contained in this website is for general
+							information purposes only "as is" basis without any
+							representations or warranties. While we endeavor to keep the
+							information up to date and correct, we make no representations or
+							warranties of any kind, express or implied, about the
+							completeness, accuracy, reliability, suitability or availability
+							with respect to the website or the information, products,
+							services, or related graphics contained on the website for any
+							purpose. Any reliance you place on such information is therefore
+							strictly at your own risk. By accessing this site and any pages
+							thereof, you agree to be bound by the terms and conditions below.
+							If you do not agree to the terms and conditions below, do not
+							access this site or any pages thereof.</p>
+						<h5>Limitation of Liability</h5>
+						<p>In no event will ScoreMe Solutions Pvt Ltd be liable for
+							any damages, including without limitation direct or indirect,
+							special, incidental, or consequential damages, losses or expenses
+							arising in connection with this site or use thereof or inability
+							to use by any party, or in connection with any failure of
+							performance, error, omission, interruption, defect, delay in
+							operation or transmission, computer virus or line or system
+							failure, even if ScoreMe Solutions Pvt Ltd , or representatives
+							thereof, are advised of the possibility of such damages, losses
+							or expenses. Hyperlinks to other internet resources are at your
+							own risk; the content, accuracy, opinions expressed, and other
+							links provided by these resources are not investigated, verified,
+							monitored, or endorsed by Scoreme Solutions Pvt Ltd.</p>
+						<h5>Submissions</h5>
+						<p>All information submitted to Scoreme Solutions Pvt Ltd via
+							this site shall be deemed and remain the property of Scoreme
+							Solutions Pvt Ltd. Scoreme Solutions Pvt Ltd shall be free to
+							use, for any purpose, any ideas, concepts, know-how or techniques
+							contained in information a visitor to this site provides Scoreme
+							Solutions Pvt Ltd through this site. Scoreme Solutions Pvt Ltd
+							shall not be subject to any obligations of confidentiality
+							regarding submitted information except as agreed by Scoreme
+							Solutions Pvt Ltd, entity having the direct customer relationship
+							or as otherwise specifically agreed or required by law. Scoreme
+							Solutions Pvt Ltd is committed to safeguard the confidentiality
+							and security of information of the users of this web site.
+							Scoreme Solutions Pvt Ltd may disclose any information that is
+							provided through this web site to: any other person or entity
+							with the consent of the client, or if Scoreme Solutions Pvt Ltd
+							has a right or duty to disclose or is permitted or compelled to
+							so disclose such information by law, for the time being in force.
+							For example, Scoreme Solutions Pvt Ltd may share/provide
+							information with/to judicial bodies and regulatory authorities
+							who have jurisdiction over Scoreme Solutions Pvt Ltd. Scoreme.in
+							may also enter into agreement(s) with other company (ies) to
+							provide services to Scoreme Solutions Pvt Ltd or make services
+							and products available to its clients and they may thus receive
+							information about the users, but they may only use it for those
+							purpose(s) that Scoreme Solutions Pvt Ltd specifies.</p>
+
+						<h5>Unlawful use of this website</h5>
+						<p>We reserve the right to investigate complaints or reported
+							violations of this Privacy Policy and to take any action as
+							deemed appropriate including but not limited to reporting any
+							suspected unlawful activity to law enforcement officials,
+							regulators, or other third parties and disclosing any information
+							necessary or appropriate to such persons, or entities relating to
+							users profiles, e-mails, addresses, usage history, posted
+							materials, IP addresses etc.</p>
+
+
+						<h5>Governing law and jurisdiction</h5>
+						<p>This website is for informational purposes only and should
+							not be construed as technical advice of any manner and by viewing
+							it you are deemed to agree to jurisdiction of the courts at
+							Gurugram, India in respect of any action arising there from or
+							related thereto. Reasonableness By using this website, you agree
+							that the exclusions and limitations of liability set out in this
+							website disclaimer are reasonable. If you do not think they are
+							reasonable, you must not use this website.</p>
+
+						<h5>Reasonableness</h5>
+						<p>reasonable. If you do not think they are reasonable, you
+							must not use this website.</p>
+
+
+						<h5>Unenforceable provisions</h5>
+						<p>If any provision of this website disclaimer is, or is found
+							to be, unenforceable under applicable law, that will not affect
+							the enforceability of the other provisions of this website
+							disclaimer.</p>
+
+						<h5>Other parties</h5>
+						<p>You accept that, as a limited liability entity, we have an
+							interest in limiting the personal liability of its officers and
+							employees. You agree that you will not bring any claim personally
+							against our officers or employees in respect of any losses you
+							suffer in connection with the website.</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  End Modal -->
+
+</div>

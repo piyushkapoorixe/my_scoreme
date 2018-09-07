@@ -1,0 +1,772 @@
+@CHARSET "ISO-8859-1";
+
+.main-box
+{
+	
+    min-height: 400px;
+    height: auto;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: solid 1px #e5e9f2;
+    margin-bottom: 30px;
+    padding:30px;
+    
+}
+.on-margin-top
+{
+	margin-top:10px;
+}
+.left-m
+{
+	margin-left:16px;
+}
+.gstn
+{
+
+  width: 71px;
+  height: 19px;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.07;
+  letter-spacing: normal;
+  text-align: left;
+  color: #516378;
+}
+
+
+.gstn-billed
+{
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: left;
+  color: #9b9b9b;
+}
+
+.next-row
+{
+	padding-left: 7px;
+}
+
+.first-input
+{
+  width: 223px;
+  height: 25px;
+  border-radius: 2px;
+  background-color: #f9f9f9;
+  border: 0.5px solid #d1d2d3; 
+}
+.for_top
+{
+	    margin-top: 30px;
+}
+.line
+{
+  /* width: 819px;
+  height: 1px;  */
+  background:  #e6e6e6;
+  margin-top: 15px;
+}
+
+.bill-add
+{
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.07;
+  letter-spacing: normal;
+  text-align: left;
+  color: #516378;
+}
+
+.for-space
+{
+	padding:30px;
+	padding-left: 0px;
+}
+
+
+.add
+{
+ width: 61px;
+  height: 19px;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: left;
+  color: #9b9b9b;
+}
+.sec-input
+{
+   width: 100%;
+   height: 50px;
+   border-radius: 2px;
+   background-color: #f9f9f9;
+    border: 0.5px solid #d1d2d3;  
+    padding:16px;
+}
+.pad-left
+{
+	padding-left:0px;
+}
+
+.cancel
+{
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #9b9b9b;
+  margin-right: 3px;
+}
+
+
+.for-link
+{
+  width: 80px;
+  height: 25px;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  background-color:#0057ff;
+  border-radius: 12.5px;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.pad-right
+{
+	
+	margin-top:20px;
+	padding-top: 20px;
+}
+/*_________user dashboard_______*/
+
+
+
+.ac-sum
+{
+  font-family: Montserrat;
+  font-size: 19px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #516378;
+}
+
+.space-bottom
+{
+	padding-bottom: 30px;
+}
+
+.filter
+{
+  width: 200px;
+  height: 33px;
+  border-radius: 2px;
+  border: solid 1px #e5e6eb;
+  float:right;
+}
+
+.cre-bal
+{
+
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #9b9b9b;
+}
+.mar_6
+{
+	margin-top:6px;
+}
+.rect
+{ 
+  height: 90px;
+  border: solid 0.5px #dfe2e9;
+      padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.pad_left
+{
+	padding-left:10px;
+}
+.cre_dit
+{
+  
+  height: 18px;
+  font-family: Montserrat;
+  font-size: 10px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: #9b9b9b;
+}
+
+.cr_two
+{
+ 
+  height: 24px;
+  font-family: Montserrat;
+  font-size: 22px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #0057ff;
+  padding-top: 10px;
+}
+
+.sec_rec
+{
+	
+  height: 140px;
+  border: solid 0.5px #dfe2e9;
+      padding-top: 12px;
+}
+.box-text
+{
+  height: 25px;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: #9b9b9b;
+}
+.two_box
+{
+width: 80px;
+  height: 80px;
+  background-color: #0057ff;
+  color:#fff;
+   margin: auto;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 21px;
+    padding-bottom: 21px;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.space-top
+{
+	margin-top:30px;
+	margin-bottom: 10px;
+}
+.static
+{
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #516378;
+}
+
+.grph-box
+{
+  margin-left: 0px;
+  height: 302px;;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: solid 1px #e5e9f2;
+  width:960px;
+}
+
+.top-bot
+{
+	margin-top: 14px;
+    margin-bottom: 20px;
+    clear:both;
+}
+
+.data-box
+{
+  width: 472px;
+  height: 285px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: solid 1px #e5e9f2;
+  margin-left:15px;
+}
+
+/*-------bank statement dashboard-------*/
+
+
+.filter_1
+{
+	    left: 18px !important;
+	    width: 174px;
+	    height: auto;
+}
+
+.cus_edit
+{
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    border: 1px solid #DCDCDC;
+    background:#fff;
+    overflow: hidden;
+}
+.cus-drop
+{
+	border-radius: 5px;
+    border: 1px solid #DCDCDC;
+    height: 30px;
+    width: 90%;
+        position: relative;
+    top: 10px;
+        left: 5%;
+}
+.scroll-two
+{
+	overflow-y: auto;
+    height: 11vh;
+    overflow-x: hidden;
+    position: relative;
+    top: 12px;
+}
+
+
+.Transfer-Rights-You p
+{
+
+  font-family: Montserrat;
+  font-size: 10px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #9b9b9b;
+}
+.Transfer-Rights-You a
+{
+	font-size: 13px;
+  line-height: 1.15;
+  color: #0057ff
+}
+
+.ch-mar-top
+{
+	margin-top:130px;
+}
+/*-------bank-statement-----*/
+.cen
+{
+	text-align: center;
+    margin-left: 3px;
+}
+.filter_1 {
+    left: 18px !important;
+    width: 202px;
+    height: auto;
+}
+/*----admin panel-----*/
+.mid-top
+{
+	padding-top:20px;
+}
+
+/*------user dasboard---*/
+.inline-in
+{
+	width: 201px;
+    display: inline-block;
+    border: 1px solid #ddd;
+    margin-left: 15px;
+}
+
+.only-font-size>thead>tr>th
+{
+	font-size:10px;
+}
+.only-font-size>tbody>tr>td
+{
+	font-size:10px;
+}
+.m-top-20
+{
+	margin-top:20px;
+}
+
+/*bank statemenet dashboard*/
+ .chrt
+ {
+ 	width:70%;
+ 	margin:auto;
+ 	padding-top:50px;
+ }
+
+.height-auto
+{
+	height:130px;
+}
+
+.pad-9
+{
+	    padding-top: 9px;
+}
+
+/*------reset password----*/
+.radio-sign
+{
+	position: relative;
+    top: 14px;
+    left: 10px;
+}
+
+.radio-sign input[type='radio']:checked:before {
+    background:#337ab7;
+}
+.radio-sign input[type='radio']:before {
+    content:'';
+    display:block;
+    width:58%;
+    height:58%;
+    margin: 20% auto;    
+    border-radius:50%;    
+}
+
+.radio-sign input[type='radio'] {
+    -webkit-appearance:none;
+      width: 16px;
+    height: 16px;
+    border:1px solid darkgray;
+    border-radius:50%;
+    outline:none;
+    box-shadow:0 0 5px 0px gray inset;
+}
+
+.chnge-align>p {
+    
+    
+    text-align: center;
+    color: #9b9b9b;
+    font-weight:500;
+}
+.score-datalist>thead>tr>th {
+	font-weight:700;
+	
+
+}
+
+.field-box-disabled {
+    background-color: #fff;
+}
+.f-col
+{
+	  background-color: #fff !important;
+}
+.user-wid
+
+{
+	margin-left:0px !important;
+	width: 199px;
+	
+
+}
+/*accont>billing----css*/
+.left-mar
+{
+	margin-left:25px;
+}
+.pad-left-0
+{
+	padding-left:0px;
+}
+/***introductory********/
+.size-img
+{
+	width:100%;
+	height:570px;
+	object-fit:cover;
+}
+.welcome-intro
+{
+	  width: 1439px;
+  
+  font-family: Montserrat;
+  font-size: 23px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.9;
+  letter-spacing: normal;
+  text-align: center;
+  color: #1a243d;
+}
+.intro-btn
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+  
+  border-radius: 22px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+  background-color: #0057ff;
+  border: solid 1px #0057ff;
+}
+
+.get-text
+{
+
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+.back-clr
+{
+	background: #f5f6fa;
+    margin: 0;
+}
+
+.contact
+{
+	
+    height: auto;
+    position: fixed; 
+    width: 140px;
+    border-radius:5px;
+    top: 628px;
+    background:#1b82f9;
+    padding-bottom: 5px;
+    padding-top: 3px;           
+    margin-left: 30px;
+    box-shadow:0 5px 4px 0 rgba(0,0,0,0.26);
+    z-index: 9995;
+    cursor:pointer;
+    
+}
+.mar-13
+{
+	margin-top:0px !important;
+	margin-left: 13px;
+	cursor:pointer;
+}
+.mar-50
+{
+	margin-top:0px !important;
+	
+}
+.sp-clr
+{
+	color:#fff !important;
+	    
+}
+.icn_mar
+{
+	margin-left:0px;
+	    margin-top: -2px;
+	    
+}
+.icon-rig
+{
+	float:right;
+}
+/*-------after-display*****/
+
+.after-display
+{
+	  height: auto;
+    position: fixed;
+   width: 190px;
+   border-radius:5px;
+    top: 589px;
+    background:#fff;
+    padding-bottom: 5px;
+    padding-top: 3px;
+    margin-left: 12px;  
+    box-shadow:0 5px 4px 0 rgba(0,0,0,0.26);
+    z-index: 9995;
+    display:none;
+}
+.back-g
+{
+	width:191px;
+	background-color:#1b82f9;
+	cursor:pointer;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px
+
+}
+.e-left
+{
+	margin-left:10px;
+}
+
+.dark-clr
+{
+	color: #516378 !important;
+}
+
+
+/* media query Help and Support (Romal) */
+@media (min-width: 600px) {
+    .contact 
+    {
+        top: 600px;
+    }
+    .after-display
+    {
+        top: 560px;
+    }
+}
+
+
+/*billing address modal*/
+.pad-left-12
+{
+	padding-left:12px;
+}
+
+/*admin panel*/
+/* .admin-panel
+{
+	overflow-x:scroll;
+} */
+.admin-drop
+{
+	padding:5px;
+}
+
+
+/* pagination css */
+
+.pagination>li>.hov-col:hover
+{
+	background:#0057ff;
+	color:#fff;
+}
+
+/*dashboard(new score card)*/
+.mar-top-53
+{
+	margin-top:53px;
+}
+.img-top
+{
+	position:relative;
+	top:15px;
+}
+
+
+
+
+/*pagination css*/
+.pagination>li>.hov-col:hover {
+background: #0057ff;
+color: #fff;
+cursor:pointer;
+}
+
+
+
+/**/
+.table_head_Style>tbody>tr>td
+{
+	table-layout: fixed;
+   word-break: break-all;
+   word-wrap: break-word;
+}
+/*notification no data available*/
+
+.pad-top-bot
+
+{
+	padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.style-avail
+{
+	    text-align: center;
+    color: #9b9b9b;  
+}
+
+
+
+/*modal of settings*/
+.modal_body_div 
+{
+	height:500px;
+	overflow-y:scroll;
+}
+
+
+.caret_div 
+{
+	width:150px;
+	overflow-x:hidden;
+}
+
+.wid-temp
+{
+	width: 90px;
+    overflow: hidden;
+}
+
+
+/*css of admin panel bank statement tab*/
+.admin-drop
+{
+	width:195px;
+}
+
+/*scroll in bank statement*/
+.bank-statement-scroll
+{
+	    overflow-y: auto;
+}

@@ -1,0 +1,248 @@
+
+<!-- Bank Statement Dashboard  -->
+<div class="col-md-10 pad-rgt-0" ng-controller="bankDashboardController">
+<div class="overlay" ng-if="dataLoading">
+		<img width="100"
+			src="../assets/images/loaders/interwind-preloader.svg" />
+</div>
+	<div class="col-md-12 pad-0">
+
+		<div class="col-md-6">
+			<div class="bankstatement_dashboard">
+				<div class="col-md-12 pad-0">
+					<ul class="list-inline notification_card txt-center">
+						<li>
+							<h2>LIVE NOTIFICATION</h2>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-6">
+					<ul class="list-inline notification_card">
+						<li>
+							<p>Total Number of Files Converted</p>
+							<h3>{{convertedCount}}</h3>
+						</li>
+					</ul>
+					<ul class="list-inline notification_card ">
+						<li>
+							<p>Total Number of Files being analyzed</p>
+							<h3>{{completedCount}}</h3>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-6">
+					<ul class="list-inline notification_card ">
+						<li>
+							<p>Total Number of Files Validated</p>
+							<h3>{{validatedCount}}</h3>
+						</li>
+					</ul>
+					<ul class="list-inline notification_card ">
+						<li>
+							<p>Total Number of Reports Generated</p>
+							<h3>{{completedCount}}</h3>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="card_bankdashboard">
+				<ul class="list-inline bank_dashboard">
+					<li>
+						<p>ACCOUNT NUMBER</p>
+					</li>
+					<li>
+					<!-- <select class="select_layer m-top-35 m-lft-25" ng-change="changeAccNumberData(accNo)" ng-model="accNo">
+							<option ng-repeat="anl in accountNumberList track by $index" value={{anl}}>{{anl}}</option>
+					</select> -->			
+	                    <div class="filter_inputbox0 filter_1">
+
+									<ul class="list-inline cen">
+										<li><a href="javascript:void(0)"
+											class="dropdown-toggle_account">
+												<div ng-bind="firstAccountNumber"
+													class="dropdown-toggle_account"></div></li>
+										<li><span><i
+												class="fa fa-caret-down dropdown-toggle_account"></i></span> </a></li>
+									</ul>
+									<div class="filter_dropdown_list_account closeDropdown cus_edit height-auto">
+										<input type="text" id="searchBar" ng-model="mySearch"
+											ng-keyup="mySearchAccountNumberFunction(mySearch)" class="cus-drop">
+										<div class="scroll scroll-two">
+											<ul class="companynamedata"
+												ng-repeat="anl in accountNumberList track by $index"
+												ng-init="parentIndex = $index">
+												<li class="localCompanyLi"
+													ng-click="changeAccNumberData(anl)">{{anl}}</li>
+													
+											</ul>
+										</div>
+									</div>
+						</div>				
+					</li>
+					<ul>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="credit_remaining txt-center">
+				<!-- <ul class="list-inline credit">
+					<li>
+						<p>Credit Remaining</p>
+						<h3>2 Units</h3>
+					</li>
+				</ul> -->
+				<ul class="list-inline credit">
+					<li>
+					<a ng-href="{{report}}" target="_blank">
+					   <button class="btn spinner download-report download-report-bankstatement mar-rep-30">
+						DOWNLOAD REPORT
+						<span
+							class="entity"><img src="../assets/images/right-arrow.svg"
+								width="20"></span>
+					</button></a>
+					</li>
+					<li>
+						<!-- <a ui-sref="bankStatementState"><button class="btn spinner download-report-bankstatement ">
+							UPLOAD
+								NEW STATEMENT <span class="entity "> <img
+									src="../assets/images/right-arrow.svg " width="20 ">
+							</span>			
+						</button></a> -->
+						
+						
+						
+						<a ui-sref="bankStatementState">
+					   <button class="btn spinner download-report download-report-bankstatement mar-rep-30">
+						UPLOAD
+								NEW STATEMENT
+						<span
+							class="entity"><img src="../assets/images/right-arrow.svg"
+								width="20"></span>
+					</button></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-12 pad-0 pad-top-25">
+			<div class="col-md-3">
+				<div class="card_bankdashboard">
+					<ul class="list-inline bank_dashboard">
+						<li>
+							<p>AVERAGE EOD</p>
+						</li>
+						<li>
+							<h3>
+								Average Limit Utilization <br> INR {{averageUtilization}}
+							</h3>
+						</li>
+						<li>
+							<h3>
+								Number of Times Limit Overdrawn <br> {{limitOverDrawn}}
+							</h3>
+						</li>
+					 <ul>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card_bankdashboard">
+					<ul class="list-inline bank_dashboard">
+						<li>
+							<p>TOTAL DEBIT</p>
+						</li>
+						<li>
+							<h3>
+								{{totalDebitCount}} Units <br> INR {{debitAmount}}
+							</h3>
+						</li>
+						<li>
+							<p>TOTAL CREDIT</p>
+						</li>
+						<li>
+							<h3>
+								{{totalCreditCount}} Units <br> INR {{creditAmount}} 
+							</h3>
+						</li>
+						<ul>
+				</div>
+			</div>
+
+
+			<div class="col-md-3">
+				<div class="card_bankdashboard">
+					<ul class="list-inline bank_dashboard">
+						<li>
+							<p>TOTAL INHOUSE DEBIT</p>
+						</li>
+						<li>
+							<h3>
+								{{inhouseDebitCount}} Units <br>INR {{inhouseDebit}}
+							</h3>
+						</li>
+						<li>
+							<p>TOTAL INHOUSE CREDIT</p>
+						</li>
+						<li>
+							<h3>
+								{{inhouseCreditCount}} Units <br>INR {{inhouseCredit}}
+							</h3>
+						</li>
+						<ul>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card_bankdashboard">
+					<ul class="list-inline bank_dashboard">
+						<li>
+							<p>INWARD CHEQUE RETURN</p>
+						</li>
+						<li>
+							<h3>
+								{{totalICReturnUnit}} Cheques <br>INR {{icreTurnDebit}}
+							</h3>
+						</li>
+						<li>
+							<p>OUTWARD CHEQUE RETURN</p>
+						</li>
+						<li>
+							<h3>
+								{{totalICReturnUnit}} Cheques <br>INR {{icreTurnCredit}}
+							</h3>
+						</li>
+						<ul>
+				</div>
+			</div>
+		</div>
+		<!--Chart Html Start  -->
+		<div class="col-md-12 pad-0 pad-top-25">
+			<div class="col-md-6">
+				<div class="pie_chart_dashboard">
+				  <!--  <highchart series="chart.series" options="chart.options"></highchart>  -->
+
+			<highchart id="debitchart1" series="debitChart.series" options="debitChart.options"></highchart> 
+
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="pie_chart_dashboard">
+	<highchart id="creditChart" series="creditChart.series" options="creditChart.options"></highchart>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-12 pad-0 pad-top-25">
+			<div class="col-md-12">
+				<div class="pie_chart_dashboard">
+				 
+				 <highchart id="eodChart" series="eodChart.series" options="eodChart.options"></highchart>
+				
+				</div>
+			</div>
+		</div>
+
+		<!--Ends  -->
+
+	</div>
+</div>

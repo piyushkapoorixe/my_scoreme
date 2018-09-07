@@ -1,0 +1,471 @@
+<div ng-controller="addEntityController">
+<div class="overlay" ng-if="dataLoading">
+		<img width="100"
+			src="../assets/images/loaders/interwind-preloader.svg" />
+</div>
+	<!-- __________flowbar-navigation area___________ -->
+	<section class="pad-lr-60 pad-15-xs">
+		<div class="col-md-12 pad-0 m-top-85-xs m-top-120">
+			<div class="col-md-4 page-heading pad-0">
+				<h1>Add New Entity</h1>
+				<p>Fill the form below to add the new entity</p>
+			</div>
+			<div class="col-md-4">
+			</div>
+			<div class="col-md-4 m-top-15 txt-center-xs txt-right pad-0">
+				<ul class="list-inline">
+					<li>
+						<button class="next-step"
+							ng-click="addCompany(companyForm.$valid , companyCheckbox);isInValidOnSubmit=true"
+							ng-model="addEntityBtn" id="addcomp-button"
+							ng-class="{ nextstep: companyForm.$valid && companyCheckbox}">
+							Next Step</button>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- __________Main Content area___________ -->
+	<section class="pad-lr-60 pad-15-xs">
+		<div class="col-md-12 pad-0 m-top-10 pad-30 content-box m-bot-30">
+
+			<form role="form" name="companyForm" id="companyForm"
+				data-validate="parsley" action="#" novalidate class="md-inline-form">
+
+				<div class="col-md-12 pad-0"
+					ng-repeat="(key , item) in noOfEntityDiv track by $index">
+					<div class="col-md-12 pad-0">
+						<div class="col-md-6 pad-0">
+							<h2 class="module-counter">Entity-{{$index+1}}</h2>
+						</div>
+						<div class="col-md-6 pad-0" ng-if="noOfEntityDiv.length > 1">
+							<button class="module_close" type="button" ng-click="del($index)">
+								<i class="fa fa-times" aria-hidden="true"></i>
+							</button>
+						</div>
+					</div>
+
+					<div class="col-md-6 pad-0">
+						<div class="page-logo">
+							<div class="content">
+								<div class="col-md-3 bdr-right-hash">
+									<div class="logo-img" id="{{'group_icon' + [$index+1]}}">{{group_icon}}</div>
+								</div>
+								<div class="col-md-9 labels">
+									<!-- <h3>Group Name <span class="mandatory">*</span></h3>
+                                    <p>(If you don't have any Group Name, you can add your Entity Name as Group Name)</p> -->
+									<div class="field-box mar-top-13">
+										<label class="app__label"
+											ng-style="{'visibility': group_name ? 'visible' : 'hidden'}">Group
+											Name <span>*</span>
+										</label> <input type="text" name="{{'group_name' + [$index+1]}}"
+											id="{{'group_name' + [$index+1]}}" ng-model="group_name"
+											ng-keyup="changeGroupIcon(group_name , [$index+1])"
+											ng-blur="groupName(group_name , [$index+1]) " maxlength="255"
+											text="Please enter the name of the group"
+											placeholder="Enter Group Name*" data-required="true"
+											class="input-setting input__style2 form-control capitalize"
+											required capitalize />
+										<!--        <span id="{{'group_name' + [$index+1]}}_span" class="custom_ng-error"></span>  -->
+										<span
+											ng-show="companyForm.{{'group_name' + [$index+1]}}.$invalid && isInValidOnSubmit">
+											<span class="custom_ng-error"
+											ng-show="companyForm.{{'group_name' + [$index+1]}}.$error.required">Please
+												Enter Valid Data</span>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6 pad-0">
+						<div class="field-box">
+							<label class="app__label"
+								ng-style="{'visibility': company_name ? 'visible' : 'hidden'}">Entity
+								Name <span>*</span>
+							</label> <input type="text" name="{{'company_name' + [$index+1]}}"
+								id="{{'company_name' + [$index+1]}}" ng-model="company_name"
+								maxlength="255" text="Please enter the name of the company"
+								placeholder="Enter Entity Name" data-required="true"
+								class="input-setting input__style2 form-control" required
+								capitalize />
+								<span class="asterisk_input" ng-style="{'visibility': !company_name ? 'visible' : 'hidden'}"></span>
+							<!--  <span id="{{'company_name' + [$index+1]}}_span" class="custom_ng-error"></span>  -->
+							<span
+								ng-show="companyForm.{{'company_name' + [$index+1]}}.$invalid && isInValidOnSubmit">
+								<span class="custom_ng-error"
+								ng-show="companyForm.{{'company_name' + [$index+1]}}.$error.required">Please
+									Enter Valid Data.</span>
+							</span>
+
+						</div>
+
+						<div class="field-box">
+							<label class="app__label"
+								ng-style="{'visibility': businessType ? 'visible' : 'hidden'}">Select
+								Business Type <span>*</span>
+							</label> <select
+								class="input-setting input_style_select form-control border-bot"
+								name="{{'businessType'+[$index+1]}}"
+								id="{{'businessType'+[$index+1]}}" data-required="true"
+								title="Please select the Business" ng-model="businessType"
+								ng-change="getIndustryType(businessType,$index)" required>
+								<option value="">Select Business Type </option>
+								<option ng-repeat="b in businessTypeData.data" value="{{b.id}}">{{b.groupName}}</option>
+							</select>
+							  <span class="asterisk_input" ng-style="{'visibility': !businessType ? 'visible' : 'hidden'}"></span>
+							<!--   <span id="{{'businessType'+[$index+1]}}_span" class="custom_ng-error"></span>  -->
+							<span
+								ng-show="companyForm.{{'businessType'+[$index+1]}}.$invalid && isInValidOnSubmit">
+								<span class="custom_ng-error"
+								ng-show="companyForm.{{'businessType'+[$index+1]}}.$error.required">Please
+									Enter Valid Data.</span> <!--  <span ng-show="companyForm.{{'businessType'+[$index+1]}}.$error.minlength">your password is too short </span> -->
+							</span>
+
+						</div>
+
+					</div>
+					<div class="col-md-12 pad-0">
+						<div class="col-md-6 pad-0">
+							<div class="field-box" ng-class="{'field-box-disabled':!businessType}">
+								<label class="app__label"
+									ng-style="{'visibility': industryType ? 'visible' : 'hidden'}">Select
+									Industry Type <span>*</span>
+								</label> <select
+									class="input-setting input_style_select form-control border-bot f-col"	
+									name="{{'industryType'+[$index+1]}}"
+									id="{{'industryType'+[$index+1]}}" data-required="true"
+									title="Please select the Industry Type" ng-model="industryType"
+									ng-disabled="!businessType"
+									ng-options="i.industryId as i.industryName for i in industryTypeData{{$index}}"
+									required>
+									<option value="">Select Industry Type </option>
+									<!--  <option ng-repeat="i in industryTypeData.$index" value="{{i.industryId}}">{{i.industryName}}</option> -->
+								</select>
+								<span class="asterisk_input" ng-style="{'visibility': !industryType ? 'visible' : 'hidden'}"></span>
+								<!--   <span id="{{'industryType'+[$index+1]}}_span" class="custom_ng-error"></span> -->
+								<span
+									ng-show="companyForm.{{'industryType'+[$index+1]}}.$invalid && isInValidOnSubmit">
+									<span class="custom_ng-error"
+									ng-show="companyForm.{{'industryType'+[$index+1]}}.$error.required">Please
+										Enter Valid Data.</span>
+								</span>
+							</div>
+						</div>
+						
+						<div class="col-md-6 pad-0">
+							<div class="field-box">
+								<label class="app__label"
+									ng-style="{'visibility': company_id ? 'visible' : 'hidden'}">Enter Pan Number<span>*</span>
+								</label> 
+								
+								    <input type="text"
+									class="input-setting input__style2 form-control border-bot uppercase"
+									title="Please share the PAN (Permanent Account Number) of your company"
+									placeholder="Enter Pan Number" name="{{'company_id'+[$index+1]}}"
+									id="{{'company_id'+[$index+1]}}" ng-blur="checkDuplicatePanNoB(company_id);checkDuplicatePanNoF($index+1)"
+									ng-pattern="/[a-zA-Z]{5}\d{4}[a-zA-Z]{1}/g" maxlength="10"
+									ng-model="company_id" data-required="true" required>
+									
+							     <span class="asterisk_input" ng-style="{'visibility': !company_id ? 'visible' : 'hidden'}"></span>
+								 <span class="custom_ng-error" ng-if="(isPanExist == true && company_id)||(isPanDuplicate == true && company_id) ">Pan number already exists</span>
+								 <span ng-show="companyForm.{{'company_id'+[$index+1]}}.$invalid && isInValidOnSubmit">
+                                      <span class="custom_ng-error" ng-show="companyForm.{{'company_id'+[$index+1]}}.$error.required">Please enter Pan number</span>
+                                      <span class="custom_ng-error" ng-show="companyForm.{{'company_id'+[$index+1]}}.$error.pattern">Please enter valid Pan number</span>
+								</span>
+							</div>
+						</div>
+						
+					</div>
+
+
+					<div class="col-md-12 pad-0">
+						<div class="col-md-6 pad-0">
+							<div class="field-box">
+								<label class="app__label"
+									ng-style="{'visibility': partner_state ? 'visible' : 'hidden'}">Select
+									State <span>*</span>
+								</label> <select name="{{'partner_state'+[$index+1]}}"
+									id="{{'partner_state'+[$index+1]}}" ng-model="partner_state"
+									data-required="true" title="Please select the state"
+									class="input-setting input_style_select form-control border-bot"
+									ng-change="getCities(partner_state , $index)" required>
+									<option value="">Select State</option>
+									<option ng-repeat="s in stateData.data" value="{{s.id}}">{{s.name}}</option>
+								</select>
+                                <span class="asterisk_input" ng-style="{'visibility': !partner_state ? 'visible' : 'hidden'}"></span>
+								<!--  <span id="{{'partner_state'+[$index+1]}}_span" class="custom_ng-error"></span> -->
+								<span
+									ng-show="companyForm.{{'partner_state'+[$index+1]}}.$invalid && isInValidOnSubmit">
+									<span class="custom_ng-error"
+									ng-show="companyForm.{{'partner_state'+[$index+1]}}.$error.required">Please
+										Enter Valid Data.</span>
+								</span>
+
+							</div>
+					</div>
+						<div class="col-md-6 pad-0">
+							<div class="field-box" ng-class="{'field-box-disabled':!partner_state}">
+								<label class="app__label"
+									ng-style="{'visibility': partner_city ? 'visible' : 'hidden'}">Select
+									City <span>*</span>
+								</label> <select name="{{'partner_city'+[$index+1]}}"
+									id="{{'partner_city'+[$index+1]}}" ng-model="partner_city"
+									ng-disabled="!partner_state" data-required="true"
+									title="Please select the city"
+									class="input-setting input_style_select form-control border-bot bdr-right f-col"
+									
+									ng-change="selectedCity(partner_city)" required
+									ng-options="c.id as c.name for c in cityData{{$index}}">
+									<option value="">Select City </option>
+									<!-- <option ng-repeat="c in cityData.data" value="{{c.id}}">{{c.name}}</option> -->
+								</select>
+							<span class="asterisk_input" ng-style="{'visibility': !partner_city ? 'visible' : 'hidden'}"></span>
+								
+
+								<!--  <span id="{{'partner_city'+[$index+1]}}_span" class="custom_ng-error"></span> -->
+								<span
+									ng-show="companyForm.{{'partner_city'+[$index+1]}}.$invalid && isInValidOnSubmit">
+									<span class="custom_ng-error"
+									ng-show="companyForm.{{'partner_city'+[$index+1]}}.$error.required">Please
+										Enter Valid Data.</span>
+								</span>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!--  <div id="companyDiv"></div> -->
+
+			</form>
+
+			<!-- ___________ADD NEW ENTRY_______________ -->
+			<div class="col-md-12 pad-0">
+				<div class="col-md-2 m-top-15 txt-left pad-0">
+					<!--         <input ng-model="companyDivCount" style="display:none"> -->
+					<!--                             <button class="add-newEntry" ng-click="count = count + 1 ; addAnotherEntity(count , 'companyForm')" ng-init="count=1" ng-model="addAnotherEntity" ng-disabled="count > 4" add-company>+Add Another Entity</button>
+ -->
+					<button class="add-newEntry"
+						ng-click="count = count + 1 ; addAnotherEntity()"
+						ng-model="addAnotherEntity" ng-init="count=1"
+						ng-disabled="count > 5">+Add Another Entity</button>
+
+
+
+				</div>
+				<div class="col-md-10 m-top-15 addEntry-txt txt-left pad-0">
+					<!-- <p>You can add upto 5 Entities, Please contact our executives
+						if you have more than 5 Entities.</p> -->
+					<p>You can add upto 5 entities. To add more entities please contact support.</p>					
+				</div>
+			</div>
+			<!-- __________AGREED TO TERMS AND CONDITION SECTION_________ -->
+
+			<div class="col-md-12 pad-0">
+				<div class="col-md-12 m-top-15 txt-left pad-0">
+					<ul class="list-inline">
+						<li>
+							<div class="checkbox">
+								<label> <input type="checkbox" id="companyCheckbox"
+									ng-model="companyCheckbox" ng-true-value="true"
+									ng-false-value="false" /> <i class="input-helper"></i>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="m-top-15 tnd-txt txt-left pad-0">
+								<p>
+									I Agree to the <span data-toggle="modal"
+										data-target="#terms-condition">Terms & Policies</span>
+								</p>
+							</div>
+						</li>
+					</ul>
+					<ul class="list-inline">
+						<li><span class="custom_ng-error"
+							ng-show="isInValidOnSubmit && !companyCheckbox">Please
+								select checkbox</span></li>
+					</ul>
+					<ul class="list-inline">
+						<li><button class="next-step"
+								ng-click="addCompany(companyForm.$valid , companyCheckbox , isPanExist , isPanDuplicate);isInValidOnSubmit=true"
+								ng-model="addEntityBtn" id="addcomp-button"
+								ng-class="{ nextstep: companyForm.$valid && companyCheckbox}">
+								Next Step</button></li>
+					</ul>
+					<ul class="list-inline">
+						<li>
+							<div class="tnd-txt txt-left pad-0">
+								<span id="checkbox_span" class="custom_ng-error pad-lft-34"></span>
+							</div>
+						</li>
+					</ul>
+
+				</div>
+
+			</div>
+			<div class="col-md-12 disclaimer-txt txt-left pad-0">
+				<p>
+					<span><b>Disclaimer:</b></span> We believe that you have entered
+					the data to the best of your knowledge.
+				</p>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Sart Modal -->
+	<div class="modal fade" id="terms-condition" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog lg-modal">
+			<div class="modal-content">
+				<div class="modal-header pad-0 no-border justify-content-center">
+					<div class="closer">
+						<span data-dismiss="modal" aria-hidden="true"> <img
+							src="../assets/images/close-lite.svg" width="15"
+							draggable="false">
+						</span>
+					</div>
+				</div>
+				<div class="modal-body pad-0">
+					<div class="col-md-12 tc-box pad-0">
+						<h1>Terms and Conditions</h1>
+						<div class="line-br"></div>
+						<h3>Use of Information and Materials</h3>
+						<p>By accessing this web site and or using the information
+							provided on or via this web site you agree to be bound by this
+							Disclaimer..</p>
+						<h3>Terms of use</h3>
+						<p>Scoreme Solutions Pvt Ltd shall not have any responsibility
+							to maintain the data and services made available on this Web site
+							or to supply any corrections, updates, or releases in connection
+							therewith. Availability of the data is subject to change without
+							prior notice. It is recommended that you review the information
+							provided on or via this web site, including the terms of this
+							Disclaimer, periodically for changes. The information contained
+							in this website is based on sources believed to be reliable but
+							is neither all-inclusive nor guaranteed by Scoreme Solutions Pvt
+							Ltd. Opinions, if any, reflect our judgment at this time and are
+							subject to change. In the course of our firm's regular business,
+							we may perform or seek to perform investment banking services for
+							any of the company (ies) mentioned herein or act as advisor or
+							lender / borrower to such company (ies) or have other interest
+							with respect to any recommendation and related information and
+							opinions. .</p>
+						<h3>No part of this material may be:</h3>
+						<p>Copied, photocopied, or duplicated in any form by any means
+							or Re-distributed without Scoreme Solutions Pvt Ltd.' prior
+							written consent If you download any information or software from
+							this site, you agree that you will not copy it or remove or
+							obscure any copyright or other notices or legends contained in
+							any such information.</p>
+
+						<h3>We Follow a no refund policy.</h3>
+
+						<h3>Privacy Policy</h3>
+						<h5>Use of Information and Materials</h5>
+						<p>The information contained in this website is for general
+							information purposes only "as is" basis without any
+							representations or warranties. While we endeavor to keep the
+							information up to date and correct, we make no representations or
+							warranties of any kind, express or implied, about the
+							completeness, accuracy, reliability, suitability or availability
+							with respect to the website or the information, products,
+							services, or related graphics contained on the website for any
+							purpose. Any reliance you place on such information is therefore
+							strictly at your own risk. By accessing this site and any pages
+							thereof, you agree to be bound by the terms and conditions below.
+							If you do not agree to the terms and conditions below, do not
+							access this site or any pages thereof.</p>
+						<h5>Limitation of Liability</h5>
+						<p>In no event will ScoreMe Solutions Pvt Ltd be liable for
+							any damages, including without limitation direct or indirect,
+							special, incidental, or consequential damages, losses or expenses
+							arising in connection with this site or use thereof or inability
+							to use by any party, or in connection with any failure of
+							performance, error, omission, interruption, defect, delay in
+							operation or transmission, computer virus or line or system
+							failure, even if ScoreMe Solutions Pvt Ltd , or representatives
+							thereof, are advised of the possibility of such damages, losses
+							or expenses. Hyperlinks to other internet resources are at your
+							own risk; the content, accuracy, opinions expressed, and other
+							links provided by these resources are not investigated, verified,
+							monitored, or endorsed by Scoreme Solutions Pvt Ltd.</p>
+						<h5>Submissions</h5>
+						<p>All information submitted to Scoreme Solutions Pvt Ltd via
+							this site shall be deemed and remain the property of Scoreme
+							Solutions Pvt Ltd. Scoreme Solutions Pvt Ltd shall be free to
+							use, for any purpose, any ideas, concepts, know-how or techniques
+							contained in information a visitor to this site provides Scoreme
+							Solutions Pvt Ltd through this site. Scoreme Solutions Pvt Ltd
+							shall not be subject to any obligations of confidentiality
+							regarding submitted information except as agreed by Scoreme
+							Solutions Pvt Ltd, entity having the direct customer relationship
+							or as otherwise specifically agreed or required by law. Scoreme
+							Solutions Pvt Ltd is committed to safeguard the confidentiality
+							and security of information of the users of this web site.
+							Scoreme Solutions Pvt Ltd may disclose any information that is
+							provided through this web site to: any other person or entity
+							with the consent of the client, or if Scoreme Solutions Pvt Ltd
+							has a right or duty to disclose or is permitted or compelled to
+							so disclose such information by law, for the time being in force.
+							For example, Scoreme Solutions Pvt Ltd may share/provide
+							information with/to judicial bodies and regulatory authorities
+							who have jurisdiction over Scoreme Solutions Pvt Ltd. Scoreme.in
+							may also enter into agreement(s) with other company (ies) to
+							provide services to Scoreme Solutions Pvt Ltd or make services
+							and products available to its clients and they may thus receive
+							information about the users, but they may only use it for those
+							purpose(s) that Scoreme Solutions Pvt Ltd specifies.</p>
+
+						<h5>Unlawful use of this website</h5>
+						<p>We reserve the right to investigate complaints or reported
+							violations of this Privacy Policy and to take any action as
+							deemed appropriate including but not limited to reporting any
+							suspected unlawful activity to law enforcement officials,
+							regulators, or other third parties and disclosing any information
+							necessary or appropriate to such persons, or entities relating to
+							users profiles, e-mails, addresses, usage history, posted
+							materials, IP addresses etc.</p>
+
+
+						<h5>Governing law and jurisdiction</h5>
+						<p>This website is for informational purposes only and should
+							not be construed as technical advice of any manner and by viewing
+							it you are deemed to agree to jurisdiction of the courts at
+							Gurugram, India in respect of any action arising there from or
+							related thereto. Reasonableness By using this website, you agree
+							that the exclusions and limitations of liability set out in this
+							website disclaimer are reasonable. If you do not think they are
+							reasonable, you must not use this website.</p>
+
+						<h5>Reasonableness</h5>
+						<p>reasonable. If you do not think they are reasonable, you
+							must not use this website.</p>
+
+
+						<h5>Unenforceable provisions</h5>
+						<p>If any provision of this website disclaimer is, or is found
+							to be, unenforceable under applicable law, that will not affect
+							the enforceability of the other provisions of this website
+							disclaimer.</p>
+
+						<h5>Other parties</h5>
+						<p>You accept that, as a limited liability entity, we have an
+							interest in limiting the personal liability of its officers and
+							employees. You agree that you will not bring any claim personally
+							against our officers or employees in respect of any losses you
+							suffer in connection with the website.</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  End Modal -->
+
+</div>
